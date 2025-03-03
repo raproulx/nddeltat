@@ -1,2 +1,2 @@
 # spray-wth-factsheets
-Factsheet generator regarding weather conditions for pesticide application
+Generate factsheets regarding weather conditions for pesticide spraying in North Dakota.

@@ -1,4 +1,5 @@
 source("fun/wetbulb_from_relhumid.R")
+source("fun/station_pressure.R")
 
 dat <- readr::read_csv("data/00-carrington-test-data.csv") |>
   dplyr::rowwise() |>
@@ -7,10 +8,12 @@ dat <- readr::read_csv("data/00-carrington-test-data.csv") |>
       wetbulb_from_relhumid(
         Ftemp = temp_avg_f,
         RHvalue = relhum_avg_percent,
-        MBpressure = pressure_avg_mb,
+        MBpressure = station_pressure(
+          elev_ft = elevation_ft,
+          altimeter_setting = 1013.25,
+          altimiter_setting_unit = "mb",
+          output_unit = "mb"
+        ),
         output_unit = "F"
       )
   )
-
-#NOTE: used standard pressure for each station, adjusted to elevation, rather than measured atmospheric pressure
-#NOTE: can perhaps write a function for this, using the same approach as NWS website (otherwise it's stored in stations csv file, which is a poor single source of truth)

@@ -1,3 +1,4 @@
+# derived from NWS 'Dewpoint and Wet-bulb from Relative Humidity' calculator at https://www.weather.gov/epz/wxcalc_rh
 wetbulb_from_relhumid <- function(
   Ftemp = NULL,
   Ctemp = NULL,

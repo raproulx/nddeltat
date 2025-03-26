@@ -1,14 +1,90 @@
 # see: https://www.weather.gov/documentation/services-web-api
 library(tidyverse)
 nws_forecast_parse <- function(
-  named_httr2_response = NULL
+  named_httr2_response = NULL,
+  raw_variable = c(
+    "temperature",
+    "dewpoint",
+    "maxTemperature",
+    "minTemperature",
+    "relativeHumidity",
+    "apparentTemperature",
+    "wetBulbGlobeTemperature",
+    "heatIndex",
+    "windChill",
+    "skyCover",
+    "windDirection",
+    "windSpeed",
+    "windGust",
+    "weather",
+    "hazards",
+    "probabilityOfPrecipitation",
+    "quantitativePrecipitation",
+    "iceAccumulation",
+    "snowfallAmount",
+    "snowLevel",
+    "ceilingHeight",
+    "visibility",
+    "transportWindSpeed",
+    "transportWindDirection",
+    "mixingHeight",
+    "hainesIndex",
+    "lightningActivityLevel",
+    "twentyFootWindSpeed",
+    "twentyFootWindDirection",
+    "waveHeight",
+    "wavePeriod",
+    "waveDirection",
+    "primarySwellHeight",
+    "primarySwellDirection",
+    "secondarySwellHeight",
+    "secondarySwellDirection",
+    "wavePeriod2",
+    "windWaveHeight",
+    "dispersionIndex",
+    "pressure",
+    "probabilityOfTropicalStormWinds",
+    "probabilityOfHurricaneWinds",
+    "potentialOf15mphWinds",
+    "potentialOf25mphWinds",
+    "potentialOf35mphWinds",
+    "potentialOf45mphWinds",
+    "potentialOf20mphWindGusts",
+    "potentialOf30mphWindGusts",
+    "potentialOf40mphWindGusts",
+    "potentialOf50mphWindGusts",
+    "potentialOf60mphWindGusts",
+    "grasslandFireDangerIndex",
+    "probabilityOfThunder",
+    "davisStabilityIndex",
+    "atmosphericDispersionIndex",
+    "lowVisibilityOccurrenceRiskIndex",
+    "stability",
+    "redFlagThreatIndex"
+  )
 ) {
   nws_obj <- named_httr2_response[[1]] |> resp_body_json()
   location_elev_m <- nws_obj |> pluck("properties", "elevation", "value")
   location_id <- names(named_httr2_response)
 
   if (nws_obj |> pluck("properties", "forecastGenerator") |> is.null()) {
-    return("raw")
+    if (length(raw_variable) > 1) {
+      stop("Select one raw forecast variable to parse")
+    } else {
+      nws_obj |>
+        pluck("properties", raw_variable) |>
+        names() |>
+        map(
+          \(x)
+            tibble(
+              "{raw_variable}_{x}" := nws_obj |>
+                pluck("properties", raw_variable, x)
+            )
+        ) |>
+        bind_cols() |>
+        unnest_wider(where(is.list), names_sep = "_") |>
+        janitor::clean_names()
+    }
   } else {
     switch(
       nws_obj |> pluck("properties", "forecastGenerator"),

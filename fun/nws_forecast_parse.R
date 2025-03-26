@@ -76,8 +76,7 @@ nws_forecast_parse <- function(
           janitor::clean_names()
       }
     )
+    tibble(location_id, location_elev_m, periods) |>
+      relocate(forecast_type, .before = location_id)
   }
-
-  tibble(location_id, location_elev_m, periods) |>
-    relocate(forecast_type, .before = location_id)
 }

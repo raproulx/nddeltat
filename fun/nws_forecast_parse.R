@@ -13,7 +13,33 @@ nws_forecast_parse <- function(
     switch(
       nws_obj |> pluck("properties", "forecastGenerator"),
       "BaselineForecastGenerator" = {
-        return("12h")
+        periods <- tibble(
+          forecast_type = "12h",
+          period = nws_obj |> pluck("properties", "periods")
+        ) |>
+          hoist(
+            period,
+            number = "number",
+            name = "name",
+            startTime = "startTime",
+            endTime = "endTime",
+            isDaytime = "isDaytime",
+            temperature = "temperature",
+            temperatureUnit = "temperatureUnit",
+            temperatureTrend = "temperatureTrend",
+            probabilityOfPrecipitation = "probabilityOfPrecipitation",
+            windSpeed = "windSpeed",
+            windDirection = "windDirection",
+            shortForecast = "shortForecast",
+            detailedForecast = "detailedForecast"
+          ) |>
+          unnest_wider(probabilityOfPrecipitation, names_sep = "_") |>
+          mutate(
+            startTime = ymd_hms(startTime) |> with_tz(),
+            endTime = ymd_hms(endTime) |> with_tz()
+          ) |>
+          select(!period) |>
+          janitor::clean_names()
       },
       "HourlyForecastGenerator" = {
         periods <- tibble(
@@ -22,6 +48,7 @@ nws_forecast_parse <- function(
         ) |>
           hoist(
             period,
+            number = "number",
             startTime = "startTime",
             endTime = "endTime",
             isDaytime = "isDaytime",

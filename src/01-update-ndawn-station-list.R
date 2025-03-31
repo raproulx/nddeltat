@@ -2,26 +2,33 @@ library(tidyverse)
 library(xml2)
 library(rvest)
 
-##FIX - replace this with direct read using rvest
-ndawn_web_map <- read_html("https://ndawn.ndsu.nodak.edu/")
+
+# define NDAWN URL --------------------------------------------------------
+ndawn_url <- "https://ndawn.ndsu.nodak.edu/"
+
+
+# read station info from NDAWN station map --------------------------------
+ndawn_web_map <- read_html(ndawn_url)
 
 ndawn_stations <- tibble(
-  station_name = read_html(ndawn_web_map) |>
+  station_name = ndawn_web_map |>
     html_elements("area") |>
     html_attr("title"),
-  station_id = read_html(ndawn_web_map) |>
+  station_id = ndawn_web_map |>
     html_elements("area") |>
     html_attr("href") |>
     str_extract("(?<=\\=).*"),
-  station_url = "https://ndawn.ndsu.nodak.edu" |>
+  station_url = ndawn_url |>
     str_c(
-      read_html(ndawn_web_map) |>
+      ndawn_web_map |>
         html_elements("area") |>
         html_attr("href"),
       sep = ""
     )
 )
 
+
+# read details from each NDAWN station webpage ----------------------------
 ndawn_details <- ndawn_stations |>
   pull(station_url) |>
   map(
@@ -38,6 +45,8 @@ ndawn_details <- ndawn_stations |>
   bind_rows() |>
   janitor::clean_names()
 
+
+# write NDAWN stations list to csv ----------------------------------------
 ndawn_output <-
   bind_cols(
     ndawn_stations |> select(station_name, station_id),

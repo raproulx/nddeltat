@@ -94,4 +94,4 @@ daytime_peak_delta_t <- nws_forecast_data |>
 
 
 # write output to csv -----------------------------------------------------
-write_csv(daytime_peak_delta_t, "./data/02-forecast-delta-t.csv")
+write_csv(daytime_peak_delta_t, "./results/02-forecast-delta-t.csv")

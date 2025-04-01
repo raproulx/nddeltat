@@ -2,7 +2,7 @@
 library(tidyverse)
 library(httr2)
 
-retrieve_nws_forecast <- function(
+nws_forecast_retrieve <- function(
   forecast_type = c("raw", "12h", "hourly"),
   latitude = NULL,
   longitude = NULL,

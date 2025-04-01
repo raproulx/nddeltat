@@ -85,4 +85,4 @@ ndawn_output <-
     date_est
   )
 
-write_csv(ndawn_output, "./data/01-NDAWN-stations-table.csv")
+write_csv(ndawn_output, "./data/tbl-NDAWN-stations.csv")

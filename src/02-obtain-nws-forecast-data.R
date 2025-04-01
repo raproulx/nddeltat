@@ -7,7 +7,7 @@ source("./fun/wetbulb_from_relhumid.R")
 
 
 # load NDAWN stations table -----------------------------------------------
-ndawn_stations <- read_csv("./data/01-NDAWN-stations-table.csv")
+ndawn_stations <- read_csv("./data/tbl-NDAWN-stations.csv")
 
 
 # retrieve NWS hourly forecast for each NDAWN station ---------------------

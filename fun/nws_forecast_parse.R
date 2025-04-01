@@ -64,6 +64,12 @@ nws_forecast_parse <- function(
   )
 ) {
   nws_obj <- named_httr2_response[[1]] |> resp_body_json()
+  forecast_effective <- named_httr2_response[[1]] |>
+    resp_header("Date") |>
+    dmy_hms()
+  forecast_expires <- named_httr2_response[[1]] |>
+    resp_header("Expires") |>
+    dmy_hms()
   location_elev_m <- nws_obj |> pluck("properties", "elevation", "value")
   location_id <- names(named_httr2_response)
 
@@ -152,7 +158,16 @@ nws_forecast_parse <- function(
           janitor::clean_names()
       }
     )
-    tibble(location_id, location_elev_m, periods) |>
-      relocate(forecast_type, .before = location_id)
+    tibble(
+      location_id,
+      location_elev_m,
+      forecast_effective,
+      forecast_expires,
+      periods
+    ) |>
+      relocate(
+        c(forecast_type, forecast_expires, forecast_effective),
+        .before = location_id
+      )
   }
 }

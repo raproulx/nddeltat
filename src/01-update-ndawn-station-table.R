@@ -46,7 +46,7 @@ ndawn_details <- ndawn_stations |>
   janitor::clean_names()
 
 
-# write NDAWN stations list to csv ----------------------------------------
+# write NDAWN stations table to csv ----------------------------------------
 ndawn_output <-
   bind_cols(
     ndawn_stations |> select(station_name, station_id),
@@ -85,4 +85,4 @@ ndawn_output <-
     date_est
   )
 
-write_csv(ndawn_output, "./data/01-NDAWN-stations-list.csv")
+write_csv(ndawn_output, "./data/01-NDAWN-stations-table.csv")

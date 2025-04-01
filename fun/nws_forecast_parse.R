@@ -77,7 +77,7 @@ nws_forecast_parse <- function(
     if (length(raw_variable) > 1) {
       stop("Select one raw forecast variable to parse")
     } else {
-      nws_obj |>
+      periods <- nws_obj |>
         pluck("properties", raw_variable) |>
         names() |>
         map(
@@ -89,6 +89,8 @@ nws_forecast_parse <- function(
         ) |>
         bind_cols() |>
         unnest_wider(where(is.list), names_sep = "_") |>
+        bind_cols(tibble(forecast_type = "raw")) |>
+        relocate(forecast_type) |>
         janitor::clean_names()
     }
   } else {
@@ -158,16 +160,16 @@ nws_forecast_parse <- function(
           janitor::clean_names()
       }
     )
-    tibble(
-      location_id,
-      location_elev_m,
-      forecast_effective,
-      forecast_expires,
-      periods
-    ) |>
-      relocate(
-        c(forecast_type, forecast_expires, forecast_effective),
-        .before = location_id
-      )
   }
+  tibble(
+    location_id,
+    location_elev_m,
+    forecast_effective,
+    forecast_expires,
+    periods
+  ) |>
+    relocate(
+      c(forecast_type, forecast_effective, forecast_expires),
+      .before = location_id
+    )
 }

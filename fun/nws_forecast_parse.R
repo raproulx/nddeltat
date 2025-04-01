@@ -119,8 +119,8 @@ nws_forecast_parse <- function(
           ) |>
           unnest_wider(probabilityOfPrecipitation, names_sep = "_") |>
           mutate(
-            startTime = ymd_hms(startTime) |> with_tz(),
-            endTime = ymd_hms(endTime) |> with_tz()
+            startTime = ymd_hms(startTime),
+            endTime = ymd_hms(endTime)
           ) |>
           select(!period) |>
           janitor::clean_names()
@@ -152,8 +152,8 @@ nws_forecast_parse <- function(
           ) |>
           separate(windSpeed, c("windSpeed", "windSpeed_unit")) |>
           mutate(
-            startTime = ymd_hms(startTime) |> with_tz(),
-            endTime = ymd_hms(endTime) |> with_tz(),
+            startTime = ymd_hms(startTime),
+            endTime = ymd_hms(endTime),
             windSpeed = as.integer(windSpeed)
           ) |>
           select(!period) |>

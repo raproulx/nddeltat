@@ -71,10 +71,12 @@ nws_forecast_data <-
         output_unit = "F"
       )
   ) |>
-  group_by(date, location_id)
+  ungroup() |>
+  mutate(delta_t = round(delta_t, 1))
 
 # calculate peak hourly delta T
 daytime_peak_delta_t <- nws_forecast_data |>
+  group_by(date, location_id) |>
   filter(delta_t == max(delta_t, na.rm = TRUE)) |>
   filter(wind_speed == max(wind_speed, na.rm = TRUE)) |>
   filter(start_time == min(start_time, na.rm = TRUE)) |>

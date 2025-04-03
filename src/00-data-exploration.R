@@ -96,7 +96,8 @@ counties <- st_read("./data/geotemplate-counties.geojson")
 states <- st_read("./data/geotemplate-states.geojson")
 bounding_box <- st_read("./data/geotemplate-bounding-box.geojson")
 
-crs_code <- str_c("epsg:", st_crs(counties)$epsg)
+crs_gcs <- "epsg:4326"
+crs_pcs <- str_c("epsg:", st_crs(counties)$epsg)
 
 # subset plot data
 plotdat <- read_csv("./data/tbl-ndawn-stations.csv") |>
@@ -107,27 +108,34 @@ plotdat <- read_csv("./data/tbl-ndawn-stations.csv") |>
     by = join_by(station_id == location_id)
   )
 
+# convert plotdata to sf object and reproject
+plotdat <- plotdat |>
+  st_as_sf(coords = c("longitude", "latitude"), crs = crs_gcs) |>
+  st_transform(crs = crs_pcs)
+
+plotdat <- plotdat |>
+  bind_cols(
+    plotdat |>
+      st_transform(crs_gcs) |>
+      st_coordinates() |>
+      as_tibble() |>
+      rename(gcs_latitude = Y, gcs_longitude = X)
+  ) |>
+  bind_cols(
+    plotdat |>
+      st_coordinates() |>
+      as_tibble() |>
+      rename(pcs_latitude = Y, pcs_longitude = X)
+  )
+
 #TEST plotdata with delta T beyond range
 #plotdat <- plotdat |>
 #  mutate(delta_t = if_else(delta_t >= 12, delta_t + 10, delta_t + 5))
 
-# spatial interpolation
-#FIX: use sf reprojection to modify plotdat, instead of creating spv and interp
-spv <- vect(
-  plotdat,
-  geom = c("longitude", "latitude"),
-  crs = "+proj=longlat +datum=NAD83"
-) %>%
-  project(crs_code)
-
+# create smoothed raster
 r <- rast(bounding_box, res = 1500)
 
-interp <- tibble(
-  as.data.frame(geom(spv)[, c("x", "y")]),
-  as.data.frame(spv)
-)
-
-m <- fields::Tps(interp[, c("x", "y")], interp$delta_t) # thin plate spline model
+m <- fields::Tps(x = st_coordinates(plotdat), Y = plotdat |> pull(delta_t)) # thin plate spline model
 tps <- interpolate(r, m) |>
   mask(counties)
 
@@ -186,13 +194,23 @@ out <- ggplot() +
     linewidth = 1,
     fill = NA
   ) +
-  geom_point_interactive(
-    data = interp,
-    aes(x, y, data_id = location)
+  geom_sf_interactive(
+    fill = NA,
+    color = "transparent",
+    data = plotdat,
+    aes(
+      data_id = station_id,
+      tooltip = glue::glue('{station_name}'),
+      #FIX: pull lat and long from code
+      onclick = glue::glue(
+        "window.open(\"https://forecast.weather.gov/MapClick.php?lat={gcs_latitude}&lon={gcs_longitude}\")"
+      ),
+      hover_css = "fill:transparent;stroke:transparent;r:5pt;"
+    )
   ) +
   geom_text_repel(
-    data = interp,
-    aes(x, y, label = round(delta_t, 0)),
+    data = plotdat,
+    aes(x = pcs_longitude, y = pcs_latitude, label = round(delta_t, 0)),
     force = 0.0020,
     size = 2.8,
     box.padding = 0,
@@ -202,7 +220,7 @@ out <- ggplot() +
   coord_sf(
     xlim = st_bbox(bounding_box)[c(1, 3)],
     ylim = st_bbox(bounding_box)[c(2, 4)],
-    crs = crs_code,
+    crs = crs_pcs,
     expand = FALSE
   ) +
   theme(
@@ -219,11 +237,10 @@ out <- ggplot() +
     legend.ticks.length = unit(c(-1, 0), 'mm')
   )
 
-out
-girafe(out)
-#NEXT: [maybe] see if shadowtext package can do a better job with positioning (e.g. position_jitter()) and shadowing; if not, check marquee package
-#THEN: see if ggiraph would be a good choice for map (hover to see station)
+#out
+girafe(ggobj = out)
+
 #FIX: need to update R4.4.0 to get ggiraph to work in RStudio (otherwise, copy and paste code into R)
-#THEN: if using ggiraph, consider bringing to NWS forecast page if they click on a number (e.g. https://forecast.weather.gov/MapClick.php?lat=47.32119&lon=-96.51406)
-#THEN: add text and NDSU Extension logo over the top of SD space
+#FIX: see why thin border along top (write raster to file, show in QGIS with bounding box over top - likely need to make bounding box bigger)
 #THEN: try make a wind map
+#THEN: add text and NDSU Extension logo over the top of SD space

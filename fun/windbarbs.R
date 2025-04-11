@@ -314,7 +314,7 @@ pl <- ggplot(data, mapping = aes(x, y)) +
   geom_windbarb(
     aes(mag = mag, angle = angle),
     data = data[],
-    length = unit(3, "cm"),
+    length = unit(2, "cm"),
     skip.x = 0,
     skip.y = 0,
     size = 1,

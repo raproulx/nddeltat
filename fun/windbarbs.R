@@ -315,8 +315,8 @@ pl <- ggplot(data, mapping = aes(x, y)) +
     aes(mag = mag, angle = angle),
     data = data[],
     length = unit(3, "cm"),
-    skip.x = "auto",
-    skip.y = "auto",
+    skip.x = 0,
+    skip.y = 0,
     size = 1,
     fill = "#cccccc",
     colour = "black"

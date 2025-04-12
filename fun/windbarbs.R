@@ -161,13 +161,30 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
     })
 
     # Build segment grob
-    if (mag[i] > 0) {
-      x1 <- c(point.size / 2, length) # Segment starts at point.size/2 to avoid overlap with point shape
+    #NEED TO MODIFY THIS SO THAT IT DOESN'T EXPAND BEYOND END FLAG IF GREATER THAN 5 KTS
+    if (mag[i] == 5) {
+      # One 5-kt barb — draw full-length segment
+      segment_end <- length
+    } else if (mag[i] > 5 && (n50[i] + n10[i] + n5[i] > 0)) {
+      # Get the barb slot structure
+      slots <- c(rep(1.0, n50[i]), rep(.5, n10[i]), rep(.5, n5[i]))
+      pos <- c(1, cumsum(slots[-length(slots)]) + 1)
+
+      # Segment ends at the x position of the first barb
+      segment_end <- length - pos[1] * width
+      segment_end <- max(segment_end, point.size) # Safety: avoid negative length
+    } else {
+      segment_end <- NULL # No segment
+    }
+
+    if (!is.null(segment_end)) {
+      x1 <- c(point.size / 2, segment_end)
       y1 <- c(0, 0)
       x2 <- rotX(x1, y1, angle[i])
       y2 <- rotY(x1, y1, angle[i])
       x3 <- unit(x[i], "npc") + unit(x2, "snpc")
       y3 <- unit(y[i], "npc") + unit(y2, "snpc")
+
       grob.segment <- pathGrob(
         x3,
         y3,
@@ -299,13 +316,13 @@ set.seed(1)
 n <- 8
 n2 <- n^2
 xy <- expand.grid(x = letters[1:(n)], y = seq(1, n, length.out = n))
-data <- data.frame(
-  x = xy[, 1],
-  y = xy[, 2],
-  angle = rep(seq(-90, 0, length.out = n), n),
-  mag = rep(seq(0, 227, length.out = n2)),
-  group = rep(1:1, n)
-)
+#data <- data.frame(
+#  x = xy[, 1],
+#  y = xy[, 2],
+#  angle = rep(seq(-90, 0, length.out = n), n),
+#  mag = rep(seq(0, 227, length.out = n2)),
+#  group = rep(1:1, n)
+#)
 # Use group = rep(c(1, 2), n/2) to show two panels
 
 # Demo plot

@@ -93,7 +93,6 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
   nudge <- width / 10 # Increase spacing of 5s and 10s
 
   # Calculate which / how many triangles/barbs
-  mag <- round(mag / 5) * 5
   mag <- pmax(0, mag)
   n50 <- floor(mag / 50)
   n10 <- floor((mag - n50 * 50) / 10)
@@ -128,10 +127,9 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
 
   # Loop data (might be vectorised)
   grob.list <- lapply(seq_len(n), function(i) {
-    # Slots and position used by triangle/barb (50 uses 1 slot, 10 and 5 uses 0.5 slots)
-    slots <- c(rep(1.0, n50[i]), rep(0.5, n10[i]), rep(0.5, n5[i]))
-    pos <- if (length(slots) > 0) c(1, cumsum(slots[-length(slots)]) + 1) else
-      numeric(0)
+    # Slots and position used by triangle/barb (50 uses 1 slot, 10 and 5 uses 0.6 slots)
+    slots <- c(rep(1.0, n50[i]), rep(.5, n10[i]), rep(.5, n5[i]))
+    pos <- c(1, cumsum(slots[-length(slots)]) + 1)
 
     # Build geometries
     geom <- c(
@@ -142,12 +140,13 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
 
     # Build barb grobs
     grob.barbs <- lapply(seq_along(geom), function(j) {
+      # j = 1
       x1 <- length - pos[j] * width + geom[[j]][, 1] + width / 2
       y1 <- geom[[j]][, 2]
       x2 <- rotX(x1, y1, angle[i])
       y2 <- rotY(x1, y1, angle[i])
-      x3 <- unit(x[i], "npc") + unit(x2, "snpc")
-      y3 <- unit(y[i], "npc") + unit(y2, "snpc")
+      x3 <- (unit(x[i], "npc") + unit(x2, "snpc"))
+      y3 <- (unit(y[i], "npc") + unit(y2, "snpc"))
       pathGrob(
         x = x3,
         y = y3,
@@ -161,38 +160,37 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
       )
     })
 
-    # Compute shaft length depending on magnitude
-    shaft.len <- length
-
+    # Build segment grob
+    #NEED TO MODIFY THIS SO THAT IT DOESN'T EXPAND BEYOND END FLAG IF GREATER THAN 5 KTS
     if (mag[i] == 5) {
-      shaft.len <- length # full length
-    } else if (mag[i] > 5 && mag[i] < 50 && length(slots) > 0) {
-      # Find index of first non-zero-length barb (ignore triangles)
-      non_triangle_indices <- which(slots == 0.5)
-      if (length(non_triangle_indices) > 0) {
-        inner_idx <- non_triangle_indices[1]
-        shaft.len <- length - (pos[inner_idx] - 0.5) * width
-      } else {
-        shaft.len <- length # fallback, if only triangles (shouldn't occur here)
-      }
-    } else if (mag[i] < 5) {
-      shaft.len <- NA # don't draw
+      # One 5-kt barb — draw full-length segment
+      segment_end <- length
+    } else if (mag[i] > 5 && (n50[i] + n10[i] + n5[i] > 0)) {
+      # Get the barb slot structure
+      slots <- c(rep(1.0, n50[i]), rep(.5, n10[i]), rep(.5, n5[i]))
+      pos <- c(1, cumsum(slots[-length(slots)]) + 1)
+
+      # Segment ends at the x position of the first barb
+      segment_end <- length - pos[1] * width
+      segment_end <- max(segment_end, point.size) # Safety: avoid negative length
+    } else {
+      segment_end <- NULL # No segment
     }
 
-    # Build shaft segment
-    if (!is.na(shaft.len)) {
-      x1 <- c(point.size / 2, shaft.len)
+    if (!is.null(segment_end)) {
+      x1 <- c(point.size / 2, segment_end)
       y1 <- c(0, 0)
       x2 <- rotX(x1, y1, angle[i])
       y2 <- rotY(x1, y1, angle[i])
       x3 <- unit(x[i], "npc") + unit(x2, "snpc")
       y3 <- unit(y[i], "npc") + unit(y2, "snpc")
+
       grob.segment <- pathGrob(
         x3,
         y3,
         gp = gpar(
           col = col[i],
-          lwd = size[i],
+          lwd = 1 * size[i],
           linejoin = "mitre",
           lineend = "square"
         )
@@ -201,57 +199,21 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
       grob.segment <- nullGrob()
     }
 
-    # Calm conditions: draw open circle only if mag == 0
-    if (mag[i] == 0) {
-      grob.point <- pointsGrob(
-        x[i],
-        y[i],
-        pch = 1,
-        size = unit(coords$calm.size[i], "mm"), # use "mm" for consistency
-        gp = gpar(col = col[i], fill = NA, lwd = size[i])
-      )
-    } else {
-      grob.point <- nullGrob()
-    }
-
-    # Debug markers (optional — remove if not needed)
-    debug.segment.end <- if (!is.na(shaft.len))
-      pointsGrob(
-        x = unit(x[i], "npc") + unit(rotX(shaft.len, 0, angle[i]), "snpc"),
-        y = unit(y[i], "npc") + unit(rotY(shaft.len, 0, angle[i]), "snpc"),
-        pch = 1,
-        size = unit(1.5, "mm"),
-        gp = gpar(col = "red")
-      ) else nullGrob()
-
-    debug.slot.centers <- lapply(pos, function(p) {
-      center.x <- length - (p - 0.5) * width
-      x_rot <- rotX(center.x, 0, angle[i])
-      y_rot <- rotY(center.x, 0, angle[i])
-      pointsGrob(
-        x = unit(x[i], "npc") + unit(x_rot, "snpc"),
-        y = unit(y[i], "npc") + unit(y_rot, "snpc"),
-        pch = 16,
-        size = unit(1.0, "mm"),
-        gp = gpar(col = "blue")
-      )
-    })
-
-    # Merge everything
-    grobs <- do.call(
-      gList,
-      c(
-        grob.barbs,
-        list(grob.segment),
-        debug.slot.centers,
-        list(debug.segment.end),
-        list(grob.point)
-      )
+    # Build point grob
+    grob.point <- pointsGrob(
+      x[i],
+      y[i],
+      pch = 21,
+      size = unit(point.size, "snpc"),
+      gp = gpar(col = col[i], fill = fill[i], lwd = size[i])
     )
 
-    grobs
-  })
+    # Merge grobs
+    grobs <- do.call(gList, c(grob.barbs, list(grob.segment, grob.point)))
 
+    # grobs <- gTree(children = grobs)
+    # ggplot() + annotation_custom(grobs, xmin = 0.25, ymin = 0.25, xmax = 0.75, ymax = 0.75)
+  })
   grobs <- do.call(gList, grob.list)
   gTree(children = grobs)
 }
@@ -268,8 +230,7 @@ GeomWindBarb <- ggplot2::ggproto(
     alpha = NA,
     angle = 0,
     mag = 0,
-    length = 0.05,
-    calm.size = 3
+    length = 0.05
   ),
   draw_panel = function(
     data,
@@ -355,27 +316,27 @@ set.seed(1)
 n <- 8
 n2 <- n^2
 xy <- expand.grid(x = letters[1:(n)], y = seq(1, n, length.out = n))
-data <- data.frame(
-  x = xy[, 1],
-  y = xy[, 2],
-  angle = rep(seq(-90, 0, length.out = n), n),
-  mag = rep(seq(0, 227, length.out = n2)),
-  group = rep(1:1, n)
-)
+#data <- data.frame(
+#  x = xy[, 1],
+#  y = xy[, 2],
+#  angle = rep(seq(-90, 0, length.out = n), n),
+#  mag = rep(seq(0, 227, length.out = n2)),
+#  group = rep(1:1, n)
+#)
 # Use group = rep(c(1, 2), n/2) to show two panels
 
 # Demo plot
 pl <- ggplot(data, mapping = aes(x, y)) +
   facet_wrap(~group) +
   geom_windbarb(
-    aes(mag = mag, angle = angle, calm.size = 6),
+    aes(mag = mag, angle = angle),
     data = data[],
-    length = unit(1.8, "cm"),
+    length = unit(2, "cm"),
     skip.x = 0,
     skip.y = 0,
     size = 1,
-    fill = "dodgerblue",
-    colour = "gray"
+    fill = "#cccccc",
+    colour = "black"
   ) +
   #geom_text(aes(label = sprintf("%s kn", round(angle))), data, vjust = 0, nudge_y = -.25) +
   scale_fill_viridis_c() +

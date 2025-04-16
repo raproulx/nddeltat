@@ -9,11 +9,7 @@
 #' Aesthetics:
 #' - mag (wind speed)
 #' - mag.unit (wind speed unit - km/h, m/s, mph or knots)
-<<<<<<< HEAD
 #' - angle (wind direction - in degrees or text, e.g. "N", "ESE")
-=======
-#' - angle (wind direction)
->>>>>>> e5610fae661393319e46deadf5750188e4fcaf36
 #' - colour
 #' - fill (of triangle)
 #' - lwd (i.e. linewidth of segment, barb and triangle border)
@@ -429,7 +425,6 @@ geom_windbarb <- function(
 # set.seed(1)
 
 # Dummy data
-<<<<<<< HEAD
 # n <- 8
 # n2 <- n^2
 # xy <- expand.grid(x = letters[1:(n)], y = seq(1, n, length.out = n))
@@ -462,40 +457,3 @@ geom_windbarb <- function(
 #   coord_cartesian() +
 #   theme_bw()
 # print(pl)
-=======
-n <- 8
-n2 <- n^2
-xy <- expand.grid(x = letters[1:(n)], y = seq(1, n, length.out = n))
-data <- data.frame(
-  x = xy[, 1],
-  y = xy[, 2],
-  angle = rep(seq(-90, 0, length.out = n), n),
-  mag = rep(seq(0, 227, length.out = n2)),
-  mag_unit = "knot",
-  group = rep(1:1, n)
-)
-# Use group = rep(c(1, 2), n/2) to show two panels
-
-# Demo plot
-pl <- ggplot(data, mapping = aes(x, y)) +
-  facet_wrap(~group) +
-  geom_windbarb(
-    aes(mag = mag, angle = angle, mag.unit = mag_unit),
-    data = data[],
-    #length = 16,
-    #calm.size = 4,
-    skip.x = 0,
-    skip.y = 0,
-    lwd = 1,
-    fill = "gray",
-    colour = "gray"
-  ) +
-  #geom_text(aes(label = sprintf("%s kn", round(angle))), data, vjust = 0, nudge_y = -.25) +
-  scale_fill_viridis_c() +
-  scale_y_continuous(expand = expansion(.15), trans = "identity") +
-  scale_x_discrete(expand = expansion(.15)) +
-  coord_cartesian() +
-  theme_bw()
-print(pl)
-# ggsave(file.path(dirs$temp, "test1.pdf"), width = 12, height = 12)
->>>>>>> e5610fae661393319e46deadf5750188e4fcaf36

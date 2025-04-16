@@ -1,14 +1,15 @@
-#'
-#' Conventions: https://www.mesonet.org/images/site/Wind%20Barb%20Feb%202012.pdf
-#' I would prefer to see a segment for speeds 1 < 5 kn (see demo)
+# Metadata ----------------------------------------------------------------
+
+#' Source: https://gist.github.com/zimmerberg-ms
+#' Conventions: https://www.weather.gov/hfo/windbarbinfo
 #'
 #' I decided to do all calculations (position, rotation) in "npc" and "snpc" coordinates.
 #' Using a viewport per barb would be much simpler but significantly slower.
 #'
 #' Aesthetics:
 #' - mag (wind speed)
-#' - mag.unit (wind speed unit - ms, mph or knots)
-#' - angle (wind direction)
+#' - mag.unit (wind speed unit - km/h, m/s, mph or knots)
+#' - angle (wind direction - in degrees or text, e.g. "N", "ESE")
 #' - colour
 #' - fill (of triangle)
 #' - lwd (i.e. linewidth of segment, barb and triangle border)
@@ -23,6 +24,8 @@
 #' - allow for u/v input instead of mag/angle
 #'
 #' https://stackoverflow.com/questions/47814998/how-to-make-segments-that-preserve-angles-in-different-aspect-ratios-in-ggplot2
+
+# function to create wind barbs --------------------------------------------
 
 #' Wind Barbs
 #'
@@ -72,7 +75,11 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
     )
   )
 
-  # mph to knots function
+  # wind units conversion lookup table
+  windunits <- data.frame(
+    unit = c("km/h", "m/s", "mph", "knot"),
+    multiplier = c(0.539957, 1.94384, 0.868976, 1)
+  )
 
   # coords <- data
   coords <- coord$transform(data, panel_params)
@@ -104,8 +111,8 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
   n <- nrow(coords)
   x <- coords$x
   y <- coords$y
-  #CONVERT MPH TO KNOT
   mag <- coords$mag
+  mag.unit <- coords$mag.unit
   col <- coords$colour
   fill <- coords$fill
   lwd <- coords$lwd
@@ -118,6 +125,9 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
   } else {
     (angle + 270) %% 360
   }
+
+  mag <- mag *
+    windunits[match(x = mag.unit, table = windunits$unit), "multiplier"]
 
   # Spacing & barb length
   slots <- 6
@@ -310,6 +320,9 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
   gTree(children = grobs)
 }
 
+
+# create ggproto object ---------------------------------------------------
+
 GeomWindBarb <- ggplot2::ggproto(
   "GeomWindBarb",
   ggplot2::Geom,
@@ -347,6 +360,9 @@ GeomWindBarb <- ggplot2::ggproto(
     }
   }
 )
+
+
+# create geom_windbarb function -------------------------------------------
 
 #' Geom Wind Barbs
 #'
@@ -401,43 +417,43 @@ geom_windbarb <- function(
   )
 }
 
+# illustrative example ----------------------------------------------------
+
 # Example
-library(grid)
-library(ggplot2)
-set.seed(1)
+# library(grid)
+# library(ggplot2)
+# set.seed(1)
 
 # Dummy data
-n <- 8
-n2 <- n^2
-xy <- expand.grid(x = letters[1:(n)], y = seq(1, n, length.out = n))
-data <- data.frame(
-  x = xy[, 1],
-  y = xy[, 2],
-  angle = rep(seq(-90, 0, length.out = n), n),
-  mag = rep(seq(0, 227, length.out = n2)),
-  group = rep(1:1, n)
-)
-# Use group = rep(c(1, 2), n/2) to show two panels
+# n <- 8
+# n2 <- n^2
+# xy <- expand.grid(x = letters[1:(n)], y = seq(1, n, length.out = n))
+# data <- data.frame(
+#   x = xy[, 1],
+#   y = xy[, 2],
+#   angle = rep(seq(-90, 0, length.out = n), n),
+#   mag = rep(seq(0, 227, length.out = n2)),
+#   mag_unit = "knot",
+#   group = rep(1:1, n)
+# )
 
 # Demo plot
-pl <- ggplot(data, mapping = aes(x, y)) +
-  facet_wrap(~group) +
-  geom_windbarb(
-    aes(mag = mag, angle = angle),
-    data = data[],
-    #length = 16,
-    #calm.size = 4,
-    skip.x = 0,
-    skip.y = 0,
-    lwd = 1,
-    fill = "gray",
-    colour = "gray"
-  ) +
-  #geom_text(aes(label = sprintf("%s kn", round(angle))), data, vjust = 0, nudge_y = -.25) +
-  scale_fill_viridis_c() +
-  scale_y_continuous(expand = expansion(.15), trans = "identity") +
-  scale_x_discrete(expand = expansion(.15)) +
-  coord_cartesian() +
-  theme_bw()
-print(pl)
-# ggsave(file.path(dirs$temp, "test1.pdf"), width = 12, height = 12)
+# pl <- ggplot(data, mapping = aes(x, y)) +
+#   facet_wrap(~group) +
+#   geom_windbarb(
+#     aes(mag = mag, angle = angle, mag.unit = mag_unit),
+#     data = data[],
+#     #length = 16,
+#     #calm.size = 4,
+#     skip.x = 0,
+#     skip.y = 0,
+#     lwd = 1,
+#     fill = "gray",
+#     colour = "gray"
+#   ) +
+#   scale_fill_viridis_c() +
+#   scale_y_continuous(expand = expansion(.15), trans = "identity") +
+#   scale_x_discrete(expand = expansion(.15)) +
+#   coord_cartesian() +
+#   theme_bw()
+# print(pl)

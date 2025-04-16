@@ -7,7 +7,7 @@
 #'
 #' Aesthetics:
 #' - mag (wind speed)
-#' - mag.unit (wind speed unit - ms, mph or knots)
+#' - mag.unit (wind speed unit - km/h, m/s, mph or knots)
 #' - angle (wind direction)
 #' - colour
 #' - fill (of triangle)
@@ -72,7 +72,11 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
     )
   )
 
-  # mph to knots function
+  # wind units conversion lookup table
+  windunits <- data.frame(
+    unit = c("km/h", "m/s", "mph", "knot"),
+    multiplier = c(0.539957, 1.94384, 0.868976, 1)
+  )
 
   # coords <- data
   coords <- coord$transform(data, panel_params)
@@ -104,8 +108,8 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
   n <- nrow(coords)
   x <- coords$x
   y <- coords$y
-  #CONVERT MPH TO KNOT
   mag <- coords$mag
+  mag.unit <- coords$mag.unit
   col <- coords$colour
   fill <- coords$fill
   lwd <- coords$lwd
@@ -118,6 +122,9 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
   } else {
     (angle + 270) %% 360
   }
+
+  mag <- mag *
+    windunits[match(x = mag.unit, table = windunits$unit), "multiplier"]
 
   # Spacing & barb length
   slots <- 6
@@ -415,6 +422,7 @@ data <- data.frame(
   y = xy[, 2],
   angle = rep(seq(-90, 0, length.out = n), n),
   mag = rep(seq(0, 227, length.out = n2)),
+  mag_unit = "knot",
   group = rep(1:1, n)
 )
 # Use group = rep(c(1, 2), n/2) to show two panels
@@ -423,7 +431,7 @@ data <- data.frame(
 pl <- ggplot(data, mapping = aes(x, y)) +
   facet_wrap(~group) +
   geom_windbarb(
-    aes(mag = mag, angle = angle),
+    aes(mag = mag, angle = angle, mag.unit = mag_unit),
     data = data[],
     #length = 16,
     #calm.size = 4,

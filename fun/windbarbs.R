@@ -7,38 +7,22 @@
 #'
 #' Aesthetics:
 #' - mag (wind speed)
+#' - mag.unit (wind speed unit - ms, mph or knots)
 #' - angle (wind direction)
 #' - colour
 #' - fill (of triangle)
-#' - size (i.e. linewidth of segment, barb and triangle border)
-#' - length (of barb in "npc")
+#' - lwd (i.e. linewidth of segment, barb and triangle border)
+#' - length (of shaft in mm)
+#' - calm.size (diameter of calm conditions circle in mm)
 #'
 #'
 #' Todo
 #' - treatment of NA values
 #' - "skip" functionality: similar to the one used in geom_arrow()?
-#' - separate point.size aesthetics?
 #' - test geom against different scales/facets settings
 #' - allow for u/v input instead of mag/angle
 #'
 #' https://stackoverflow.com/questions/47814998/how-to-make-segments-that-preserve-angles-in-different-aspect-ratios-in-ggplot2
-
-#' Rotate/Stretch X
-#'
-#' @param x x coordinate
-#' @param y y coordinate
-#' @param a angle in decimal degrees
-#' @param u stretch x
-#' @param v stretch y
-#'
-rotX <- function(x, y, a, u = 1, v = 1) {
-  a <- a * pi / 180
-  u * (x * cos(a) + y * sin(a))
-}
-rotY <- function(x, y, a, u = 1, v = 1) {
-  a <- a * pi / 180
-  v * (y * cos(a) - x * sin(a))
-}
 
 #' Wind Barbs
 #'
@@ -48,13 +32,54 @@ rotY <- function(x, y, a, u = 1, v = 1) {
 #' @description
 #'
 wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
+  # wind direction lookup table
+  winddirs <- data.frame(
+    text = c(
+      "N",
+      "NNE",
+      "NE",
+      "ENE",
+      "E",
+      "ESE",
+      "SE",
+      "SSE",
+      "S",
+      "SSW",
+      "SW",
+      "WSW",
+      "W",
+      "WNW",
+      "NW",
+      "NNW"
+    ),
+    angle = c(
+      0,
+      22.5,
+      45,
+      67.5,
+      90,
+      112.5,
+      135,
+      157.5,
+      180,
+      202.5,
+      225,
+      247.5,
+      270,
+      292.5,
+      315,
+      337.5
+    )
+  )
+
+  # mph to knots function
+
   # coords <- data
   coords <- coord$transform(data, panel_params)
 
   # Dimensions
-  length <- coords$length[1]
-  if ("unit" %in% (class(length)))
-    length <- convertUnit(length, "npc", valueOnly = TRUE)
+  length <- unit(coords$length[1], "mm")
+  length <- convertUnit(length, "npc", valueOnly = TRUE)
 
   nx.data <- length(unique(coords$x))
   if (skip.x == "auto") {
@@ -79,11 +104,20 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
   n <- nrow(coords)
   x <- coords$x
   y <- coords$y
+  #CONVERT MPH TO KNOT
   mag <- coords$mag
   col <- coords$colour
   fill <- coords$fill
-  size <- coords$size
-  angle <- (coords$angle + 270) %% 360
+  lwd <- coords$lwd
+  calm.size <- unit(coords$calm.size, "mm")
+  angle <- coords$angle
+
+  # Unit conversions
+  angle <- if (is.character(angle)) {
+    (winddirs[match(x = angle, table = winddirs$text), "angle"] + 270) %% 360
+  } else {
+    (angle + 270) %% 360
+  }
 
   # Spacing & barb length
   slots <- 6
@@ -128,6 +162,23 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
 
   # Loop data (might be vectorised)
   grob.list <- lapply(seq_len(n), function(i) {
+    #' Rotate/Stretch X functions
+    #'
+    #' @param x x coordinate
+    #' @param y y coordinate
+    #' @param a angle in decimal degrees
+    #' @param u stretch x
+    #' @param v stretch y
+    #'
+    rotX <- function(x, y, a, u = 1, v = 1) {
+      a <- a * pi / 180
+      u * (x * cos(a) + y * sin(a))
+    }
+    rotY <- function(x, y, a, u = 1, v = 1) {
+      a <- a * pi / 180
+      v * (y * cos(a) - x * sin(a))
+    }
+
     # Slots and position used by triangle/barb (50 uses 1 slot, 10 and 5 uses 0.5 slots)
     slots <- c(rep(1.0, n50[i]), rep(0.5, n10[i]), rep(0.5, n5[i]))
     pos <- if (length(slots) > 0) c(1, cumsum(slots[-length(slots)]) + 1) else
@@ -154,7 +205,7 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
         gp = gpar(
           col = col[i],
           fill = fill[i],
-          lwd = size[i],
+          lwd = lwd[i],
           linejoin = "mitre",
           lineend = "square"
         )
@@ -192,7 +243,7 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
         y3,
         gp = gpar(
           col = col[i],
-          lwd = size[i],
+          lwd = lwd[i],
           linejoin = "mitre",
           lineend = "square"
         )
@@ -207,15 +258,17 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
         x[i],
         y[i],
         pch = 1,
-        size = unit(coords$calm.size[i], "mm"), # use "mm" for consistency
-        gp = gpar(col = col[i], fill = NA, lwd = size[i])
+        size = calm.size[i],
+        gp = gpar(col = col[i], fill = NA, lwd = lwd[i])
       )
     } else {
       grob.point <- nullGrob()
     }
 
     # Debug markers (optional — remove if not needed)
-    debug.segment.end <- if (!is.na(shaft.len))
+    debug.segment.end <- if (!is.null(debug)) nullGrob() else if (
+      !is.na(shaft.len)
+    )
       pointsGrob(
         x = unit(x[i], "npc") + unit(rotX(shaft.len, 0, angle[i]), "snpc"),
         y = unit(y[i], "npc") + unit(rotY(shaft.len, 0, angle[i]), "snpc"),
@@ -224,18 +277,19 @@ wind_barb <- function(data, coord, panel_params, skip.x, skip.y) {
         gp = gpar(col = "red")
       ) else nullGrob()
 
-    debug.slot.centers <- lapply(pos, function(p) {
-      center.x <- length - (p - 0.5) * width
-      x_rot <- rotX(center.x, 0, angle[i])
-      y_rot <- rotY(center.x, 0, angle[i])
-      pointsGrob(
-        x = unit(x[i], "npc") + unit(x_rot, "snpc"),
-        y = unit(y[i], "npc") + unit(y_rot, "snpc"),
-        pch = 16,
-        size = unit(1.0, "mm"),
-        gp = gpar(col = "blue")
-      )
-    })
+    debug.slot.centers <- if (is.null(debug))
+      lapply(pos, function(p) {
+        center.x <- length - (p - 0.5) * width
+        x_rot <- rotX(center.x, 0, angle[i])
+        y_rot <- rotY(center.x, 0, angle[i])
+        pointsGrob(
+          x = unit(x[i], "npc") + unit(x_rot, "snpc"),
+          y = unit(y[i], "npc") + unit(y_rot, "snpc"),
+          pch = 16,
+          size = unit(1.0, "mm"),
+          gp = gpar(col = "blue")
+        )
+      }) else list(nullGrob())
 
     # Merge everything
     grobs <- do.call(
@@ -263,13 +317,14 @@ GeomWindBarb <- ggplot2::ggproto(
   default_aes = ggplot2::aes(
     color = "black",
     fill = "transparent",
-    size = 1,
+    lwd = 1,
     linetype = 1,
     alpha = NA,
     angle = 0,
     mag = 0,
-    length = 0.05,
-    calm.size = 3
+    mag.unit = "mph",
+    length = 18,
+    calm.size = 6
   ),
   draw_panel = function(
     data,
@@ -368,13 +423,14 @@ data <- data.frame(
 pl <- ggplot(data, mapping = aes(x, y)) +
   facet_wrap(~group) +
   geom_windbarb(
-    aes(mag = mag, angle = angle, calm.size = 6),
+    aes(mag = mag, angle = angle),
     data = data[],
-    length = unit(1.8, "cm"),
+    #length = 16,
+    #calm.size = 4,
     skip.x = 0,
     skip.y = 0,
-    size = 1,
-    fill = "dodgerblue",
+    lwd = 1,
+    fill = "gray",
     colour = "gray"
   ) +
   #geom_text(aes(label = sprintf("%s kn", round(angle))), data, vjust = 0, nudge_y = -.25) +

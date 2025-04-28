@@ -26,6 +26,7 @@
 #' https://stackoverflow.com/questions/47814998/how-to-make-segments-that-preserve-angles-in-different-aspect-ratios-in-ggplot2
 
 # function to create wind barbs --------------------------------------------
+require(grid)
 
 #' Wind Barbs
 #'

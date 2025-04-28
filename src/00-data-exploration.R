@@ -1,7 +1,6 @@
 source("fun/wetbulb_from_relhumid.R")
 source("fun/station_pressure.R")
 library(tidyverse)
-library(ggplot2)
 
 dat <- read_csv("data/00-carrington-test-data.csv") |>
   rowwise() |>
@@ -89,7 +88,8 @@ library(sf)
 library(terra)
 library(tidyterra)
 library(rnaturalearth)
-library(RColorBrewer)
+library(ggimage)
+library(ggtext)
 
 # visualization templates
 counties <- st_read("./data/geotemplate-counties.geojson")
@@ -143,9 +143,8 @@ tps <- interpolate(r, m) |>
 out <- ggplot() +
   labs(
     title = str_c(
-      "NWS Forecast Peak Hourly Delta-T (Wet Bulb Depression) for ",
-      plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y"),
-      " (\u00B0F)"
+      "NWS Forecast Peak Hourly Delta-T (Wet Bulb Depression) (\u00B0F) for ",
+      plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y")
     ),
     subtitle = str_c(
       "Created: ",
@@ -154,8 +153,12 @@ out <- ggplot() +
         as_date() |>
         unique() |>
         format("%a, %b %d %Y")
-    ),
-    caption = "Source: NOAA National Weather Service (NWS) Hourly Forecasts"
+    )
+  ) +
+  geom_sf(
+    data = bounding_box,
+    color = "white",
+    fill = "white"
   ) +
   geom_spatraster(
     data = tps
@@ -223,6 +226,35 @@ out <- ggplot() +
     crs = crs_pcs,
     expand = FALSE
   ) +
+  geom_image(
+    data = tibble(
+      x = st_bbox(bounding_box)[1] + 185000,
+      y = st_bbox(bounding_box)[2] + 45000
+    ),
+    aes(x, y, image = "./bin/ndsu-extension-color-logo.eps"),
+    size = 0.55
+  ) +
+  geom_richtext(
+    data = tibble(
+      x = st_bbox(bounding_box)[1] + 388000,
+      y = st_bbox(bounding_box)[2]
+    ),
+    aes(
+      x,
+      y,
+      label = "Source: NOAA National Weather Service (NWS) Hourly Forecasts<br>
+      https:&#47;&#47;www.ndsu.edu&#47;agriculture&#47;ag-home&#47;directory&#47;rob-proulx<br>
+      Copyright (c) North Dakota State University<br>
+      Background contouring does not necessarily reflect actual conditions"
+    ),
+    size = 2.55,
+    lineheight = 1.35,
+    label.padding = unit(c(0, 0, 0, 0), "lines"),
+    hjust = "left",
+    vjust = "bottom",
+    fill = NA,
+    label.color = NA
+  ) +
   theme(
     axis.title = element_blank(),
     axis.text = element_blank(),
@@ -237,10 +269,219 @@ out <- ggplot() +
     legend.ticks.length = unit(c(-1, 0), 'mm')
   )
 
-#out
-girafe(ggobj = out)
+out
+#girafe(ggobj = out)
+
+# NWS forecast wind - ggplot map ---------------------------------------
+library(tidyverse)
+library(ggplot2)
+library(ggiraph)
+library(ggrepel)
+library(sf)
+library(terra)
+library(tidyterra)
+library(rnaturalearth)
+library(ggimage)
+library(ggtext)
+source("./fun/windbarbs.R")
+
+# visualization templates
+counties <- st_read("./data/geotemplate-counties.geojson")
+states <- st_read("./data/geotemplate-states.geojson")
+bounding_box <- st_read("./data/geotemplate-bounding-box.geojson")
+
+crs_gcs <- "epsg:4326"
+crs_pcs <- str_c("epsg:", st_crs(counties)$epsg)
+
+# subset plot data
+plotdat <- read_csv("./data/tbl-ndawn-stations.csv") |>
+  select(station_id, station_name, location, latitude, longitude) |>
+  inner_join(
+    read_csv("./results/tbl-forecast-delta-t.csv") |>
+      dplyr::filter(date == "2025-04-07"),
+    by = join_by(station_id == location_id)
+  )
+
+# convert plotdata to sf object and reproject
+plotdat <- plotdat |>
+  st_as_sf(coords = c("longitude", "latitude"), crs = crs_gcs) |>
+  st_transform(crs = crs_pcs)
+
+plotdat <- plotdat |>
+  bind_cols(
+    plotdat |>
+      st_transform(crs_gcs) |>
+      st_coordinates() |>
+      as_tibble() |>
+      rename(gcs_latitude = Y, gcs_longitude = X)
+  ) |>
+  bind_cols(
+    plotdat |>
+      st_coordinates() |>
+      as_tibble() |>
+      rename(pcs_latitude = Y, pcs_longitude = X)
+  )
+
+#TEST plotdata with delta T beyond range
+#plotdat <- plotdat |>
+#  mutate(delta_t = if_else(delta_t >= 12, delta_t + 10, delta_t + 5))
+
+# create smoothed raster
+r <- rast(bounding_box, res = 1500)
+
+m <- fields::Tps(x = st_coordinates(plotdat), Y = plotdat |> pull(wind_speed)) # thin plate spline model
+tps <- interpolate(r, m) |>
+  mask(counties)
+
+# create plot
+out <- ggplot() +
+  labs(
+    title = str_c(
+      "NWS Forecast Hourly Wind Speed (mph) at Time of Peak Hourly Delta T for ",
+      plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y")
+    ),
+    subtitle = str_c(
+      "Created: ",
+      plotdat |>
+        pull(forecast_effective) |>
+        as_date() |>
+        unique() |>
+        format("%a, %b %d %Y")
+    )
+  ) +
+  geom_sf(
+    data = bounding_box,
+    color = "white",
+    fill = "white"
+  ) +
+  geom_spatraster(
+    data = tps
+  ) +
+  scale_fill_gradientn(
+    colors = c(
+      "#FFFFFF",
+      "#E8E88B",
+      "#E6C52A",
+      "#E68E06",
+      "#F8521B",
+      "#FD4027",
+      "#8E3189",
+      "#4A26BA",
+      "#141444"
+    ),
+    na.value = "white",
+    values = scales::rescale(
+      c(0, 10, 20, 30, 40, 43, 57, 67, 80),
+      from = c(0, 80)
+    ),
+    name = "mph",
+    oob = scales::oob_squish,
+    limits = c(0, 80),
+    breaks = seq(0, 80, 10),
+    labels = c(seq(0, 70, 10), "80+")
+  ) +
+  geom_sf(
+    data = counties,
+    color = "black",
+    fill = NA
+  ) +
+  geom_sf(
+    data = states,
+    color = "black",
+    linewidth = 1,
+    fill = NA
+  ) +
+  geom_windbarb(
+    data = plotdat,
+    aes(
+      x = pcs_longitude,
+      y = pcs_latitude,
+      mag = wind_speed,
+      angle = wind_direction,
+      mag.unit = wind_speed_unit
+    ),
+    length = 12,
+    skip.x = 0,
+    skip.y = 0,
+    lwd = 0.8,
+    fill = "gray35",
+    colour = "gray35"
+  ) +
+  geom_sf_interactive(
+    fill = NA,
+    color = "transparent",
+    data = plotdat,
+    aes(
+      data_id = station_id,
+      tooltip = glue::glue('{station_name}'),
+      #FIX: pull lat and long from code
+      onclick = glue::glue(
+        "window.open(\"https://forecast.weather.gov/MapClick.php?lat={gcs_latitude}&lon={gcs_longitude}\")"
+      ),
+      hover_css = "fill:transparent;stroke:transparent;r:5pt;"
+    )
+  ) +
+  geom_text_repel(
+    data = plotdat,
+    aes(x = pcs_longitude, y = pcs_latitude, label = round(wind_speed, 0)),
+    force = 0.0020,
+    size = 2.8,
+    box.padding = 0,
+    bg.color = "white",
+    bg.r = 0.15
+  ) +
+  geom_image(
+    data = tibble(
+      x = st_bbox(bounding_box)[1] + 185000,
+      y = st_bbox(bounding_box)[2] + 45000
+    ),
+    aes(x, y, image = "./bin/ndsu-extension-color-logo.eps"),
+    size = 0.55
+  ) +
+  geom_richtext(
+    data = tibble(
+      x = st_bbox(bounding_box)[1] + 388000,
+      y = st_bbox(bounding_box)[2]
+    ),
+    aes(
+      x,
+      y,
+      label = "Source: NOAA National Weather Service (NWS) Hourly Forecasts<br>
+      https:&#47;&#47;www.ndsu.edu&#47;agriculture&#47;ag-home&#47;directory&#47;rob-proulx<br>
+      Copyright (c) North Dakota State University<br>
+      Background contouring does not necessarily reflect actual conditions"
+    ),
+    size = 2.55,
+    lineheight = 1.35,
+    label.padding = unit(c(0, 0, 0, 0), "lines"),
+    hjust = "left",
+    vjust = "bottom",
+    fill = NA,
+    label.color = NA
+  ) +
+  coord_sf(
+    xlim = st_bbox(bounding_box)[c(1, 3)],
+    ylim = st_bbox(bounding_box)[c(2, 4)],
+    crs = crs_pcs,
+    expand = FALSE
+  ) +
+  theme(
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(size = 13),
+    legend.position = "bottom",
+    legend.key.width = unit(1, "null"),
+    legend.frame = element_rect(color = "black"),
+    legend.title.position = "right",
+    legend.title = element_text(vjust = 1, size = 14),
+    legend.text = element_text(size = 12),
+    legend.ticks = element_line(color = "black"),
+    legend.ticks.length = unit(c(-1, 0), 'mm')
+  )
+
+out
+#girafe(ggobj = out)
 
 #FIX: need to update R4.4.0 to get ggiraph to work in RStudio (otherwise, copy and paste code into R)
-#FIX: see why thin border along top (write raster to file, show in QGIS with bounding box over top - likely need to make bounding box bigger)
-#THEN: try make a wind map
 #THEN: add text and NDSU Extension logo over the top of SD space

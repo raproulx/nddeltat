@@ -23,7 +23,8 @@ nws_forecasts <-
         longitude = x |> pull(longitude),
         output_id = x |> pull(station_id)
       )
-    }
+    },
+    .progress = "NWS data retrieval"
   )
 
 
@@ -54,7 +55,7 @@ nws_forecast_data <-
   mutate(date = date(start_time)) |>
   group_by(date, location_id) |>
   mutate(n = n()) |>
-  filter(n == 24 & is_daytime == TRUE) |>
+  dplyr::filter(n == 24 & is_daytime == TRUE) |>
   # calculate hourly delta T
   rowwise() |>
   mutate(

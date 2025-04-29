@@ -11,6 +11,11 @@ nws_forecast_retrieve <- function(
   api01 <- str_c("https://api.weather.gov/points/", latitude, ",", longitude)
   resp01 <- api01 |>
     request() |>
+    req_retry(
+      max_tries = 5,
+      is_transient = \(resp) resp_status(resp) %in% c(429, 500, 503, 504),
+      backoff = \(resp) 10
+    ) |>
     req_perform() |>
     resp_body_json()
 
@@ -27,6 +32,11 @@ nws_forecast_retrieve <- function(
     }
   ) |>
     request() |>
+    req_retry(
+      max_tries = 5,
+      is_transient = \(resp) resp_status(resp) %in% c(429, 500, 503, 504),
+      backoff = \(resp) 10
+    ) |>
     req_perform()
 
   if (is.null(output_id)) {

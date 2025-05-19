@@ -1,5 +1,5 @@
 plot_weathermap <- function(
-  map_date,
+  map_date = "yyyy-mm-dd",
   wth_variable = c("delta_t", "wind_speed"),
   map_type = c("forecast", "historical")
 ) {

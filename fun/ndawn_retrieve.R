@@ -1,60 +1,44 @@
-library(tidyverse)
-library(httr2)
-
 ndawn_retrieve <- function(
-  station_id,
+  stn_id,
   ndawn_fields,
   freq_type = "hourly",
-  date_start = yyyy - mm - dd,
-  date_end = yyyy - mm - dd
+  date_start = "yyyy-mm-dd",
+  date_end = "yyyy-mm-dd"
 ) {
+  library(tidyverse)
+  library(httr2)
+  library(suncalc)
+
+  ndawn_stations <- read_csv("./data/tbl-NDAWN-stations.csv")
+
   ndawn_definitions <-
     # fmt:skip
     tribble(
-    ~ndawn_abbr, ~ndawn_field, ~nws_field,
-    "hdt",       "temperature",
-    "hdrh",      "relativeHumidity",
-    "hdbst",     "temperatureSoilBare",
-    "hdtst",     "temperatureSoilTurf",
-    "hdws",      "windSpeed",
-    "hdmxws",    "windGust",
-    "hdwd",      "windDirection",
-    "hdsdwd",    "windDirectionStdDev",
-    "hdsr",      "solarRadiation",
-    "hdr",       "rainfall",
-    "hdbp",      "pressure",
-    "hddp",      "dewpoint",
-    "hdwc",      "windChill",
-    "hdt9",      "temperature9m",
-    "hdrh9",     "relativeHumidity9m",
-    "hdws10",    "windSpeed10m",
-    "hdmxws10",  "windGust10m",
-    "hdwd10",    "windDirection10m",
-    "hdsdwd10",  "windDirectionStdDev10m"
+    ~ndawn_abbr, ~ndawn_field,              ~nws_field,
+    "hdt",       "Avg Air Temp",            "temperature",
+    "hdrh",      "Avg Rel Hum",             "relativeHumidity",
+    "hdbst",     "Avg Bare Soil Temp",      "temperatureSoilBare",
+    "hdtst",     "Avg Turf Soil Temp",      "temperatureSoilTurf",
+    "hdws",      "Avg Wind Speed",          "windSpeed",
+    "hdmxws",    "Max Wind Speed",          "windGust",
+    "hdwd",      "Avg Wind Dir",            "windDirection",
+    "hdsdwd",    "Avg Wind Dir SD",         "windDirectionStdDev",
+    "hdsr",      "Avg Sol Rad",             "solarRadiation",
+    "hdr",       "Total Rainfall",          "rainfall",
+    "hdbp",      "Avg Baro Press",          "pressure", 
+    "hddp",      "Avg Dew Point",           "dewpoint",   
+    "hdwc",      "Avg Wind Chill",          "windChill",
+    "hdt9",      "Avg Air Temp at 9 m",     "temperature9m", 
+    "hdrh9",     "Avg Rel Hum at 9 m",      "relativeHumidity9m",
+    "hdws10",    "Avg Wind Speed at 10 m",  "windSpeed10m",  
+    "hdmxws10",  "Max Wind Speed at 10 m",  "windGust10m",
+    "hdwd10",    "Avg Wind Dir at 10 m",    "windDirection10m", 
+    "hdsdwd10",  "Avg Wind Dir SD at 10 m", "windDirectionStdDev10m"
   )
-  "Avg Air Temp"
-  "Avg Rel Hum"
-  "Avg Bare Soil Temp"
-  "Avg Turf Soil Temp"
-  "Avg Wind Speed"
-  "Max Wind Speed"
-  "Avg Wind Dir"
-  "Avg Wind Dir SD"
-  "Avg Sol Rad"
-  "Total Rainfall"
-  "Avg Baro Press"
-  "Avg Dew Point"
-  "Avg Wind Chill"
-  "Avg Air Temp at 9 m"
-  "Avg Rel Hum at 9 m"
-  "Avg Wind Speed at 10 m"
-  "Max Wind Speed at 10 m"
-  "Avg Wind Dir at 10 m"
-  "Avg Wind Dir SD at 10 m"
 
   url <- str_c(
     "https://ndawn.ndsu.nodak.edu/table.csv?station=",
-    station_id,
+    stn_id,
     "&variable=",
     str_c(
       ndawn_definitions |>
@@ -95,12 +79,52 @@ ndawn_retrieve <- function(
         ymd_hms()) +
         hours(6) -
         hours(1)) |>
-        with_tz("US/Central")
-    )
+        with_tz(
+          tzone = ndawn_stations |>
+            dplyr::filter(station_id == stn_id) |>
+            pull(timezone)
+        ),
+      station_id = stn_id
+    ) |>
+    relocate(station_id)
 
-  out
-
-  ##NEXT: finish tribble
-  ##NEXT: replace NDAWN fields with NWS fields, then janitor::clean_names
-  ##NEXT: decide if eliminating year, month, day, hour fields
+  out |>
+    rename_with(
+      ~ left_join(
+        tibble(ndawn_field = ndawn_fields),
+        ndawn_definitions
+      ) |>
+        pull(nws_field),
+      .cols = all_of(ndawn_fields)
+    ) |>
+    rename_with(
+      ~ left_join(
+        tibble(ndawn_field = ndawn_fields),
+        ndawn_definitions
+      ) |>
+        pull(nws_field) |>
+        str_c(" Flag"),
+      .cols = all_of(ndawn_fields |> str_c(" Flag"))
+    ) |>
+    relocate(StartingDatetime, .after = Elevation) |>
+    select(-Year, -Month, -Day, -Hour) %>%
+    bind_cols(
+      getSunlightTimes(
+        data = tibble(
+          date = date(.$StartingDatetime),
+          lat = .$Latitude,
+          lon = .$Longitude
+        ),
+        keep = c("sunriseEnd", "sunsetStart"),
+        tz = tz(.$StartingDatetime)
+      ) |>
+        select(sunriseEnd, sunsetStart)
+    ) |>
+    mutate(
+      is_daytime = StartingDatetime >= sunriseEnd &
+        (StartingDatetime + minutes(59) + seconds(59)) < sunsetStart
+    ) |>
+    select(-sunriseEnd, -sunsetStart) |>
+    relocate(is_daytime, .after = StartingDatetime) |>
+    janitor::clean_names()
 }

@@ -105,13 +105,11 @@ if (nrow(dates_needed) > 0) {
       wind_direction
     )
 
+  # write output to csv -----------------------------------------------------
+  write_csv(
+    data_retrieved |>
+      bind_rows(daytime_peak_delta_t) |>
+      arrange(station_name, date),
+    "./results/tbl-historical-delta-t.csv"
   )
-
-
-# write output to csv -----------------------------------------------------
-write_csv(
-  daytime_peak_delta_t,
-  "./results/tbl-historical-delta-t.csv",
-  append = TRUE
-)
 }

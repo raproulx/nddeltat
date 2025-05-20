@@ -1,4 +1,5 @@
 plot_weathermap <- function(
+  data_tibble,
   map_date = "yyyy-mm-dd",
   wth_variable = c("delta_t", "wind_speed"),
   map_type = c("forecast", "historical")
@@ -21,25 +22,8 @@ plot_weathermap <- function(
   crs_gcs <- "epsg:4326"
   crs_pcs <- str_c("epsg:", st_crs(counties)$epsg)
 
-  # define input datafile----------------------------------------------------
-  data_infile <- switch(
-    map_type,
-    "forecast" = {
-      "./results/tbl-forecast-delta-t.csv"
-    },
-    "historical" = {
-      "./results/tbl-historical-delta-t.csv"
-    }
-  )
-
   # subset plot data --------------------------------------------------------
-  plotdat <- read_csv("./data/tbl-ndawn-stations.csv") |>
-    select(station_id, station_name, location, latitude, longitude) |>
-    inner_join(
-      read_csv(data_infile) |>
-        dplyr::filter(date == map_date),
-      by = join_by(station_id == location_id)
-    )
+  plotdat <- data_tibble |> dplyr::filter(date == map_date)
 
   # convert plot data to sf object and reproject -----------------------------
   plotdat <- plotdat |>

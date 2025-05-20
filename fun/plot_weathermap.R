@@ -14,6 +14,9 @@ plot_weathermap <- function(
   library(rnaturalearth)
   library(ggimage)
   library(ggtext)
+  source("./fun/windbarbs.R")
+
+  map_date <- ymd(map_date)
 
   # visualization templates -------------------------------------------------
   counties <- st_read("./data/geotemplate-counties.geojson")
@@ -84,10 +87,18 @@ plot_weathermap <- function(
         switch(
           wth_variable,
           "delta_t" = {
-            "<span style = 'color:white;'> \u2063\u2063\u2063\u2063\u2063\u2063 </span>"
+            str_c(
+              "<span style = 'color:white;'> ",
+              str_dup("-", 9),
+              " </span>"
+            )
           },
           "wind_speed" = {
-            "<span style = 'color:white;'> \u2063\u2063\u2003\u2063\u2002\u2063 </span>"
+            str_c(
+              "<span style = 'color:white;'> ",
+              str_dup("-", 9),
+              " </span>"
+            )
           }
         )
       },
@@ -95,16 +106,25 @@ plot_weathermap <- function(
         switch(
           wth_variable,
           "delta_t" = {
-            "<span style = 'color:white;'> \u2063\u2063\u2063\u2063\u2063\u2063\u2063\u2063\u2063\u2063\u2002\u2063 </span>"
+            str_c(
+              "<span style = 'color:white;'> ",
+              str_dup("-", 17),
+              " </span>"
+            )
           },
           "wind_speed" = {
-            "<span style = 'color:white;'> \u2063\u2063\u2063\u2063\u2063\u2063\u2063\u2063\u2063\u2063 </span>"
+            str_c(
+              "<span style = 'color:white;'> ",
+              str_dup("-", 14),
+              " </span>"
+            )
           }
         )
       }
     ),
+    "<span style = 'color:black;font-family:Consolas'> ",
     plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y"),
-    "</p>"
+    "</span></p>"
   )
 
   map_subtitle <- switch(
@@ -284,7 +304,7 @@ plot_weathermap <- function(
         y,
         label = map_label
       ),
-      size = 2.55,
+      size = 2.45,
       lineheight = 1.35,
       label.padding = unit(c(0, 0, 0, 0), "lines"),
       hjust = "left",

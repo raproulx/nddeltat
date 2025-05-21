@@ -250,7 +250,7 @@ plot_weathermap <- function(
           angle = wind_direction,
           mag.unit = wind_speed_unit
         ),
-        length = 12,
+        length = 9,
         skip.x = 0,
         skip.y = 0,
         lwd = 0.8,

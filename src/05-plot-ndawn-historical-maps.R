@@ -53,7 +53,7 @@ dates_needed |>
         )) |>
         ggsave(
           filename = str_c("historical-both-", x, ".png"),
-          path = str_c("./results/maps_historical/", format(x, "%b")),
+          path = str_c("./quarto-website/maps_historical/", format(x, "%b")),
           width = 7.75,
           height = 10.00,
           units = "in",

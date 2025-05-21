@@ -26,7 +26,7 @@ data_in |>
       ) |>
         ggsave(
           filename = str_c("forecast-delta-t-", x, ".png"),
-          path = str_c("./results/maps_forecast/", format(x, "%b")),
+          path = str_c("./quarto-website/maps_forecast", format(x, "%b")),
           width = 7.75,
           height = 5.66,
           units = "in",

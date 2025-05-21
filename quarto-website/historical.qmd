@@ -1,0 +1,49 @@
+---
+title: "Historical Delta T"
+lightbox: true
+---
+
+Below are two-panel maps showing maximum Delta T and wind speed at the time of maximum Delta T for North Dakota over the past seven days. They are derived from North Dakota Agricultural Weather Network hourly data, which is available at [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html).
+
+Use the navigation menu to access historical maps dating back to May 1.
+
+```{r}
+#| include: false
+require(fs)
+require(purrr)
+require(lubridate)
+require(stringr)
+
+imgpaths <- map(
+  1:7,
+  \(x)
+   dir_ls(
+     path = "./maps_historical",
+     recurse = TRUE,
+     regexp = str_c("historical-both-", Sys.Date()-days(x))
+     ) |> 
+     path_rel()
+  ) |> 
+  set_names(str_c("h",1:7))
+```
+
+# Yesterday
+![](`r imgpaths |> pluck("h1")`){group="historical-gallery"}
+
+# `r format(imgpaths |> pluck("h2") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("h2")`){group="historical-gallery"}
+
+# `r format(imgpaths |> pluck("h3") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("h3")`){group="historical-gallery"}
+
+# `r format(imgpaths |> pluck("h4") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("h4")`){group="historical-gallery"}
+
+# `r format(imgpaths |> pluck("h5") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("h5")`){group="historical-gallery"}
+
+# `r format(imgpaths |> pluck("h6") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("h6")`){group="historical-gallery"}
+
+# `r format(imgpaths |> pluck("h7") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("h7")`){group="historical-gallery"}

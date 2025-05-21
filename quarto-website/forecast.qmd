@@ -1,0 +1,44 @@
+---
+title: "Forecasted Delta T"
+---
+
+Below are Delta T forecast maps for North Dakota from today through the next six days. These are derived from National Weather Service hourly forecasts and are not an official NWS forecast product.
+
+Visit the [National Weather Service](https://www.weather.gov/) to access the local forecast for your area. Check [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html), [NDAWN.info](https://ndawn.info/), or the [NDAWN Inversion](https://www.ndsu.edu/agriculture/ag-hub/ndawn-inversion) app for the latest local weather conditions.
+
+```{r}
+#| include: false
+require(fs)
+require(purrr)
+require(lubridate)
+require(stringr)
+
+imgpaths <- map(
+  0:6,
+  \(x)
+   dir_ls(path = "./maps", regexp = str_c("forecast-delta-t-", Sys.Date()+days(x))) |>
+   path_rel()
+  ) |> 
+  set_names(str_c("d",0:6))
+```
+
+# Today
+![](`r imgpaths |> pluck("d0")`)
+
+# Tomorrow
+![](`r imgpaths |> pluck("d1")`)
+
+# `r format(imgpaths |> pluck("d2") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("d2")`)
+
+# `r format(imgpaths |> pluck("d3") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("d3")`)
+
+# `r format(imgpaths |> pluck("d4") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("d4")`)
+
+# `r format(imgpaths |> pluck("d5") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("d5")`)
+
+# `r format(imgpaths |> pluck("d6") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+![](`r imgpaths |> pluck("d6")`)

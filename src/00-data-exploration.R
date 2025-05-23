@@ -104,7 +104,7 @@ plotdat <- read_csv("./data/tbl-ndawn-stations.csv") |>
   select(station_id, station_name, location, latitude, longitude) |>
   inner_join(
     read_csv("./results/tbl-forecast-delta-t.csv") |>
-      dplyr::filter(date == "2025-04-07"),
+      dplyr::filter(date == "2025-05-03"),
     by = join_by(station_id == location_id)
   )
 
@@ -128,10 +128,6 @@ plotdat <- plotdat |>
       rename(pcs_latitude = Y, pcs_longitude = X)
   )
 
-#TEST plotdata with delta T beyond range
-#plotdat <- plotdat |>
-#  mutate(delta_t = if_else(delta_t >= 12, delta_t + 10, delta_t + 5))
-
 # create smoothed raster
 r <- rast(bounding_box, res = 1500)
 
@@ -143,8 +139,10 @@ tps <- interpolate(r, m) |>
 out <- ggplot() +
   labs(
     title = str_c(
-      "NWS Forecast Peak Hourly Delta-T (Wet Bulb Depression) (\u00B0F) for ",
-      plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y")
+      "<p style = 'font-size:17pt';><b> Always check the <img src = 'bin/ndawn-inversion-app-logo.png' height = 16> <span style = 'color:#3EB3FF;'> NDAWN Inversion </span>app for current conditions</b></p>
+      <p>NWS Forecast Maximum Delta-T (Wet Bulb Depression) (\u00B0F) <span style = 'color:white;'> \u2063\u2063\u2063\u2063\u2063\u2063 </span>",
+      plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y"),
+      "</p>"
     ),
     subtitle = str_c(
       "Created: ",
@@ -256,6 +254,7 @@ out <- ggplot() +
     label.color = NA
   ) +
   theme(
+    plot.title = element_markdown(),
     axis.title = element_blank(),
     axis.text = element_blank(),
     axis.ticks = element_blank(),
@@ -298,7 +297,7 @@ plotdat <- read_csv("./data/tbl-ndawn-stations.csv") |>
   select(station_id, station_name, location, latitude, longitude) |>
   inner_join(
     read_csv("./results/tbl-forecast-delta-t.csv") |>
-      dplyr::filter(date == "2025-04-07"),
+      dplyr::filter(date == "2025-05-03"),
     by = join_by(station_id == location_id)
   )
 
@@ -322,10 +321,6 @@ plotdat <- plotdat |>
       rename(pcs_latitude = Y, pcs_longitude = X)
   )
 
-#TEST plotdata with delta T beyond range
-#plotdat <- plotdat |>
-#  mutate(delta_t = if_else(delta_t >= 12, delta_t + 10, delta_t + 5))
-
 # create smoothed raster
 r <- rast(bounding_box, res = 1500)
 
@@ -337,7 +332,7 @@ tps <- interpolate(r, m) |>
 out <- ggplot() +
   labs(
     title = str_c(
-      "NWS Forecast Hourly Wind Speed (mph) at Time of Peak Hourly Delta T for ",
+      "NWS Forecast Wind Speed (mph) at Time of Maximum Delta T <span style = 'color:white;'> \u2063\u2063\u2063\u2063\u2063\u2063 </span>",
       plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y")
     ),
     subtitle = str_c(
@@ -466,10 +461,10 @@ out <- ggplot() +
     expand = FALSE
   ) +
   theme(
+    plot.title = element_markdown(),
     axis.title = element_blank(),
     axis.text = element_blank(),
     axis.ticks = element_blank(),
-    plot.title = element_text(size = 13),
     legend.position = "bottom",
     legend.key.width = unit(1, "null"),
     legend.frame = element_rect(color = "black"),
@@ -484,4 +479,12 @@ out
 #girafe(ggobj = out)
 
 #FIX: need to update R4.4.0 to get ggiraph to work in RStudio (otherwise, copy and paste code into R)
-#THEN: add text and NDSU Extension logo over the top of SD space
+#NEXT: decide if it's worth including wind gust information (requires retrieving from raw forecast grid,
+# interpolating values across times, and deciding under what circumstances gusts should be published);
+# might make more sense to just work with raw forecast grid in that case, since already retrieving that info,
+# with overlap joins in dplyr (https://dplyr.tidyverse.org/reference/join_by.html#overlap-joins) used
+# to join sustained wind and wind gusts to a tibble of peak delta T
+#NEXT: see how I inserted nozzles into AE1246 figures and see if that renders more clearly than ggimage
+#NEXT: create a single function to create both graphs
+#NEXT: write code to create map for each day of forecast period
+#NEXT: figure out how to insert graphs into Quarto website, with proper scaling if using ggiraph

@@ -16,7 +16,7 @@ data_in <- read_csv("./data/tbl-ndawn-stations.csv") |>
 data_in |>
   pull(date) |>
   unique() |>
-  map(
+  walk(
     \(x)
       plot_weathermap(
         data_tibble = data_in,
@@ -26,7 +26,10 @@ data_in |>
       ) |>
         ggsave(
           filename = str_c("forecast-delta-t-", x, ".png"),
-          path = str_c("./quarto-website/maps_forecast", format(x, "%b")),
+          path = str_c(
+            "./results/maps_forecast/",
+            str_to_lower(format(x, "%b"))
+          ),
           width = 7.75,
           height = 5.66,
           units = "in",

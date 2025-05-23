@@ -3,6 +3,6 @@
 .RData
 .Ruserdata
 /results/*.csv
-/bin
+/bin/
 /.quarto/
-/src/00-data-exploration.R
+**/src/00-data-exploration.R

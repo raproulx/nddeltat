@@ -1,0 +1,32 @@
+project:
+  type: website
+  pre-render:
+    - src/create-gallery-index.R
+    - src/generate-gallery.ts
+    - src/fix-gallery-image-labels.R
+
+website:
+  title: "ND Delta T"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: forecast.qmd
+        text: Next 7 Days
+      - href: historical.qmd
+        text: Past 7 Days
+      - href: galleries.qmd
+        text: Archive
+      - href: about.qmd
+        text: About
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+editor: visual
+

@@ -1,0 +1,23 @@
+---
+lightbox: auto
+---
+
+# Current Conditions
+![](https://s3.us-east-2.amazonaws.com/ndawn.info/maps/NDAWN_delta_t.png){group="gallery" fig-alt="current delta t"}
+
+# Today's Forecast Maximum
+```{r}
+#| include: false
+require(fs)
+require(lubridate)
+require(stringr)
+
+img_today <- dir_ls(
+  path = "./maps_forecast",
+  recurse = TRUE,
+  regexp = str_c("forecast-delta-t-", Sys.Date())
+  ) |> 
+  path_rel()
+```
+
+![](`r img_today`){group="gallery" fig-alt="today's delta t forecast"}

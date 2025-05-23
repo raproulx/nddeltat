@@ -5,4 +5,3 @@
 /results/*.csv
 /bin/
 /.quarto/
-**/src/00-data-exploration.R

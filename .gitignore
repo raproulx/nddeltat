@@ -4,4 +4,5 @@
 .Ruserdata
 /results/*.csv
 /bin
-quarto-website/.quarto
+/.quarto/
+/src/00-data-exploration.R

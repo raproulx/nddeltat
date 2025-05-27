@@ -1,8 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "geotemplate-bounding-box",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
-"features": [
-{ "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -11700000.0, 6300000.0 ], [ -11700000.0, 5650000.0 ], [ -10425000.0, 5650000.0 ], [ -10425000.0, 6300000.0 ], [ -11700000.0, 6300000.0 ] ] ] } }
-]
-}

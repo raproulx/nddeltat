@@ -1,6 +1,0 @@
-bin: programs brought in from elsewhere or compiled locally
-data: raw data and metadata
-doc: text documents associated with the project
-fun: scripts for helper functions
-results: files generated during cleanup and analysis
-src: source for the project’s scripts and programs

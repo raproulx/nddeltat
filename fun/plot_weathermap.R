@@ -89,14 +89,14 @@ plot_weathermap <- function(
           "delta_t" = {
             str_c(
               "<span style = 'color:white;'> ",
-              str_dup("-", 9),
+              str_dup("-", 12),
               " </span>"
             )
           },
           "wind_speed" = {
             str_c(
               "<span style = 'color:white;'> ",
-              str_dup("-", 9),
+              str_dup("-", 12),
               " </span>"
             )
           }
@@ -108,21 +108,21 @@ plot_weathermap <- function(
           "delta_t" = {
             str_c(
               "<span style = 'color:white;'> ",
-              str_dup("-", 17),
+              str_dup("-", 21),
               " </span>"
             )
           },
           "wind_speed" = {
             str_c(
               "<span style = 'color:white;'> ",
-              str_dup("-", 14),
+              str_dup("-", 18),
               " </span>"
             )
           }
         )
       }
     ),
-    "<span style = 'color:black;font-family:Inconsolata;font-size:12pt'> ",
+    "<span style = 'color:black;font-family:Inconsolata;font-size:13pt'> ",
     plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y"),
     "</span></p>"
   )

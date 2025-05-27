@@ -28,7 +28,7 @@ dates_needed <-
 
 
 # load NDAWN stations table -----------------------------------------------
-ndawn_stations <- read_csv("./data/tbl-NDAWN-stations.csv")
+ndawn_stations <- read_csv("./data/tbl-ndawn-stations.csv")
 
 
 # retrieve NDAWN hourly data for each NDAWN station -----------------------

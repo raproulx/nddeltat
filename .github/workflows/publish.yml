@@ -23,6 +23,11 @@ jobs:
       - name: Install UDUnits library
         run: sudo apt-get install libudunits2-dev
 
+      - name: Install geospatial libraries
+        run: sudo add-apt-repository ppa:imincik/gis
+        run: sudo apt-get install libproj-dev libgdal-dev python-gdal libgeos-dev
+        run: sudo apt install sqlite3 libsqlite3-dev 
+
       - name: Install R
         uses: r-lib/actions/setup-r@v2
         with:

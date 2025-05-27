@@ -1,0 +1,15 @@
+{
+  "hash": "b2e783275bf67744ec09b241b4fe9331",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"May Delta T History\"\nlightbox: true\n---\n\n\n\n\n\n![Sunday, May 18, 2025](maps_historical/May/historical-delta-t-2025-05-18.png){group=\"may-gallery\"}\n\n![Monday, May 19, 2025](maps_historical/May/historical-delta-t-2025-05-19.png){group=\"may-gallery\"}\n\n![](){group=\"may-gallery\"}",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

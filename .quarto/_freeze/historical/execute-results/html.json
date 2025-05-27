@@ -1,0 +1,15 @@
+{
+  "hash": "5ef5f230fb3a5e86536b90e1e10c5b87",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Historical Delta T\"\nlightbox: true\n---\n\n\n\n\nMaps of maximum Delta T and concurrent wind speed are derived from North Dakota Agricultural Weather Network hourly data, which is available at [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html).\n\nSee the [Archive](galleries.qmd) for historical maps dating back to May 1.\n\n\n\n\n\n\n\n\n\n# Yesterday\n![](maps_historical/may/historical-both-2025-05-22.png){group=\"historical-gallery\"}\n\n# Wednesday, May 21, 2025\n![](maps_historical/may/historical-both-2025-05-21.png){group=\"historical-gallery\"}\n\n# Tuesday, May 20, 2025\n![](maps_historical/may/historical-both-2025-05-20.png){group=\"historical-gallery\"}\n\n# Monday, May 19, 2025\n![](maps_historical/may/historical-both-2025-05-19.png){group=\"historical-gallery\"}\n\n# Sunday, May 18, 2025\n![](maps_historical/may/historical-both-2025-05-18.png){group=\"historical-gallery\"}\n\n# Saturday, May 17, 2025\n![](maps_historical/may/historical-both-2025-05-17.png){group=\"historical-gallery\"}\n\n# Friday, May 16, 2025\n![](maps_historical/may/historical-both-2025-05-16.png){group=\"historical-gallery\"}",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

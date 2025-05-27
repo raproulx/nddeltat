@@ -23,9 +23,14 @@ jobs:
       - name: Install UDUnits library
         run: sudo apt-get install libudunits2-dev
 
-      - name: Install geospatial libraries
+      - name: Install GIS psckages PPA
         run: sudo add-apt-repository ppa:imincik/gis
+        run: sudo apt update
+
+      - name: Install geospatial libraries
         run: sudo apt-get install libproj-dev libgdal-dev python-gdal libgeos-dev
+
+      - name: Install SQLite 3
         run: sudo apt install sqlite3 libsqlite3-dev 
 
       - name: Install R

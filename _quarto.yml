@@ -1,10 +1,6 @@
 project:
   type: website
   pre-render:
-    - src/02-obtain-nws-forecast-data.R
-    - src/03-plot-nws-forecast-maps.R
-    - src/04-obtain-ndawn-historical-data.R
-    - src/05-plot-ndawn-historical-maps.R
     - src/create-gallery-index.R
     - src/generate-gallery.ts
     - src/fix-gallery-image-labels.R

@@ -278,6 +278,7 @@ plot_weathermap <- function(
       aes(
         x = pcs_longitude,
         y = pcs_latitude,
+        family = "Arial",
         label = round(.data[[wth_variable]], 0)
       ),
       force = 0.0020,
@@ -302,6 +303,7 @@ plot_weathermap <- function(
       aes(
         x,
         y,
+        family = "Arial",
         label = map_label
       ),
       size = 2.45,
@@ -319,7 +321,7 @@ plot_weathermap <- function(
       expand = FALSE
     ) +
     theme(
-      plot.title = element_markdown(),
+      plot.title = element_markdown(family = "Arial"),
       axis.title = element_blank(),
       axis.text = element_blank(),
       axis.ticks = element_blank(),
@@ -327,8 +329,8 @@ plot_weathermap <- function(
       legend.key.width = unit(1, "null"),
       legend.frame = element_rect(color = "black"),
       legend.title.position = "right",
-      legend.title = element_text(vjust = 1, size = 14),
-      legend.text = element_text(size = 12),
+      legend.title = element_text(family = "Arial", vjust = 1, size = 14),
+      legend.text = element_text(family = "Arial", size = 12),
       legend.ticks = element_line(color = "black"),
       legend.ticks.length = unit(c(-1, 0), 'mm')
     )

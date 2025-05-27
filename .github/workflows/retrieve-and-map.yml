@@ -47,7 +47,7 @@ jobs:
         run: chmod +x src/02-obtain-nws-forecast-data.R
   
       - name: Run R script - NWS Forecast Data
-        run: src/02-obtain-nws-forecast-data.R
+        run: Rscript src/02-obtain-nws-forecast-data.R
 
      # - name: Run R script - NWS Forecast Maps
        # run: src/03-plot-nws-forecast-maps.R

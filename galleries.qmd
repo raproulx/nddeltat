@@ -4,7 +4,7 @@ listing:
   - id: galleries
     contents: galleries
     type: grid
-    sort: "name desc"
+    sort: "date desc"
     categories: true
     sort-ui: true
     filter-ui: true

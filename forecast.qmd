@@ -18,7 +18,7 @@ imgpaths <- map(
   0:6,
   \(x)
    dir_ls(
-     path = "./maps_forecast",
+     path = "./results/maps_forecast",
      recurse = TRUE,
      regexp = str_c("forecast-delta-t-", Sys.Date()+days(x))
      ) |> 

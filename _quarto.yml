@@ -1,9 +1,9 @@
 project:
   type: website
   pre-render:
-    - create-gallery-index.R
-    - generate-gallery.ts
-    - fix-gallery-image-labels.R
+    - src/create-gallery-index.R
+    - src/generate-gallery.ts
+    - src/fix-gallery-image-labels.R
 
 website:
   title: "ND Delta T"

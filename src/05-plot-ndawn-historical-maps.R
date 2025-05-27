@@ -31,10 +31,10 @@ dates_needed <-
               switch(
                 x,
                 "historical-both" = {
-                  "./quarto-website/maps_historical"
+                  "./results/maps_historical"
                 },
                 "historical-delta-t" = {
-                  "./quarto-website/galleries"
+                  "./galleries"
                 }
               ),
               type = "file",
@@ -63,7 +63,7 @@ plots_fun <- function(x) {
       ggsave(
         filename = str_c("historical-delta-t-", x, ".png"),
         path = str_c(
-          "./quarto-website/galleries/",
+          "./galleries/",
           format(x, "%b") |> str_to_lower(),
           "/images"
         ),
@@ -85,7 +85,7 @@ plots_fun <- function(x) {
       ggsave(
         filename = str_c("historical-both-", x, ".png"),
         path = str_c(
-          "./quarto-website/maps_historical/",
+          "./results/maps_historical/",
           format(x, "%b") |> str_to_lower()
         ),
         width = 7.75,

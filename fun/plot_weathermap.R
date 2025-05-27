@@ -122,7 +122,7 @@ plot_weathermap <- function(
         )
       }
     ),
-    "<span style = 'color:black;font-family:Consolas'> ",
+    "<span style = 'color:black;font-family:Inconsolata;font-size:12pt'> ",
     plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y"),
     "</span></p>"
   )

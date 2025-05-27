@@ -108,14 +108,14 @@ plot_weathermap <- function(
           "delta_t" = {
             str_c(
               "<span style = 'color:white;'> ",
-              str_dup("-", 21),
+              str_dup("-", 20),
               " </span>"
             )
           },
           "wind_speed" = {
             str_c(
               "<span style = 'color:white;'> ",
-              str_dup("-", 18),
+              str_dup("-", 17),
               " </span>"
             )
           }

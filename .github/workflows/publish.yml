@@ -59,7 +59,6 @@ jobs:
         run: src/05-plot-ndawn-historical-maps.R
         
       - name: Push a commit
-        uses: actions/checkout@v4
         run: |
           date > R Scripts
           # Note: the following account information will not work on GHES

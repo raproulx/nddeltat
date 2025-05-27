@@ -27,8 +27,11 @@ jobs:
       #  run: sudo add-apt-repository ppa:imincik/gis
       #  run: sudo apt update
 
-      - name: Install geospatial libraries
-        run: sudo apt-get install libproj-dev libgdal-dev python-gdal libgeos-dev
+      - name: Install geospatial libraries (PROJ, GEOS and GDAL)
+        run: sudo apt-get install libproj-dev proj-data proj-bin
+        run: sudo apt-get install libgeos-dev
+        run: sudo apt-get install libgeos-c1v5
+        run: sudo apt-get install libgdal-dev
 
       - name: Install SQLite 3
         run: sudo apt-get install sqlite3 libsqlite3-dev 

@@ -45,9 +45,12 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 1
+          
+      - name: Add execute permission to R scripts
+        run: git update-index --chmod=+x src/02-obtain-nws-forecast-data.R src/03-plot-nws-forecast-maps.R src/04-obtain-ndawn-historical-data.R src/05-plot-ndawn-historical-maps.R
 
       - name: Run R script - NWS Forecast Data
-        run: git update-index --chmod=+x src/02-obtain-nws-forecast-data.R
+        run: src/02-obtain-nws-forecast-data.R
 
       - name: Run R script - NWS Forecast Maps
         run: src/03-plot-nws-forecast-maps.R

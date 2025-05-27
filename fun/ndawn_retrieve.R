@@ -9,7 +9,7 @@ ndawn_retrieve <- function(
   library(httr2)
   library(suncalc)
 
-  ndawn_stations <- read_csv("./data/tbl-NDAWN-stations.csv")
+  ndawn_stations <- read_csv("./data/tbl-ndawn-stations.csv")
 
   ndawn_definitions <-
     # fmt:skip

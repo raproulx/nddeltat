@@ -63,4 +63,4 @@ jobs:
           git config --global user.email "150395800+raproulx@users.noreply.github.com"
           git add .
           git commit -m "Data retrival and mapping R scripts"
-          git push https://${{secrets.ND_DELTA_T_AUTOMATION_TOKEN}}@github.com/${{nd-delta-t.github.io}}.git HEAD:main
+          git push https://${{secrets.ND_DELTA_T_AUTOMATION_TOKEN}}@github.com/${{ github.repository }}.git HEAD:main

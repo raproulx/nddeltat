@@ -43,6 +43,9 @@ jobs:
         with:
           cache-version: 1
           
+      - name: Set execution permissions for R script
+        run: chmod +x src/02-obtain-nws-forecast-data.R
+  
       - name: Run R script - NWS Forecast Data
         run: src/02-obtain-nws-forecast-data.R
 

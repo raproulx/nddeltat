@@ -322,6 +322,7 @@ plot_weathermap <- function(
     ) +
     theme(
       plot.title = element_markdown(family = "Arial"),
+      plot.subtitle = element_text(family = "Arial"),
       axis.title = element_blank(),
       axis.text = element_blank(),
       axis.ticks = element_blank(),

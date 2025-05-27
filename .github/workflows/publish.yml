@@ -29,9 +29,9 @@ jobs:
 
       - name: Install geospatial libraries (PROJ, GEOS and GDAL)
         run: sudo apt-get install libproj-dev proj-data proj-bin
-        run: sudo apt-get install libgeos-dev
-        run: sudo apt-get install libgeos-c1v5
-        run: sudo apt-get install libgdal-dev
+      #  run: sudo apt-get install libgeos-dev
+      #  run: sudo apt-get install libgeos-c1v5
+      #  run: sudo apt-get install libgdal-dev
 
       - name: Install SQLite 3
         run: sudo apt-get install sqlite3 libsqlite3-dev 

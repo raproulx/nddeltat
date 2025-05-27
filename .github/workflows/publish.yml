@@ -48,10 +48,9 @@ jobs:
           
       - name: Add execute permission to R scripts
         run: git update-index --chmod=+x src/02-obtain-nws-forecast-data.R 
-        run: src/02-obtain-nws-forecast-data.R
 
-     # - name: Run R script - NWS Forecast Data
-      #  run: src/02-obtain-nws-forecast-data.R
+      - name: Run R script - NWS Forecast Data
+        run: src/02-obtain-nws-forecast-data.R
 
      # - name: Run R script - NWS Forecast Maps
        # run: src/03-plot-nws-forecast-maps.R

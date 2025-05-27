@@ -49,14 +49,23 @@ jobs:
       - name: Run R script - NWS Forecast Data
         run: Rscript src/02-obtain-nws-forecast-data.R
 
-     # - name: Run R script - NWS Forecast Maps
-       # run: src/03-plot-nws-forecast-maps.R
+      - name: Set execution permissions for R script
+        run: chmod +x src/03-plot-nws-forecast-maps.R
+
+      - name: Run R script - NWS Forecast Maps
+        run: Rscript src/03-plot-nws-forecast-maps.R
         
-     # - name: Run R script - NDAWN Data 
-      #  run: src/04-obtain-ndawn-historical-data.R
+      - name: Set execution permissions for R script
+        run: chmod +x src/04-obtain-ndawn-historical-data.R
+
+      - name: Run R script - NDAWN Data 
+        run: Rscript src/04-obtain-ndawn-historical-data.R
         
-     # - name: Run R script - NDAWN Maps 
-      #  run: src/05-plot-ndawn-historical-maps.R
+      - name: Set execution permissions for R script
+        run: chmod +x src/05-plot-ndawn-historical-maps.R
+
+      - name: Run R script - NDAWN Maps 
+        run: Rscript src/05-plot-ndawn-historical-maps.R
         
       - name: Push a commit
         env:

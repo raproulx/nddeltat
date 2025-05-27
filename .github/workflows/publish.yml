@@ -31,7 +31,7 @@ jobs:
         run: sudo apt-get install libproj-dev libgdal-dev python-gdal libgeos-dev
 
       - name: Install SQLite 3
-        run: sudo apt install sqlite3 libsqlite3-dev 
+        run: sudo apt-get install sqlite3 libsqlite3-dev 
 
       - name: Install R
         uses: r-lib/actions/setup-r@v2

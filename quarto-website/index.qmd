@@ -13,7 +13,7 @@ require(lubridate)
 require(stringr)
 
 img_today <- dir_ls(
-  path = "./results/maps_forecast",
+  path = "./maps_forecast",
   recurse = TRUE,
   regexp = str_c("forecast-delta-t-", Sys.Date())
   ) |> 

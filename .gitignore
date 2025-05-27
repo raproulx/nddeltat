@@ -2,6 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-/results/*.csv
 /bin/
 /.quarto/

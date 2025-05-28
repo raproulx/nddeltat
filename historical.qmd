@@ -20,7 +20,7 @@ imgpaths <- map(
    dir_ls(
      path = "./results/maps_historical",
      recurse = TRUE,
-     regexp = str_c("historical-both-", with_tz(Sys.Date(), "America/Chicago")-days(x))
+     regexp = str_c("historical-both-", (Sys.time() |> with_tz("America/Chicago") |> date()) - days(x))
      ) |> 
      path_rel()
   ) |> 

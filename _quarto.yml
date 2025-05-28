@@ -10,6 +10,7 @@ website:
   cookie-consent: true
   title: "ND Delta T"
   navbar:
+    background: light
     left:
       - href: index.qmd
         text: Home

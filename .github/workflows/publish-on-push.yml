@@ -2,8 +2,11 @@ on:
   workflow_dispatch:
   push:
     branches: main
+    paths:
+      - '**.qmd'
+      - '**.png'
 
-name: Quarto Publish
+name: Quarto Publish on Push
 
 jobs:
   build-deploy:
@@ -17,6 +20,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         
+      - name: Update list of packages
+        run: sudo apt-get update
+
       - name: Install ImageMagick library
         run: sudo apt-get install libmagick++-dev
         

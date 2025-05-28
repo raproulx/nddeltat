@@ -17,7 +17,7 @@ dates_needed <-
   tibble(
     date = seq(
       ymd(str_c(year(Sys.Date()), "-05-01")),
-      with_tz(Sys.Date(), "America/Chicago") - days(1),
+      (Sys.time() |> with_tz("America/Chicago") |> date()) - days(1),
       "1 day"
     )
   ) |>

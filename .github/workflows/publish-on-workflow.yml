@@ -3,7 +3,7 @@ on:
     workflows: [NWS and NDAWN Retrieval and Mapping]
     types: [completed]
 
-name: Quarto Publish Automatic
+name: Quarto Publish on Workflow
 
 jobs:
   on-success:
@@ -18,6 +18,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         
+      - name: Update list of packages
+        run: sudo apt-get update
+
       - name: Install ImageMagick library
         run: sudo apt-get install libmagick++-dev
         

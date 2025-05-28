@@ -1,11 +1,39 @@
----
----
 # About this website
+
+This is an experimental site created and maintained by [Rob Proulx](https://www.ndsu.edu/agriculture/ag-home/directory/rob-proulx), Agriculture Technology Systems Specialist with North Dakota State University Extension. Delta T forecast maps are derived from National Weather Service hourly forecasts and are not an official NWS forecast product.
+
+All other maps are from the North Dakota Agricultural Weather Network or derived from its data. Visit [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html), [NDAWN.info](https://ndawn.info/), or the [NDAWN Inversion](https://www.ndsu.edu/agriculture/ag-hub/ndawn-inversion) app.
 
 # What is Delta T?
 
+Delta T describes the evaporative capacity of the ambient air – the higher the value, the drier the air and the greater its evaporative capacity.
+
+When Delta T values exceed 14 °F, excessive spray droplet desiccation and spray deposit evaporation may result in reduced herbicide efficacy. Impacts will be most noticeable when using FINE or MEDIUM spray qualities, and glufosinate (Liberty) is the active ingredient most likely to be negatively impacted by elevated Delta T.
+
+Delta T management recommendations for spraying are embedded in the maps featured on this site:
+
+-   Delta T conditions from 3.6 to 14 are [preferred]{.dt-preferred}.
+
+-   Use [caution]{.dt-caution} when Delta T is 3.6 or less – droplet drift will have enhanced activity due to slow evaporation
+
+-   Use [caution]{.dt-caution} when Delta T is 14.4 to 18 – rapid evaporation may reduce efficacy. If you choose to spray, you may need to increase water volume, droplet size, or both to maintain efficacy.
+
+-   Conditions are [unsuitable]{.dt-unsuitable} for MEDIUM or finer sprays, and marginal for COARSE or larger sprays, when Delta T is 18 to 21.6.
+
+-   Conditions are [unsuitable]{.dt-unsuitable} for all droplet sizes when Delta T is greater than 21.6.
+
+![Summary of herbicide spraying recommendations in response to Delta T values. Adapted from the NDSU Weed Management Guide online supplement.](bin/delta-t-map-legend.png){fig-alt="ndsu-delta-t-recommendations"}
+
+For more information on Delta T, read this [NDSU guide](https://www.ndsu.edu/agriculture/sites/default/files/2022-01/DeltaT-WeedGuide.pdf) or watch this short [overview video](https://youtu.be/CZxaB_xwJYc) from Rob Proulx. For more information on managing Delta T, see this [short video](https://x.com/AgMafiaLLC/status/1922339466536223052) from Kyle Okke on X or this [video](https://youtu.be/IT5CqULPcVk) from Rob Proulx.
+
 # Using forecast maps
+
+Forecast maps are a **planning tool**. If planning to spray on days when maximum Delta T is forecasted to reach the caution or unsuitable ranges, plan ahead to schedule sprays most likely to be impacted – such as those requiring finer droplet sizes or higher water volumes – for earlier in the day. When spraying on these days, be sure to closely monitor NDAWN for changing conditions.
 
 # Using historical maps
 
+Historical maps are a **troubleshooting tool**. If you notice poor efficacy from an application, check the maximum Delta T map for the date of application to see if Delta T may have been a contributing factor. If so, you may want to dive into the hourly NDAWN data, from [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html), for more information on the weather conditions for that date.
+
 # Contact
+
+Please direct any questions or comments to [Rob Proulx](mailto:rob.proulx\@ndsu.edu?subject=ND Delta T Website), NDSU Extension Agriculture Technology Systems Specialist.

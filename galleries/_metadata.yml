@@ -1,2 +1,5 @@
-# format:
-#  gallery-html: default
+ format:
+  gallery-html:
+    theme:
+      - cosmo
+      - brand

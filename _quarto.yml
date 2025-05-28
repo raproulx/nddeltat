@@ -6,6 +6,8 @@ project:
     - src/fix-gallery-image-labels.R
 
 website:
+  google-analytics: "G-9KB6294MHK"
+  cookie-consent: true
   title: "ND Delta T"
   navbar:
     left:

@@ -27,6 +27,7 @@ qmd_modify <- function(x) {
         "]"
       )
     )
+  qmd_new <- qmd_new[order(str_match(qmd_new, "\\d{4}-\\d{2}-\\d{2}"), decreasing = TRUE)]
 
   if (length(qmd_new) > 0) {
     qmd_lines[str_which(qmd_lines, "^\\!\\[\\]")] <- qmd_new

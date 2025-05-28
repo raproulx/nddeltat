@@ -11,6 +11,12 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Update list of packages
+        run: sudo apt-get update
+
       - name: Install Windows fonts
         run: sudo apt install ttf-mscorefonts-installer
         
@@ -19,9 +25,6 @@ jobs:
         
       - name: Refresh font cache
         run: sudo fc-cache -fv
-
-      - name: Check out repository
-        uses: actions/checkout@v4
 
       - name: Install ImageMagick library
         run: sudo apt-get install libmagick++-dev

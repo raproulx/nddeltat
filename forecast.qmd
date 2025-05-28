@@ -15,7 +15,7 @@ require(lubridate)
 require(stringr)
 
 imgpaths <- map(
-  0:6,
+  0:5,
   \(x)
    dir_ls(
      path = "./results/maps_forecast",
@@ -24,7 +24,7 @@ imgpaths <- map(
      ) |> 
      path_rel()
   ) |> 
-  set_names(str_c("f",0:6))
+  set_names(str_c("f",0:5))
 ```
 
 # Today
@@ -44,6 +44,3 @@ imgpaths <- map(
 
 # `r format(imgpaths |> pluck("f5") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
 ![](`r imgpaths |> pluck("f5")`){group="forecast-gallery"}
-
-# `r format(imgpaths |> pluck("f6") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("f6")`){group="forecast-gallery"}

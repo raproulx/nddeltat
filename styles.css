@@ -1,14 +1,12 @@
 /* css styles */
-<style>
-    .dt-caution {
-        background-color: #FFFF00;
-    }
+.dt-caution {
+  color: #FFFF00;
+  }
 
-    .dt-preferred {
-        background-color: #008000;
-    }
+.dt-preferred {
+  color: #008000;
+  }
 
-    .dt-unsuitable {
-        background-color: #FF0000;
-    }
-</style>
+.dt-unsuitable {
+  color: #FF0000;
+  }

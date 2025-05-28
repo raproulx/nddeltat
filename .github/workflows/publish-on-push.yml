@@ -5,6 +5,7 @@ on:
     paths:
       - '**.qmd'
       - '**.png'
+      - '**.yml'
 
 name: Quarto Publish on Push
 

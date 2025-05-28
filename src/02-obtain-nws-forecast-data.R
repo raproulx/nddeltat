@@ -54,8 +54,9 @@ nws_forecast_data <-
   # select daytime hours only
   mutate(date = date(start_time)) |>
   group_by(date, location_id) |>
+  dplyr::filter(is_daytime == TRUE) |>
   mutate(n = n()) |>
-  dplyr::filter(n == 24 & is_daytime == TRUE) |>
+  dplyr::filter(n == 12) |>
   # calculate hourly delta T
   rowwise() |>
   mutate(

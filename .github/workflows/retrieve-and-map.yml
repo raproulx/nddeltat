@@ -18,10 +18,10 @@ jobs:
         run: sudo apt-get update
 
       - name: Install Windows fonts
-        run: sudo apt install ttf-mscorefonts-installer
+        run: sudo apt-get install ttf-mscorefonts-installer
         
       - name: Install Inconsolata font
-        run: sudo apt install fonts-inconsolata
+        run: sudo apt-get install fonts-inconsolata
         
       - name: Refresh font cache
         run: sudo fc-cache -fv

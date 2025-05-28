@@ -12,7 +12,7 @@ website:
       - href: index.qmd
         text: Home
       - href: forecast.qmd
-        text: Next 7 Days
+        text: Next 6 Days
       - href: historical.qmd
         text: Past 7 Days
       - href: galleries.qmd

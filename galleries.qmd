@@ -5,8 +5,8 @@ listing:
     contents: galleries
     type: grid
     sort: "date"
-    categories: true
-    sort-ui: true
-    filter-ui: true
+    categories: false
+    sort-ui: false
+    filter-ui: false
     fields: [image, title, description]
 ---

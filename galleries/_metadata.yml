@@ -1,6 +1,0 @@
- format:
-  gallery-html:
-    theme:
-      - cosmo
-      - brand
-    link-external-newwindow: true

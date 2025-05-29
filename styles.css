@@ -10,3 +10,7 @@
 .dt-unsuitable {
   color: #FF0000;
   }
+
+.strong {
+  font-weight: 600;
+}

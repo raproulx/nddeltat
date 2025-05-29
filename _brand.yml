@@ -37,14 +37,3 @@ typography:
   monospace:
     family: Source Code Pro
     size: 1em
-
-defaults:
-  bootstrap:
-    # bootstrap variable definitions
-  quarto:
-    format:
-      # basic format-specific settings
-      html:
-      revealjs:
-  shiny:
-    # shiny specific settings

@@ -12,15 +12,15 @@ When Delta T values exceed 14 °F, excessive spray droplet desiccation and spray
 
 Delta T management recommendations for spraying are embedded in the maps featured on this site:
 
--   Use caution ([■]{.dt-caution style="font-size:18px"}) when Delta T is 3.6 or less – droplet drift will have enhanced activity due to slow evaporation
+-   Use caution ([■]{.dt-caution style="font-size:26px"}) when Delta T is 3.6 or less – droplet drift will have enhanced activity due to slow evaporation
 
--   Delta T conditions from 3.6 to 14 are preferred ([■]{.dt-preferred style="font-size:18px"}).
+-   Delta T conditions from 3.6 to 14 are preferred ([■]{.dt-preferred style="font-size:26px"}).
 
--   Use caution ([■]{.dt-caution style="font-size:18px"}) when Delta T is 14.4 to 18 – rapid evaporation may reduce efficacy. If you choose to spray, you may need to increase water volume, droplet size, or both to maintain efficacy.
+-   Use caution ([■]{.dt-caution style="font-size:26px"}) when Delta T is 14.4 to 18 – rapid evaporation may reduce efficacy. If you choose to spray, you may need to increase water volume, droplet size, or both to maintain efficacy.
 
--   Conditions are unsuitable ([■]{.dt-unsuitable style="font-size:18px"}) for MEDIUM or finer sprays, and marginal for COARSE or larger sprays, when Delta T is 18 to 21.6.
+-   Conditions are unsuitable ([■]{.dt-unsuitable style="font-size:26px"}) for MEDIUM or finer sprays, and marginal for COARSE or larger sprays, when Delta T is 18 to 21.6.
 
--   Conditions are unsuitable ([■]{.dt-unsuitable style="font-size:18px"}) for all droplet sizes when Delta T is greater than 21.6.
+-   Conditions are unsuitable ([■]{.dt-unsuitable style="font-size:26px"}) for all droplet sizes when Delta T is greater than 21.6.
 
 ![Summary of herbicide spraying recommendations in response to Delta T values. Adapted from the NDSU Weed Management Guide online supplement.](bin/delta-t-map-legend.png){fig-alt="ndsu-delta-t-recommendations"}
 

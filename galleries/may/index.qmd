@@ -1,50 +1,57 @@
----
-title: May
-description: Historical maximum Delta T derived from North Dakota Agricultural Weather Network hourly data, which is available at [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html)
----
-
 ::: {layout-ncol=3}
-![Thu, May 01, 2025](images/historical-delta-t-2025-05-01.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-01"}
+![Wed, May 28, 2025](images/historical-delta-t-2025-05-28.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-28"}
 
-![Fri, May 02, 2025](images/historical-delta-t-2025-05-02.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-02"}
+![Tue, May 27, 2025](images/historical-delta-t-2025-05-27.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-27"}
 
-![Sat, May 03, 2025](images/historical-delta-t-2025-05-03.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-03"}
+![Mon, May 26, 2025](images/historical-delta-t-2025-05-26.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-26"}
 
-![Sun, May 04, 2025](images/historical-delta-t-2025-05-04.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-04"}
+![Sun, May 25, 2025](images/historical-delta-t-2025-05-25.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-25"}
 
-![Mon, May 05, 2025](images/historical-delta-t-2025-05-05.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-05"}
+![Sat, May 24, 2025](images/historical-delta-t-2025-05-24.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-24"}
 
-![Tue, May 06, 2025](images/historical-delta-t-2025-05-06.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-06"}
+![Fri, May 23, 2025](images/historical-delta-t-2025-05-23.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-23"}
 
-![Wed, May 07, 2025](images/historical-delta-t-2025-05-07.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-07"}
-
-![Thu, May 08, 2025](images/historical-delta-t-2025-05-08.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-08"}
-
-![Fri, May 09, 2025](images/historical-delta-t-2025-05-09.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-09"}
-
-![Sat, May 10, 2025](images/historical-delta-t-2025-05-10.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-10"}
-
-![Sun, May 11, 2025](images/historical-delta-t-2025-05-11.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-11"}
-
-![Mon, May 12, 2025](images/historical-delta-t-2025-05-12.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-12"}
-
-![Tue, May 13, 2025](images/historical-delta-t-2025-05-13.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-13"}
-
-![Wed, May 14, 2025](images/historical-delta-t-2025-05-14.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-14"}
-
-![Thu, May 15, 2025](images/historical-delta-t-2025-05-15.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-15"}
-
-![Fri, May 16, 2025](images/historical-delta-t-2025-05-16.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-16"}
-
-![Sat, May 17, 2025](images/historical-delta-t-2025-05-17.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-17"}
-
-![Sun, May 18, 2025](images/historical-delta-t-2025-05-18.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-18"}
-
-![Mon, May 19, 2025](images/historical-delta-t-2025-05-19.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-19"}
-
-![Tue, May 20, 2025](images/historical-delta-t-2025-05-20.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-20"}
+![Thu, May 22, 2025](images/historical-delta-t-2025-05-22.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-22"}
 
 ![Wed, May 21, 2025](images/historical-delta-t-2025-05-21.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-21"}
 
-![Thu, May 22, 2025](images/historical-delta-t-2025-05-22.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-22"}
+![Tue, May 20, 2025](images/historical-delta-t-2025-05-20.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-20"}
+
+![Mon, May 19, 2025](images/historical-delta-t-2025-05-19.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-19"}
+
+![Sun, May 18, 2025](images/historical-delta-t-2025-05-18.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-18"}
+
+![Sat, May 17, 2025](images/historical-delta-t-2025-05-17.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-17"}
+
+![Fri, May 16, 2025](images/historical-delta-t-2025-05-16.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-16"}
+
+![Thu, May 15, 2025](images/historical-delta-t-2025-05-15.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-15"}
+
+![Wed, May 14, 2025](images/historical-delta-t-2025-05-14.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-14"}
+
+![Tue, May 13, 2025](images/historical-delta-t-2025-05-13.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-13"}
+
+![Mon, May 12, 2025](images/historical-delta-t-2025-05-12.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-12"}
+
+![Sun, May 11, 2025](images/historical-delta-t-2025-05-11.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-11"}
+
+![Sat, May 10, 2025](images/historical-delta-t-2025-05-10.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-10"}
+
+![Fri, May 09, 2025](images/historical-delta-t-2025-05-09.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-09"}
+
+![Thu, May 08, 2025](images/historical-delta-t-2025-05-08.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-08"}
+
+![Wed, May 07, 2025](images/historical-delta-t-2025-05-07.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-07"}
+
+![Tue, May 06, 2025](images/historical-delta-t-2025-05-06.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-06"}
+
+![Mon, May 05, 2025](images/historical-delta-t-2025-05-05.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-05"}
+
+![Sun, May 04, 2025](images/historical-delta-t-2025-05-04.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-04"}
+
+![Sat, May 03, 2025](images/historical-delta-t-2025-05-03.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-03"}
+
+![Fri, May 02, 2025](images/historical-delta-t-2025-05-02.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-02"}
+
+![Thu, May 01, 2025](images/historical-delta-t-2025-05-01.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-05-01"}
 :::

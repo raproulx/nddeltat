@@ -1,0 +1,50 @@
+meta:
+  name: brand.yml
+
+logo:
+  images:
+    icon-color: bin/ndsu-extension-color-logo.png
+    icon-black: bin/ndsu-extension-black-logo.png
+    icon-gold: bin/ndsu-extension-gold-white-logo.png
+  medium: icon-gold
+  large: icon-color
+
+color:
+  palette:
+    green: "#0a5640"
+    yellow: "#ffc72a"
+  primary: green
+
+typography:
+  fonts:
+    - family: Open Sans
+      source: google
+    - family: Source Code Pro
+      source: google
+    - family: Raleway
+      source: google
+  base:
+    family: Open Sans
+    line-height: 1.6
+    weight: 300
+
+  headings:
+    family: Raleway
+    weight: 600
+  link:
+    color: green
+    decoration: underline
+  monospace:
+    family: Source Code Pro
+    size: 1em
+
+defaults:
+  bootstrap:
+    # bootstrap variable definitions
+  quarto:
+    format:
+      # basic format-specific settings
+      html:
+      revealjs:
+  shiny:
+    # shiny specific settings

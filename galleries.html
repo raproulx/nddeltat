@@ -40,10 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-cb85a931dc2d6ac0264d34ab5528f107.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c6956bb5a03e9183300dc338660c01f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f825221b8460fd0a6e282520095b4020.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-image','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -168,11 +168,13 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./bin/ndsu-extension-gold-white-logo.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">ND Delta T</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -209,9 +211,9 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -239,36 +241,75 @@ window.Quarto = {
 
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-galleries">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-galleries-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-galleries'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1748544187167" data-listing-reading-time-sort="1" data-listing-word-count-sort="142">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1748552735573" data-listing-reading-time-sort="1" data-listing-word-count-sort="142">
 <a href="./galleries/may/index.html" class="quarto-grid-link">
-</a><div class="quarto-grid-item card h-100 card-left"><a href="./galleries/may/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="galleries/may/images/historical-delta-t-2025-05-28.png" alt="historical-delta-t-2025-05-28" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-</a><div class="card-body post-contents"><a href="./galleries/may/index.html" class="quarto-grid-link">
-<h5 class="no-anchor card-title listing-title">
-May
-</h5>
-</a><div class="card-text listing-description delink"><a href="./galleries/may/index.html" class="quarto-grid-link">
-</a><p><a href="./galleries/may/index.html" class="quarto-grid-link">Historical maximum Delta T derived from North Dakota Agricultural Weather Network hourly data, which is available at </a><a href="https://ndawn.ndsu.nodak.edu/current.html">NDAWN.org</a></p>
+<div class="card-body post-contents">
+<div class="card-text listing-description delink">
+
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p>
+<figcaption>Wed, May 28, 2025</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p>
+<figcaption>Tue, May 27, 2025</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p>
+<figcaption>Mon, May 26, 2025</figcaption>
+</figure>
 </div>
 </div>
 </div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p>
+<figcaption>Sun, May 25, 2025</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p>
+<figcaption>Sat, May 24, 2025</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p>
+<figcaption>Fri, May 23, 2025</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p>
+<figcaption>Thu, May 22…</figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div></div><div class="quarto-layout-row"><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div></div><div class="quarto-layout-row"><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div></div><div class="quarto-layout-row"><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div></div><div class="quarto-layout-row"><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div></div><div class="quarto-layout-row"><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div></div><div class="quarto-layout-row"><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div></div><div class="quarto-layout-row"><div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;"><div class="quarto-figure quarto-figure-center"><figure class="figure"><p></p><figcaption></figcaption></figure></div></div></div>
+</div>
+</div>
+</div></a>
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>

@@ -14,6 +14,7 @@ color:
     green: "#0a5640"
     yellow: "#ffc72a"
   primary: green
+  warning: yellow
 
 typography:
   fonts:

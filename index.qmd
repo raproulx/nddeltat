@@ -2,6 +2,11 @@
 lightbox: auto
 ---
 
+::: {.callout-warning}
+## Check the NDAWN Inversion App
+Delta T is just one weather variable to consider before spraying. Check the [NDAWN Inversion](https://www.ndsu.edu/agriculture/ag-hub/ndawn-inversion) app for the latest temperature, wind conditions, Delta T, and inversion alert for your location.
+:::
+
 # Current Conditions
 ![](https://s3.us-east-2.amazonaws.com/ndawn.info/maps/NDAWN_delta_t.png){group="gallery" fig-alt="current delta t"}
 

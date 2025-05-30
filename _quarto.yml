@@ -27,9 +27,7 @@ website:
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: [cosmo, brand]
     css: styles.css
     toc: true
     link-external-newwindow: true

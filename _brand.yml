@@ -14,7 +14,7 @@ color:
     green: "#0a5640"
     yellow: "#ffc72a"
   primary: green
-  warning: "#ffc72a"
+  warning: yellow
 
 typography:
   fonts:
@@ -38,3 +38,8 @@ typography:
   monospace:
     family: Source Code Pro
     size: 1em
+
+defaults:
+  bootstrap:
+    defaults:
+      yellow: "#ffc72a"

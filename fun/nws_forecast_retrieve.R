@@ -47,7 +47,7 @@ nws_forecast_retrieve <- function(
     )
   }
 
-  resp02 |>
+  list(timezone = resp01$properties$timeZone, resp = resp02) |>
     list() |>
     setNames(output_id)
 }

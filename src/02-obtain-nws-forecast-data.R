@@ -98,4 +98,21 @@ daytime_peak_delta_t <- nws_forecast_data |>
 
 
 # write output to csv -----------------------------------------------------
+write_csv(
+  nws_forecast_data |>
+    select(
+      forecast_type,
+      forecast_effective,
+      forecast_expires,
+      location_id,
+      date,
+      start_time,
+      end_time,
+      delta_t,
+      wind_speed,
+      wind_speed_unit,
+      wind_direction
+    ),
+  "./results/tbl-forecast-delta-t-hourly.csv"
+)
 write_csv(daytime_peak_delta_t, "./results/tbl-forecast-delta-t.csv")

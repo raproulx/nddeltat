@@ -161,6 +161,7 @@ plot_weathermap <- function(
   )
 
   # create plot -------------------------------------------------------------
+  # for future reference, a four-color colorblind-safe palette: "#117733", "#DDCC77", "#CC6677", "#882255"
   out <- ggplot() +
     labs(
       title = map_title,

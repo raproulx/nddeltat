@@ -63,15 +63,18 @@ nws_forecast_parse <- function(
     "redFlagThreatIndex"
   )
 ) {
-  nws_obj <- named_httr2_response[[1]] |> resp_body_json()
+  nws_obj <- named_httr2_response[[1]] |> pluck("resp") |> resp_body_json()
   forecast_effective <- named_httr2_response[[1]] |>
+    pluck("resp") |>
     resp_header("Date") |>
     dmy_hms()
   forecast_expires <- named_httr2_response[[1]] |>
+    pluck("resp") |>
     resp_header("Expires") |>
     dmy_hms()
   location_elev_m <- nws_obj |> pluck("properties", "elevation", "value")
   location_id <- names(named_httr2_response)
+  location_tz <- named_httr2_response[[1]] |> pluck("timezone")
 
   if (nws_obj |> pluck("properties", "forecastGenerator") |> is.null()) {
     if (length(raw_variable) > 1) {
@@ -163,6 +166,7 @@ nws_forecast_parse <- function(
   }
   tibble(
     location_id,
+    location_tz,
     location_elev_m,
     forecast_effective,
     forecast_expires,

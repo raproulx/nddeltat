@@ -8,7 +8,10 @@ source("./fun/plot_weathermap.R")
 data_in <- read_csv("./data/tbl-ndawn-stations.csv") |>
   select(station_id, station_name, location, latitude, longitude) |>
   inner_join(
-    read_csv("./results/tbl-forecast-delta-t.csv", col_types = "cTTdDTTddcc"),
+    read_csv(
+      "./results/tbl-forecast-delta-t.csv",
+      col_types = "cTTdcDTTccddcc"
+    ),
     by = join_by(station_id == location_id)
   )
 

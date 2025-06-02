@@ -4,21 +4,21 @@
     "href": "forecast.html",
     "title": "Forecasted Delta T",
     "section": "",
-    "text": "Forecast maps are experimental\n\n\n\nDelta T forecasts are derived from National Weather Service hourly temperature and relative humidity forecasts and are not an official NWS forecast product.\n\n\nVisit the National Weather Service to access the local forecast for your area. Check NDAWN.org, NDAWN.info, or the NDAWN Inversion app for current local weather conditions.\n\nToday\n\n\n\nTomorrow\n\n\n\nTuesday, June 03, 2025\n\n\n\nWednesday, June 04, 2025\n\n\n\nThursday, June 05, 2025\n\n\n\nFriday, June 06, 2025"
+    "text": "Forecast maps are experimental\n\n\n\nDelta T forecasts are derived from National Weather Service hourly temperature and relative humidity forecasts and are not an official NWS forecast product.\n\n\nVisit the National Weather Service to access the local forecast for your area. Check NDAWN.org, NDAWN.info, or the NDAWN Inversion app for current local weather conditions.\n\nToday\n\n\n\nTomorrow\n\n\n\nWednesday, June 04, 2025\n\n\n\nThursday, June 05, 2025\n\n\n\nFriday, June 06, 2025\n\n\n\nSaturday, June 07, 2025"
   },
   {
     "objectID": "historical.html",
     "href": "historical.html",
     "title": "Historical Delta T",
     "section": "",
-    "text": "Maps of maximum Delta T and concurrent wind speed are derived from North Dakota Agricultural Weather Network hourly data, which is available at NDAWN.org.\nSee the Archive for historical maps dating back to May 1.\n\nYesterday\n\n\n\nFriday, May 30, 2025\n\n\n\nThursday, May 29, 2025\n\n\n\nWednesday, May 28, 2025\n\n\n\nTuesday, May 27, 2025\n\n\n\nMonday, May 26, 2025\n\n\n\nSunday, May 25, 2025"
+    "text": "Maps of maximum Delta T and concurrent wind speed are derived from North Dakota Agricultural Weather Network hourly data, which is available at NDAWN.org.\nSee the Archive for historical maps dating back to May 1.\n\nYesterday\n\n\n\nSaturday, May 31, 2025\n\n\n\nFriday, May 30, 2025\n\n\n\nThursday, May 29, 2025\n\n\n\nWednesday, May 28, 2025\n\n\n\nTuesday, May 27, 2025\n\n\n\nMonday, May 26, 2025"
   },
   {
-    "objectID": "galleries/may/index.html",
-    "href": "galleries/may/index.html",
-    "title": "May",
+    "objectID": "galleries/jun/index.html",
+    "href": "galleries/jun/index.html",
+    "title": "June",
     "section": "",
-    "text": "Sat, May 31, 2025\n\n\n\n\n\n\n\nFri, May 30, 2025\n\n\n\n\n\n\n\nThu, May 29, 2025\n\n\n\n\n\n\n\n\n\nWed, May 28, 2025\n\n\n\n\n\n\n\nTue, May 27, 2025\n\n\n\n\n\n\n\nMon, May 26, 2025\n\n\n\n\n\n\n\n\n\nSun, May 25, 2025\n\n\n\n\n\n\n\nSat, May 24, 2025\n\n\n\n\n\n\n\nFri, May 23, 2025\n\n\n\n\n\n\n\n\n\nThu, May 22, 2025\n\n\n\n\n\n\n\nWed, May 21, 2025\n\n\n\n\n\n\n\nTue, May 20, 2025\n\n\n\n\n\n\n\n\n\nMon, May 19, 2025\n\n\n\n\n\n\n\nSun, May 18, 2025\n\n\n\n\n\n\n\nSat, May 17, 2025\n\n\n\n\n\n\n\n\n\nFri, May 16, 2025\n\n\n\n\n\n\n\nThu, May 15, 2025\n\n\n\n\n\n\n\nWed, May 14, 2025\n\n\n\n\n\n\n\n\n\nTue, May 13, 2025\n\n\n\n\n\n\n\nMon, May 12, 2025\n\n\n\n\n\n\n\nSun, May 11, 2025\n\n\n\n\n\n\n\n\n\nSat, May 10, 2025\n\n\n\n\n\n\n\nFri, May 09, 2025\n\n\n\n\n\n\n\nThu, May 08, 2025\n\n\n\n\n\n\n\n\n\nWed, May 07, 2025\n\n\n\n\n\n\n\nTue, May 06, 2025\n\n\n\n\n\n\n\nMon, May 05, 2025\n\n\n\n\n\n\n\n\n\nSun, May 04, 2025\n\n\n\n\n\n\n\nSat, May 03, 2025\n\n\n\n\n\n\n\nFri, May 02, 2025\n\n\n\n\n\n\n\n\n\nThu, May 01, 2025"
+    "text": "Sun, Jun 01, 2025"
   },
   {
     "objectID": "about.html",
@@ -28,11 +28,18 @@
     "text": "About this website\nThis is an experimental site created and maintained by Rob Proulx, Agriculture Technology Systems Specialist with North Dakota State University Extension. Delta T forecast maps are derived from National Weather Service hourly forecasts and are not an official NWS forecast product.\nAll other maps are from the North Dakota Agricultural Weather Network or derived from its data. Visit NDAWN.org, NDAWN.info, or the NDAWN Inversion app.\n\n\nWhat is Delta T?\nDelta T describes the evaporative capacity of the ambient air – the higher the value, the drier the air and the greater its evaporative capacity.\nWhen Delta T values exceed 14 °F, excessive spray droplet desiccation and spray deposit evaporation may result in reduced herbicide efficacy. Impacts will be most noticeable when using FINE or MEDIUM spray qualities, and glufosinate (Liberty) is the active ingredient most likely to be negatively impacted by elevated Delta T.\nDelta T management recommendations for spraying are embedded in the maps featured on this site:\n\nUse caution (■) when Delta T is 3.6 or less – droplet drift will have enhanced activity due to slow evaporation\nDelta T conditions from 3.6 to 14 are preferred (■).\nUse caution (■) when Delta T is 14.4 to 18 – rapid evaporation may reduce efficacy. If you choose to spray, you may need to increase water volume, droplet size, or both to maintain efficacy.\nConditions are unsuitable (■) for MEDIUM or finer sprays, and marginal for COARSE or larger sprays, when Delta T is 18 to 21.6.\nConditions are unsuitable (■) for all droplet sizes when Delta T is greater than 21.6.\n\n\n\n\nSummary of herbicide spraying recommendations in response to Delta T values. Adapted from the NDSU Weed Management Guide online supplement.\n\n\nFor more information on Delta T, read this NDSU guide or watch this short overview video from Rob Proulx. For more information on managing Delta T, see this short video from Kyle Okke on X or this video from Rob Proulx.\n\n\nUsing forecast maps\nForecast maps are a planning tool. If planning to spray on days when maximum Delta T is forecasted to reach the caution or unsuitable ranges, plan ahead to schedule sprays most likely to be impacted – such as those requiring finer droplet sizes or higher water volumes – for earlier in the day. When spraying on these days, be sure to closely monitor NDAWN for changing conditions.\n\n\nUsing historical maps\nHistorical maps are a troubleshooting tool. If you notice poor efficacy from an application, check the maximum Delta T map for the date of application to see if Delta T may have been a contributing factor. If so, you may want to dive into the hourly NDAWN data, from NDAWN.org, for more information on the weather conditions for that date.\n\n\nContact\nPlease direct any questions or comments to Rob Proulx, NDSU Extension Agriculture Technology Systems Specialist."
   },
   {
+    "objectID": "galleries/may/index.html",
+    "href": "galleries/may/index.html",
+    "title": "May",
+    "section": "",
+    "text": "Sat, May 31, 2025\n\n\n\n\n\n\n\nFri, May 30, 2025\n\n\n\n\n\n\n\nThu, May 29, 2025\n\n\n\n\n\n\n\n\n\nWed, May 28, 2025\n\n\n\n\n\n\n\nTue, May 27, 2025\n\n\n\n\n\n\n\nMon, May 26, 2025\n\n\n\n\n\n\n\n\n\nSun, May 25, 2025\n\n\n\n\n\n\n\nSat, May 24, 2025\n\n\n\n\n\n\n\nFri, May 23, 2025\n\n\n\n\n\n\n\n\n\nThu, May 22, 2025\n\n\n\n\n\n\n\nWed, May 21, 2025\n\n\n\n\n\n\n\nTue, May 20, 2025\n\n\n\n\n\n\n\n\n\nMon, May 19, 2025\n\n\n\n\n\n\n\nSun, May 18, 2025\n\n\n\n\n\n\n\nSat, May 17, 2025\n\n\n\n\n\n\n\n\n\nFri, May 16, 2025\n\n\n\n\n\n\n\nThu, May 15, 2025\n\n\n\n\n\n\n\nWed, May 14, 2025\n\n\n\n\n\n\n\n\n\nTue, May 13, 2025\n\n\n\n\n\n\n\nMon, May 12, 2025\n\n\n\n\n\n\n\nSun, May 11, 2025\n\n\n\n\n\n\n\n\n\nSat, May 10, 2025\n\n\n\n\n\n\n\nFri, May 09, 2025\n\n\n\n\n\n\n\nThu, May 08, 2025\n\n\n\n\n\n\n\n\n\nWed, May 07, 2025\n\n\n\n\n\n\n\nTue, May 06, 2025\n\n\n\n\n\n\n\nMon, May 05, 2025\n\n\n\n\n\n\n\n\n\nSun, May 04, 2025\n\n\n\n\n\n\n\nSat, May 03, 2025\n\n\n\n\n\n\n\nFri, May 02, 2025\n\n\n\n\n\n\n\n\n\nThu, May 01, 2025"
+  },
+  {
     "objectID": "galleries.html",
     "href": "galleries.html",
     "title": "Delta T Archive",
     "section": "",
-    "text": "May\n\n\nHistorical maximum Delta T derived from North Dakota Agricultural Weather Network hourly data, which is available at NDAWN.org\n\n\n\n\n\nNo matching items"
+    "text": "May\n\n\nHistorical maximum Delta T derived from North Dakota Agricultural Weather Network hourly data, which is available at NDAWN.org\n\n\n\n\n\n\n\n\n\n\nJune\n\n\nHistorical maximum Delta T derived from North Dakota Agricultural Weather Network hourly data, which is available at NDAWN.org\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",

@@ -42,17 +42,26 @@ nws_forecasts_parsed <-
 
 # reconfigure parsed data
 nws_forecast_data <-
-  # adjust times to local timezone
+  # assign date and local time based on timezone
   nws_forecasts_parsed |>
-  left_join(
-    ndawn_stations |> select(station_id, timezone),
-    by = join_by(location_id == station_id)
-  ) |>
   rowwise() |>
-  mutate(across(where(is.timepoint), ~ with_tz(.x, tzone = timezone))) |>
+  mutate(
+    start_time2 = with_tz(start_time, tzone = location_tz),
+    start_time_local = format(
+      start_time,
+      format = "%I:%M %p",
+      tz = location_tz
+    ),
+    end_time_local = format(
+      end_time,
+      format = "%I:%M %p",
+      tz = location_tz
+    ),
+  ) |>
   ungroup() |>
+  mutate(date = date(start_time2)) |>
+  select(-start_time2) |>
   # select daytime hours only
-  mutate(date = date(start_time)) |>
   group_by(date, location_id) |>
   dplyr::filter(is_daytime == TRUE) |>
   mutate(n = n()) |>
@@ -87,9 +96,12 @@ daytime_peak_delta_t <- nws_forecast_data |>
     forecast_effective,
     forecast_expires,
     location_id,
+    location_tz,
     date,
     start_time,
     end_time,
+    start_time_local,
+    end_time_local,
     delta_t,
     wind_speed,
     wind_speed_unit,
@@ -105,9 +117,12 @@ write_csv(
       forecast_effective,
       forecast_expires,
       location_id,
+      location_tz,
       date,
       start_time,
       end_time,
+      start_time_local,
+      end_time_local,
       delta_t,
       wind_speed,
       wind_speed_unit,

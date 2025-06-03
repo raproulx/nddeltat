@@ -22,4 +22,8 @@ strong {
 
 .dt-hr-tbl{
   font-size: 13px;
+  padding-top: 3.6px;
+  padding-bottom: 3.6px;
+  padding-left: 7.2px;
+  padding-right: 7.2px;
 }

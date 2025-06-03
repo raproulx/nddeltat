@@ -82,7 +82,7 @@ tbl_out <- reactable(
     asd_name = colDef(
       name = "Ag District",
       sticky = "left",
-      minWidth = 100
+      minWidth = 110
     ),
     `6 AM` = dt_col_def,
     `7 AM` = dt_col_def,

@@ -15,15 +15,11 @@ strong {
   font-weight: 600;
 }
 
-/* .my-header{
-/*   font-size: 12.5px;
-/*   font-weight: 600;
-/* }
+.my-header{
+  font-size: 12.5px;
+  font-weight: 600;
+}
 
-/* .dt-hr-tbl{
-/*   font-size: 13px;
-/*   padding-top: 3.6px;
-/*   padding-bottom: 3.6px;
-/*   padding-left: 7.2px;
-/*   padding-right: 7.2px;
-/* }
+.dt-hr-tbl{
+  font-size: 13px;
+}

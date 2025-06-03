@@ -69,17 +69,8 @@ tbl_out <- reactable(
   elementId = "dt-hourly",
   defaultColDef = colDef(headerClass = "my-header"),
   style = reactableTheme(
-    cellPadding = "3.6px 7.2px",
-    headerStyle = list(
-      fontSize = "12.5px",
-      fontWeight = "600"
-      ),
-    tableBodyStyle = list(
-      fontSize = "13px"
-      ),
     style = list(
-      fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif",
-      cellPadding = "3.6px 7.2px"
+      fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
     )
   ),
   columns = list(

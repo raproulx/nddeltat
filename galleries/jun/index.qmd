@@ -1,0 +1,10 @@
+---
+title: June
+description: Historical maximum Delta T derived from North Dakota Agricultural Weather Network hourly data, which is available at [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html)
+---
+
+::: {layout-ncol=3}
+![Mon, Jun 02, 2025](images/historical-delta-t-2025-06-02.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-06-02"}
+
+![Sun, Jun 01, 2025](images/historical-delta-t-2025-06-01.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-06-01"}
+:::

@@ -33,3 +33,14 @@ img_today <- dir_ls(
 ```
 
 ![](`r img_today`){group="gallery" fig-alt="today's delta t forecast"}
+
+# Today's Hourly Forecast
+```{r}
+#| echo: false
+source("./src/06-create-hourly-forecast-table.R")
+library(htmltools)
+tagList(
+    tags$button("Expand/Collapse All", onclick = "Reactable.toggleAllRowsExpanded('dt-hourly')"),
+    tbl_out
+)
+```

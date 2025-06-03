@@ -72,7 +72,7 @@ tbl_out <- reactable(
     cellPadding = "3.6px 7.2px",
     headerStyle = list(
       fontSize = "12.5px",
-      fontWeight = "600",
+      fontWeight = "600"
       ),
     tableBodyStyle = list(
       fontSize = "13px"

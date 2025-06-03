@@ -70,8 +70,7 @@ tbl_out <- reactable(
   defaultColDef = colDef(headerClass = "my-header"),
   style = reactableTheme(
     style = list(
-      fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif",
-      cellPadding = "3.6px 7.2px"
+      fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
     )
   ),
   columns = list(

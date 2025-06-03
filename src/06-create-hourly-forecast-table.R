@@ -37,7 +37,7 @@ dt_col_def <- colDef(
       color <- "#FFEA9E"
     } else if (value <= 14.4) {
       color <- "#88D488"
-    } else if (value <= 18) {
+    } else if (value <= 18.49) {
       color <- "#FFEA9E"
     } else if (value <= 19.49) {
       color <- "#F4BA94"
@@ -56,8 +56,14 @@ tbl_out <- reactable(
   defaultExpanded = TRUE,
   paginateSubRows = TRUE,
   showPageSizeOptions = TRUE,
-  pageSizeOptions = c(15, 30, 50, 100, nrow(tbl)),
-  defaultPageSize = 15,
+  pageSizeOptions = c(
+    15,
+    30,
+    50,
+    100,
+    nrow(tbl) + nrow(distinct(tbl, asd_name))
+  ),
+  defaultPageSize = nrow(tbl) + nrow(distinct(tbl, asd_name)),
   wrap = FALSE,
   class = "dt-hr-tbl",
   elementId = "dt-hourly",

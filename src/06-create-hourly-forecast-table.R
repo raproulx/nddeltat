@@ -47,7 +47,7 @@ dt_col_def <- colDef(
     list(background = color)
   }
 )
-# NEXT: group by NASS district
+
 tbl_out <- reactable(
   tbl,
   height = 675,

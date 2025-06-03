@@ -10,7 +10,7 @@ format:
       body-width: 1170px
 ---
 
-::: {layout-ncol=3}
+::: {layout-ncol=4}
 ![Mon, Jun 02, 2025](images/historical-delta-t-2025-06-02.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-06-02"}
 
 ![Sun, Jun 01, 2025](images/historical-delta-t-2025-06-01.png){.lightbox group="gallery" fig-alt="historical-delta-t-2025-06-01"}

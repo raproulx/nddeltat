@@ -1,5 +1,12 @@
 ---
 title: "Delta T Archive"
+toc: false
+format:
+  html:
+    grid: 
+      sidebar-width: 65px
+      margin-width: 65px
+      body-width: 1170px
 listing:
   - id: galleries
     contents: galleries

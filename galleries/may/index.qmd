@@ -1,6 +1,13 @@
 ---
 title: May
 description: Historical maximum Delta T derived from North Dakota Agricultural Weather Network hourly data, which is available at [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html)
+toc: false
+format:
+  html:
+    grid: 
+      sidebar-width: 65px
+      margin-width: 65px
+      body-width: 1170px
 ---
 
 ::: {layout-ncol=3}

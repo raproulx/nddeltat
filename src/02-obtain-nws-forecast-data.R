@@ -55,7 +55,7 @@ nws_forecast_data <-
       str_remove("^0+"),
     end_time_local = format(
       end_time,
-      format = "%I:%M %p",
+      format = "%I %p",
       tz = location_tz
     ) |>
       str_remove("^0+"),

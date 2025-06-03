@@ -49,14 +49,16 @@ nws_forecast_data <-
     start_time2 = with_tz(start_time, tzone = location_tz),
     start_time_local = format(
       start_time,
-      format = "%I:%M %p",
+      format = "%I %p",
       tz = location_tz
-    ),
+    ) |>
+      str_remove("^0+"),
     end_time_local = format(
       end_time,
       format = "%I:%M %p",
       tz = location_tz
-    ),
+    ) |>
+      str_remove("^0+"),
   ) |>
   ungroup() |>
   mutate(date = date(start_time2)) |>

@@ -1,5 +1,12 @@
 ---
 lightbox: auto
+toc: false
+format:
+  html:
+    grid: 
+      sidebar-width: 65px
+      margin-width: 65px
+      body-width: 1170px
 ---
 
 ::: {.callout-warning}

@@ -1,6 +1,12 @@
+# load packages and functions ---------------------------------------------
 library(tidyverse)
+library(sf)
 library(xml2)
 library(rvest)
+
+
+# read NASS districts vector file -----------------------------------------
+nass_dist <- st_read("./data/geotemplate-nass-districts.geojson")
 
 
 # define NDAWN URL --------------------------------------------------------
@@ -46,7 +52,7 @@ ndawn_details <- ndawn_stations |>
   janitor::clean_names()
 
 
-# write NDAWN stations table to csv ----------------------------------------
+# format NDAWN stations table ---------------------------------------------
 ndawn_output <-
   bind_cols(
     ndawn_stations |> select(station_name, station_id),
@@ -72,17 +78,34 @@ ndawn_output <-
         )
       ) |>
       rename(date_est = period_of_record)
+  )
+
+
+# join NDAWN table to NASS districts and write to csv ---------------------
+st_join(
+  x = st_as_sf(
+    ndawn_output,
+    coords = c("longitude", "latitude"),
+    remove = FALSE,
+    crs = 4326
   ) |>
-  relocate(
+    st_transform(st_crs(nass_dist)),
+  y = nass_dist
+) |>
+  janitor::clean_names() |>
+  select(
     station_id,
     station_name,
     location,
+    state,
+    asd_no,
+    asd_name,
     timezone,
     latitude,
     longitude,
     elevation_ft,
     elevation_m,
     date_est
-  )
-
-write_csv(ndawn_output, "./data/tbl-ndawn-stations.csv")
+  ) |>
+  st_drop_geometry() |>
+  write_csv("./data/tbl-ndawn-stations.csv")

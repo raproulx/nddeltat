@@ -66,6 +66,7 @@ tbl_out <- reactable(
   defaultPageSize = nrow(tbl) + nrow(distinct(tbl, asd_name)),
   wrap = FALSE,
   class = "dt-tbl",
+  elementId = "dt-hourly",
   defaultColDef = colDef(class = "dt-tbl-body", headerClass = "dt-tbl-head"),
   style = reactableTheme(
     style = list(

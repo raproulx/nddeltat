@@ -22,7 +22,7 @@ strong {
 
 .dt-hr-tbl{
   font-size: 13px;
-  cell-spacing: 3.6px;
+  cell-padding: 3.6px;
 }
 
 @media screen and (max-width:767px) {

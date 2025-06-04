@@ -18,18 +18,17 @@ strong {
 .dt-tbl-head{
   font-size: 12.5px;
   font-weight: 600;
-  padding: 3.6px;
 }
 
 .dt-tbl{
   font-size: 13px;
 }
 
-.dt-tbl-body{
+.rt-td-inner{
   padding: 3.6px;
 }
 
 @media screen and (max-width:767px) {
 .dt-tbl{
-  height: 375px;
+  height: 300px;
 }

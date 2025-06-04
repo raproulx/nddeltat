@@ -50,7 +50,7 @@ dt_col_def <- colDef(
 
 tbl_out <- reactable(
   tbl,
-  height = 675,
+  #height = 675,
   searchable = TRUE,
   groupBy = "asd_name",
   defaultExpanded = TRUE,

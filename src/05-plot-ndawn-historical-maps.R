@@ -55,7 +55,8 @@ plots_fun <- function(x) {
     data_tibble = data_in,
     map_date = x,
     wth_variable = "delta_t",
-    map_type = "historical"
+    map_type = "historical",
+    map_output = "image"
   )
 
   if (x %in% (dates_needed |> pluck("historical-delta-t"))) {
@@ -79,7 +80,8 @@ plots_fun <- function(x) {
       data_tibble = data_in,
       map_date = x,
       wth_variable = "wind_speed",
-      map_type = "historical"
+      map_type = "historical",
+      map_output = "image"
     )
     (dt / ws) |>
       ggsave(

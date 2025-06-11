@@ -508,7 +508,7 @@ color_fun <- scales::pal_gradient_n(
 plotdat_sh <- SharedData$new(
   st_transform(plotdat, crs = 4326),
   ~station_name,
-  group = "delta_t_pair"
+  group = "plot_tbl_pair"
 )
 
 lf_plot <- leaflet(plotdat_sh, elementId = "lf-plot") |>
@@ -588,7 +588,7 @@ tbl <- data_in |>
 tbl_sh <- SharedData$new(
   tbl,
   ~station_name,
-  group = "delta_t_pair"
+  group = "plot_tbl_pair"
 )
 
 dt_col_def <- colDef(

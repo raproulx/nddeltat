@@ -104,7 +104,7 @@ plotdat <- read_csv("./data/tbl-ndawn-stations.csv") |>
   select(station_id, station_name, location, latitude, longitude) |>
   inner_join(
     read_csv("./results/tbl-forecast-delta-t.csv") |>
-      dplyr::filter(date == "2025-05-03"),
+      dplyr::filter(date == "2025-06-06"),
     by = join_by(station_id == location_id)
   )
 
@@ -202,11 +202,10 @@ out <- ggplot() +
     aes(
       data_id = station_id,
       tooltip = glue::glue('{station_name}'),
-      #FIX: pull lat and long from code
-      onclick = glue::glue(
-        "window.open(\"https://forecast.weather.gov/MapClick.php?lat={gcs_latitude}&lon={gcs_longitude}\")"
-      ),
-      hover_css = "fill:transparent;stroke:transparent;r:5pt;"
+      #  onclick = glue::glue(
+      #    "window.open(\"https://forecast.weather.gov/MapClick.php?lat={gcs_latitude}&lon={gcs_longitude}\")"
+      #  ),
+      hover_css = "fill:transparent;stroke:gray;r:5pt;"
     )
   ) +
   geom_text_repel(
@@ -478,7 +477,244 @@ out <- ggplot() +
 out
 #girafe(ggobj = out)
 
-#FIX: need to update R4.4.0 to get ggiraph to work in RStudio (otherwise, copy and paste code into R)
+# test interactive graph + table ----------------------------------------
+library(crosstalk)
+library(leaflet)
+library(htmltools)
+
+# SHORTCUT: load saved reproducable example
+load(
+  "~/OneDrive - North Dakota University System/Scratch RStudio Project/leaflet reprex.RData"
+)
+
+# run code for Delta T map up until it creates the ggplot graph
+
+# define colors for interpolated raster
+color_fun <- scales::pal_gradient_n(
+  colours = c(
+    "#FFFF00",
+    "#FFFF00",
+    "#008000",
+    "#008000",
+    "#FFFF00",
+    "#FFFF00",
+    "#FF0000",
+    "#FF0000"
+  ),
+  values = c(0, 2.5, 4, 14, 15, 18, 19.5, 22)
+)
+
+# create shared plotdata & leaflet map
+plotdat_sh <- SharedData$new(
+  st_transform(plotdat, crs = 4326),
+  ~station_name,
+  group = "delta_t_pair"
+)
+
+lf_plot <- leaflet(plotdat_sh, elementId = "lf-plot") |>
+  addTiles() |>
+  addRasterImage(
+    scales::oob_squish(tps, range = c(0, 22)),
+    colors = color_fun,
+    opacity = 0.55
+  ) |>
+  addPolygons(
+    data = counties |>
+      dplyr::select(geometry) |>
+      st_simplify(dTolerance = 1000) |>
+      st_intersection(bounding_box) |>
+      st_transform(crs = 4326),
+    color = "#343A40",
+    weight = 1
+  ) |>
+  addLabelOnlyMarkers(
+    data = st_transform(plotdat, crs = 4326),
+    label = ~ as.character(round(delta_t, 0)),
+    labelOptions = labelOptions(
+      noHide = TRUE,
+      textOnly = TRUE,
+      textsize = "11px",
+      style = list(
+        color = "white",
+        webkitTextStroke = "3px white"
+      )
+    )
+  ) |>
+  addLabelOnlyMarkers(
+    data = plotdat_sh,
+    label = ~ as.character(round(delta_t, 0)),
+    labelOptions = labelOptions(
+      noHide = TRUE,
+      textOnly = TRUE,
+      textsize = "11px",
+      style = list(
+        color = "black"
+      )
+    )
+  ) |>
+  addMarkers(
+    data = st_transform(plotdat, crs = 4326),
+    group = "Station Labels",
+    label = ~ htmlEscape(station_name),
+    options = markerOptions(
+      opacity = 0
+    ),
+    labelOptions = labelOptions(
+      noHide = TRUE,
+      interactive = TRUE,
+      offset = c(0, 25),
+      textsize = "9px",
+      style = list(
+        backgroundColor = "#FFFFFF75",
+        border = "none"
+      )
+    )
+  ) |>
+  addScaleBar(position = "bottomleft") |>
+  hideGroup("Station Labels") |>
+  addLayersControl(
+    overlayGroups = c("Station Labels"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+# create table
+
+# code from 06 script, but use tbl_sh instead of tbl, tbl named lf_tbl
+tbl <- data_in |>
+  dplyr::filter(date == (Sys.time() |> with_tz("America/Chicago") |> date())) |>
+  select(station_name, asd_name, start_time_local, delta_t) |>
+  pivot_wider(names_from = start_time_local, values_from = delta_t)
+
+tbl_sh <- SharedData$new(
+  tbl,
+  ~station_name,
+  group = "delta_t_pair"
+)
+
+dt_col_def <- colDef(
+  format = colFormat(digits = 1),
+  minWidth = 62,
+  style = function(value) {
+    color_fun <- scales::pal_gradient_n(
+      colours = c(
+        "#FFEA9E",
+        "#FFEA9E",
+        "#88D488",
+        "#88D488",
+        "#FFEA9E",
+        "#FFEA9E",
+        "#E88989",
+        "#E88989"
+      ),
+      values = c(0, 2.5, 4, 14, 15, 18, 19.5, 22)
+    )
+
+    color <- color_fun(scales::oob_squish(value, range = c(0, 22)))
+
+    list(background = color)
+  }
+)
+
+lf_tbl <- reactable(
+  tbl_sh,
+  #height = 675,
+  searchable = FALSE,
+  groupBy = "asd_name",
+  defaultExpanded = TRUE,
+  paginateSubRows = TRUE,
+  showPageSizeOptions = TRUE,
+  pageSizeOptions = c(
+    15,
+    30,
+    50,
+    100,
+    nrow(tbl) + nrow(distinct(tbl, asd_name))
+  ),
+  defaultPageSize = nrow(tbl) + nrow(distinct(tbl, asd_name)),
+  wrap = FALSE,
+  class = "dt-tbl",
+  elementId = "dt-hourly",
+  defaultColDef = colDef(class = "dt-tbl-body", headerClass = "dt-tbl-head"),
+  style = reactableTheme(
+    style = list(
+      fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+    )
+  ),
+  columns = list(
+    station_name = colDef(
+      name = "Station",
+      sticky = "left",
+      minWidth = 152
+    ),
+    asd_name = colDef(
+      name = "Ag District",
+      sticky = "left",
+      minWidth = 126
+    ),
+    `6 AM` = dt_col_def,
+    `7 AM` = dt_col_def,
+    `8 AM` = dt_col_def,
+    `9 AM` = dt_col_def,
+    `10 AM` = dt_col_def,
+    `11 AM` = dt_col_def,
+    `12 PM` = dt_col_def,
+    `1 PM` = dt_col_def,
+    `2 PM` = dt_col_def,
+    `3 PM` = dt_col_def,
+    `4 PM` = dt_col_def,
+    `5 PM` = dt_col_def
+  )
+)
+
+# pair objects
+#bscols(
+#  widths = c(12, 12),
+#  lf_plot,
+#  lf_tbl
+#) |>
+#  suppressWarnings()
+
+htmltools::browsable(
+  tagList(
+    lf_plot,
+    div(
+      style = "margin-top: 0.75rem",
+      tags$button(
+        "Expand/Collapse All Rows",
+        onclick = "Reactable.toggleAllRowsExpanded('dt-hourly')"
+      )
+    ),
+    div(
+      style = "margin-top: 0.75rem; margin-bottom: 0.75rem",
+      tags$input(
+        type = "text",
+        placeholder = "Search for NDAWN station(s)...",
+        style = "padding: 0.25rem 0.5rem; width: 100%",
+        oninput = "Reactable.setSearch('dt-hourly', this.value)"
+      )
+    ),
+    lf_tbl
+  )
+)
+
+# CSS to try for suppressing label arrows
+# .leaflet-label-bottom:after,
+# .leaflet-label-top:after,
+# .leaflet-label-right:before,
+# .leaflet-label-left:after {
+#   content: none;
+# }
+#
+# .leaflet-label-bottom:after,
+# .leaflet-label-top:after,
+# .leaflet-label-right:before,
+# .leaflet-label-left:after {
+#   background-image: none;
+# }
+
+# TWEAKS
+# make sure sticky header remains in rendered site (should be, it's set by CSS)
+
 #NEXT: decide if it's worth including wind gust information (requires retrieving from raw forecast grid,
 # interpolating values across times, and deciding under what circumstances gusts should be published);
 # might make more sense to just work with raw forecast grid in that case, since already retrieving that info,

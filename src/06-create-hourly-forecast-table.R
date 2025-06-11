@@ -31,7 +31,7 @@ tbl <- data_in |>
 
 dt_col_def <- colDef(
   format = colFormat(digits = 1),
-  minWidth = 54,
+  minWidth = 62,
   style = function(value) {
     if (value <= 3.6) {
       color <- "#FFEA9E"
@@ -77,12 +77,12 @@ tbl_out <- reactable(
     station_name = colDef(
       name = "Station",
       sticky = "left",
-      minWidth = 136
+      minWidth = 152
     ),
     asd_name = colDef(
       name = "Ag District",
       sticky = "left",
-      minWidth = 110
+      minWidth = 126
     ),
     `6 AM` = dt_col_def,
     `7 AM` = dt_col_def,

@@ -27,7 +27,7 @@ require(stringr)
 img_today <- dir_ls(
   path = "./results/maps_forecast",
   recurse = TRUE,
-  regexp = str_c("forecast-delta-t-", (Sys.time() |> with_tz("America/Chicago") |> date()))
+  regexp = str_c("forecast-delta-t-", (Sys.time() |> with_tz("America/Chicago") |> date()), ".png")
   ) |> 
   path_rel()
 ```
@@ -35,12 +35,31 @@ img_today <- dir_ls(
 ![](`r img_today`){group="gallery" fig-alt="today's delta t forecast"}
 
 # Today's Hourly Forecast
+Filter the table directly or use the interactive map to select stations for viewing in the table.
 ```{r}
 #| echo: false
-source("./src/06-create-hourly-forecast-table.R")
+dt_map <- readRDS("./results/interactive-map-today-delta-t.rds")
+dt_table <- readRDS("./results/interactive-tbl-today-delta-t.rds")
+
 library(htmltools)
 tagList(
-    tags$button("Expand/Collapse All", onclick = "Reactable.toggleAllRowsExpanded('dt-hourly')"),
-    tbl_out
+  dt_map,
+  div(
+    style = "margin-top: 0.75rem",
+    tags$button(
+      "Expand/Collapse All Rows",
+      onclick = "Reactable.toggleAllRowsExpanded('dt-hourly')"
+    )
+  ),
+  div(
+    style = "margin-top: 0.75rem; margin-bottom: 0.75rem",
+    tags$input(
+      type = "text",
+      placeholder = "Search for NDAWN station(s)...",
+      style = "padding: 0.25rem 0.5rem; width: 100%",
+      oninput = "Reactable.setSearch('dt-hourly', this.value)"
+    )
+  ),
+  dt_table
 )
 ```

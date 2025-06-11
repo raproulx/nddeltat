@@ -79,6 +79,12 @@ jobs:
       - name: Run R script - NDAWN Maps 
         run: Rscript src/05-plot-ndawn-historical-maps.R
         
+      - name: Set execution permissions for R script
+        run: chmod +x src/06-create-hourly-forecast-table.R
+
+      - name: Run R script - React Table 
+        run: Rscript src/06-create-hourly-forecast-table.R
+        
       - name: Push a commit
         env:
           ND_DELTA_T_AUTOMATION_TOKEN: ${{secrets.ND_DELTA_T_AUTOMATION_TOKEN}}

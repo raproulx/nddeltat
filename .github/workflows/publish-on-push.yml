@@ -7,6 +7,7 @@ on:
       - '**.png'
       - '**.yml'
       - '**.css'
+      - '**.rds'
 
 name: Quarto Publish on Push
 

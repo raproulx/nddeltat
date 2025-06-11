@@ -1,7 +1,8 @@
 # load packages and functions ---------------------------------------------
-library(tidyverse) |> suppressMessages() |> suppressWarnings()
-library(reactable) |> suppressMessages() |> suppressWarnings()
-library(forcats) |> suppressMessages() |> suppressWarnings()
+library(tidyverse)
+library(reactable)
+library(crosstalk)
+library(forcats)
 
 # read in data ------------------------------------------------------------
 data_in <- read_csv("./data/tbl-ndawn-stations.csv", show_col_types = FALSE) |>
@@ -29,27 +30,38 @@ tbl <- data_in |>
   select(station_name, asd_name, start_time_local, delta_t) |>
   pivot_wider(names_from = start_time_local, values_from = delta_t)
 
+tbl_sh <- SharedData$new(
+  tbl,
+  ~station_name,
+  group = "plot_tbl_pair"
+)
+
 dt_col_def <- colDef(
   format = colFormat(digits = 1),
   minWidth = 62,
   style = function(value) {
-    if (value <= 3.6) {
-      color <- "#FFEA9E"
-    } else if (value <= 14.4) {
-      color <- "#88D488"
-    } else if (value <= 18.49) {
-      color <- "#FFEA9E"
-    } else if (value <= 19.49) {
-      color <- "#F4BA94"
-    } else {
-      color <- "#E88989"
-    }
+    color_fun <- scales::pal_gradient_n(
+      colours = c(
+        "#FFEA9E",
+        "#FFEA9E",
+        "#88D488",
+        "#88D488",
+        "#FFEA9E",
+        "#FFEA9E",
+        "#E88989",
+        "#E88989"
+      ),
+      values = c(0, 2.5, 4, 14, 15, 18, 19.5, 22)
+    )
+
+    color <- color_fun(scales::oob_squish(value, range = c(0, 22)))
+
     list(background = color)
   }
 )
 
 tbl_out <- reactable(
-  tbl,
+  tbl_sh,
   #height = 675,
   searchable = FALSE,
   groupBy = "asd_name",
@@ -98,3 +110,5 @@ tbl_out <- reactable(
     `5 PM` = dt_col_def
   )
 )
+
+saveRDS(tbl_out, file = "./results/interactive-tbl-today-delta-t.rds")

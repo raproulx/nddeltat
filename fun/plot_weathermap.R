@@ -143,7 +143,7 @@ plot_weathermap <- function(
           "wind_speed" = {
             str_c(
               "<span style = 'color:white;'> ",
-              str_dup("-", 12),
+              str_dup("-", 9),
               " </span>"
             )
           }

@@ -66,24 +66,12 @@ jobs:
 
       - name: Run R script - NWS Forecast Maps
         run: Rscript src/03-plot-nws-forecast-maps.R
-        
+          
       - name: Set execution permissions for R script
-        run: chmod +x src/04-obtain-ndawn-historical-data.R
-
-      - name: Run R script - NDAWN Data 
-        run: Rscript src/04-obtain-ndawn-historical-data.R
-        
-      - name: Set execution permissions for R script
-        run: chmod +x src/05-plot-ndawn-historical-maps.R
-
-      - name: Run R script - NDAWN Maps 
-        run: Rscript src/05-plot-ndawn-historical-maps.R
-        
-      - name: Set execution permissions for R script
-        run: chmod +x src/06-create-hourly-forecast-table.R
+        run: chmod +x src/04-create-hourly-forecast-table.R
 
       - name: Run R script - React Table 
-        run: Rscript src/06-create-hourly-forecast-table.R
+        run: Rscript src/04-create-hourly-forecast-table.R
         
       - name: Push a commit
         env:
@@ -92,5 +80,27 @@ jobs:
           git config --global user.name "raproulx"
           git config --global user.email "150395800+raproulx@users.noreply.github.com"
           git add .
-          git commit -m "Data retrival and mapping R scripts"
+          git commit -m "NWS data retrival, maps, and table"
+          git push https://${{secrets.ND_DELTA_T_AUTOMATION_TOKEN}}@github.com/${{ github.repository }}.git HEAD:main
+        
+      - name: Set execution permissions for R script
+        run: chmod +x src/05-obtain-ndawn-historical-data.R
+
+      - name: Run R script - NDAWN Data 
+        run: Rscript src/05-obtain-ndawn-historical-data.R
+        
+      - name: Set execution permissions for R script
+        run: chmod +x src/06-plot-ndawn-historical-maps.R
+
+      - name: Run R script - NDAWN Maps 
+        run: Rscript src/06-plot-ndawn-historical-maps.R
+        
+      - name: Push a commit
+        env:
+          ND_DELTA_T_AUTOMATION_TOKEN: ${{secrets.ND_DELTA_T_AUTOMATION_TOKEN}}
+        run: |
+          git config --global user.name "raproulx"
+          git config --global user.email "150395800+raproulx@users.noreply.github.com"
+          git add .
+          git commit -m "NDAWN data retrival and maps"
           git push https://${{secrets.ND_DELTA_T_AUTOMATION_TOKEN}}@github.com/${{ github.repository }}.git HEAD:main

@@ -2,9 +2,9 @@
   {
     "listing": "/galleries.html",
     "items": [
+      "/galleries/jul/index.html",
       "/galleries/jun/index.html",
-      "/galleries/may/index.html",
-      "/galleries/jul/index.html"
+      "/galleries/may/index.html"
     ]
   }
 ]

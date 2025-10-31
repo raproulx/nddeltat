@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '15 8 * * *'  # Runs daily at 8:15 UTC (2:15 CST)
+#  schedule:
+#    - cron: '15 8 * * *'  # Runs daily at 8:15 UTC (2:15 CST)
 
 name: NWS and NDAWN Retrieval and Mapping
 

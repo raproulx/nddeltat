@@ -6,6 +6,12 @@ project:
     - src/fix-gallery-image-labels.R
 
 website:
+  announcement: 
+    icon: info-circle
+    dismissable: false
+    content: "**ATTENTION**. The 2025 growing season has concluded and daily updates of this site have been disabled. This is a static website view as of October 31, 2025."
+    type: warning
+    position: below-navbar
   google-analytics: "G-9KB6294MHK"
   cookie-consent: true
   title: "ND Delta T"

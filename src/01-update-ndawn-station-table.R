@@ -11,28 +11,42 @@ nass_dist <- st_read("./data/geotemplate-nass-districts.geojson")
 
 # define NDAWN URL --------------------------------------------------------
 ndawn_url <- "https://ndawn.ndsu.nodak.edu/"
+ndawn_url_stn_all <- "https://ndawn.ndsu.nodak.edu/weather-data-daily.html"
+ndawn_url_stn_active <- "https://ndawn.ndsu.nodak.edu/current.html"
 
 
-# read station info from NDAWN station map --------------------------------
-ndawn_web_map <- read_html(ndawn_url)
+# read station info -------------------------------------------------------
+tbl_ndawn_station_all <- read_html(
+  ndawn_url_stn_all
+) |>
+  html_elements("#table-stns") |>
+  html_elements("option")
 
-ndawn_stations <- tibble(
-  station_name = ndawn_web_map |>
-    html_elements("area") |>
-    html_attr("title"),
-  station_id = ndawn_web_map |>
-    html_elements("area") |>
-    html_attr("href") |>
-    str_extract("(?<=\\=).*"),
-  station_url = ndawn_url |>
-    str_c(
-      ndawn_web_map |>
-        html_elements("area") |>
-        html_attr("href"),
-      sep = ""
-    )
+ndawn_stations_all <- tibble(
+  station_name = tbl_ndawn_station_all |>
+    html_text2() |>
+    str_replace(", [A-Z]{2}", "") |>
+    str_extract("^(.+?)(?=\\s\\()"),
+  station_id = tbl_ndawn_station_all |>
+    html_attr("value"),
+  station_url = str_c(
+    ndawn_url,
+    "station-info.html?station=",
+    station_id,
+    sep = ""
+  )
 )
 
+ndawn_stations_active <-
+  read_html(ndawn_url_stn_active) |>
+  html_element("#table") |>
+  html_elements("tbody") |>
+  html_table() |>
+  pluck(1) |>
+  rename(station_name = X1) |>
+  select(station_name)
+
+ndawn_stations <- ndawn_stations_all |> inner_join(ndawn_stations_active)
 
 # read details from each NDAWN station webpage ----------------------------
 ndawn_details <- ndawn_stations |>

@@ -30,6 +30,7 @@ website:
         text: Archive
       - href: about.qmd
         text: About
+  page-footer: "[North Dakota State University](https://www.ndsu.edu/equity/about/required_non_discrimination_statement) is an equal opportunity educator and employer. This work is supported by the [U.S. Department of Agriculture’s](https://www.usda.gov/non-discrimination-statement) National Institute of Food and Agriculture."
 
 format:
   html:

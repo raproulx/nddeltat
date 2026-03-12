@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "geotemplate-bounding-box-mawn",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -10840543.453, 6300000.0 ], [ -10840543.453, 5380000.0 ], [ -10148000.0, 5380000.0 ], [ -10148000.0, 6300000.0 ], [ -10840543.453, 6300000.0 ] ] ] } }
+]
+}

@@ -20,7 +20,7 @@ data_in |>
   pull(date) |>
   unique() |>
   walk(
-    \(x)
+    \(x) {
       plot_weathermap(
         data_tibble = data_in,
         map_date = x,
@@ -30,7 +30,7 @@ data_in |>
         map_output = "image"
       ) |>
         ggsave(
-          filename = str_c("forecast-delta-t-", x, ".png"),
+          filename = str_c("forecast-delta-t-ndawn-", x, ".png"),
           path = str_c(
             "./results/maps_forecast/",
             str_to_lower(format(x, "%b"))
@@ -40,6 +40,27 @@ data_in |>
           units = "in",
           create.dir = TRUE
         )
+
+      plot_weathermap(
+        data_tibble = data_in,
+        map_date = x,
+        wth_variable = "delta_t",
+        map_region = "mawn",
+        map_type = "forecast",
+        map_output = "image"
+      ) |>
+        ggsave(
+          filename = str_c("forecast-delta-t-mawn-", x, ".png"),
+          path = str_c(
+            "./results/maps_forecast/",
+            str_to_lower(format(x, "%b"))
+          ),
+          width = 4.65,
+          height = 5.66,
+          units = "in",
+          create.dir = TRUE
+        )
+    }
   )
 
 # create interactive delta t map for today's date -------------------------

@@ -356,6 +356,32 @@ plot_weathermap <- function(
           )
       }
 
+      nudge_imgcite <- switch(
+        map_region,
+        "ndawn" = {
+          c(x = 185000, y = 45000, size = 0.55)
+        },
+        "mawn" = {
+          c(x = 515000, y = 865000, size = 0.35)
+        },
+        "all" = {
+          c(x = 265000, y = 200000, size = 0.55)
+        }
+      )
+
+      nudge_txtcite <- switch(
+        map_region,
+        "ndawn" = {
+          c(x = 388000, y = 0, size = 2.45)
+        },
+        "mawn" = {
+          c(x = 355000, y = 750000, size = 1.33)
+        },
+        "all" = {
+          c(x = 12500, y = 5000, size = 2.45)
+        }
+      )
+
       out <- out +
         geom_sf_interactive(
           fill = NA,
@@ -386,16 +412,20 @@ plot_weathermap <- function(
         ) +
         geom_image(
           data = tibble(
-            x = st_bbox(bounding_box |> pluck(map_region))[1] + 185000,
-            y = st_bbox(bounding_box |> pluck(map_region))[2] + 45000
+            x = st_bbox(bounding_box |> pluck(map_region))[1] +
+              nudge_imgcite |> pluck("x"),
+            y = st_bbox(bounding_box |> pluck(map_region))[2] +
+              nudge_imgcite |> pluck("y")
           ),
           aes(x, y, image = "./bin/ndsu-extension-color-logo.eps"),
-          size = 0.55
+          size = nudge_imgcite |> pluck("size")
         ) +
         geom_richtext(
           data = tibble(
-            x = st_bbox(bounding_box |> pluck(map_region))[1] + 388000,
-            y = st_bbox(bounding_box |> pluck(map_region))[2]
+            x = st_bbox(bounding_box |> pluck(map_region))[1] +
+              nudge_txtcite |> pluck("x"),
+            y = st_bbox(bounding_box |> pluck(map_region))[2] +
+              nudge_txtcite |> pluck("y")
           ),
           aes(
             x,
@@ -403,7 +433,7 @@ plot_weathermap <- function(
             family = "Arial",
             label = map_label
           ),
-          size = 2.45,
+          size = nudge_txtcite |> pluck("size"),
           lineheight = 1.35,
           label.padding = unit(c(0, 0, 0, 0), "lines"),
           hjust = "left",

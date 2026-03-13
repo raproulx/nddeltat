@@ -9,7 +9,10 @@ ndawn_retrieve <- function(
   library(httr2)
   library(suncalc)
 
-  ndawn_stations <- read_csv("./data/tbl-ndawn-stations.csv")
+  ndawn_stations <- read_csv(
+    "./data/tbl-ndawn-stations.csv",
+    show_col_types = FALSE
+  )
 
   ndawn_definitions <-
     # fmt:skip
@@ -67,7 +70,13 @@ ndawn_retrieve <- function(
   out <- resp |>
     read_csv(
       skip = 5,
-      col_names = names(read_csv(resp, skip = 3, n_max = 0))
+      col_names = names(read_csv(
+        resp,
+        skip = 3,
+        n_max = 0,
+        show_col_types = FALSE
+      )),
+      show_col_types = FALSE
     ) |>
     mutate(
       StartingDatetime = ((str_c(

@@ -25,6 +25,7 @@ data_in |>
         data_tibble = data_in,
         map_date = x,
         wth_variable = "delta_t",
+        map_region = "ndawn",
         map_type = "forecast",
         map_output = "image"
       ) |>
@@ -48,6 +49,7 @@ plot_weathermap(
   data_tibble = data_in,
   map_date = today_date,
   wth_variable = "delta_t",
+  map_region = "ndawn",
   map_type = "forecast",
   map_output = "leaflet_html"
 ) |>

@@ -55,6 +55,7 @@ plots_fun <- function(x) {
     data_tibble = data_in,
     map_date = x,
     wth_variable = "delta_t",
+    map_region = "ndawn",
     map_type = "historical",
     map_output = "image"
   )
@@ -80,6 +81,7 @@ plots_fun <- function(x) {
       data_tibble = data_in,
       map_date = x,
       wth_variable = "wind_speed",
+      map_region = "ndawn",
       map_type = "historical",
       map_output = "image"
     )

@@ -453,15 +453,26 @@ plot_weathermap <- function(
           axis.title = element_blank(),
           axis.text = element_blank(),
           axis.ticks = element_blank(),
-          legend.position = "bottom",
-          legend.key.width = unit(1, "null"),
           legend.frame = element_rect(color = "black"),
-          legend.title.position = "right",
           legend.title = element_text(family = "Arial", vjust = 1, size = 14),
           legend.text = element_text(family = "Arial", size = 12),
           legend.ticks = element_line(color = "black"),
           legend.ticks.length = unit(c(-1, 0), 'mm')
-        )
+        ) +
+        if (map_region == "mawn") {
+          theme(
+            legend.position = "right",
+            legend.direction = "vertical",
+            legend.key.height = unit(1, "null"),
+            legend.title.position = "right",
+          )
+        } else {
+          theme(
+            legend.position = "bottom",
+            legend.key.width = unit(1, "null"),
+            legend.title.position = "right",
+          )
+        }
 
       out
       #girafe(ggobj = out)

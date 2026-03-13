@@ -118,18 +118,32 @@ plot_weathermap <- function(
   tps <- interpolate(r, m) |>
     mask(counties |> pluck(map_region))
 
+  # clip plotdat to bounding box --------------------------------------------
+  plotdat <- plotdat |>
+    st_filter(counties |> pluck(map_region)) |>
+    st_filter(bounding_box |> pluck(map_region))
+
   # map title, subtitle, and label ------------------------------------------
   map_title <- str_c(
     if (map_type == "forecast") {
-      "<p style = 'font-size:17pt';><b> Always check the <img src = 'bin/ndawn-inversion-app-logo.png' height = 16> <span style = 'color:#3EB3FF;'> NDAWN Inversion </span>app for current conditions</b></p>\n"
+      if (map_region == "mawn") {
+        "<p style = 'font-size:17pt';><b> Always check the <img src = 'bin/ndawn-inversion-app-logo.png' height = 16> <span style = 'color:#3EB3FF;'> NDAWN Inversion</span><br>app for current conditions</b></p>\n"
+      } else {
+        "<p style = 'font-size:17pt';><b> Always check the <img src = 'bin/ndawn-inversion-app-logo.png' height = 16> <span style = 'color:#3EB3FF;'> NDAWN Inversion </span>app for current conditions</b></p>\n"
+      }
+    },
+    if (map_region == "mawn") {
+      "<p style = 'font-size:12pt';>"
+    } else {
+      "<p>"
     },
     switch(
       map_type,
       "forecast" = {
-        "<p>NWS Forecast "
+        "NWS Forecast "
       },
       "historical" = {
-        "<p>NDAWN "
+        "NDAWN "
       }
     ),
     switch(
@@ -141,68 +155,116 @@ plot_weathermap <- function(
         "Wind Speed (mph) at Time of Maximum Delta T "
       }
     ),
-    switch(
-      map_type,
-      "forecast" = {
+    if (map_region != "mawn") {
+      str_c(
         switch(
-          wth_variable,
-          "delta_t" = {
-            str_c(
-              "<span style = 'color:white;'> ",
-              str_dup("-", 12),
-              " </span>"
+          map_type,
+          "forecast" = {
+            switch(
+              wth_variable,
+              "delta_t" = {
+                str_c(
+                  "<span style = 'color:white;'> ",
+                  str_dup("-", 12),
+                  " </span>"
+                )
+              },
+              "wind_speed" = {
+                str_c(
+                  "<span style = 'color:white;'> ",
+                  str_dup("-", 9),
+                  " </span>"
+                )
+              }
             )
           },
-          "wind_speed" = {
-            str_c(
-              "<span style = 'color:white;'> ",
-              str_dup("-", 9),
-              " </span>"
+          "historical" = {
+            switch(
+              wth_variable,
+              "delta_t" = {
+                str_c(
+                  "<span style = 'color:white;'> ",
+                  str_dup("-", 20),
+                  " </span>"
+                )
+              },
+              "wind_speed" = {
+                str_c(
+                  "<span style = 'color:white;'> ",
+                  str_dup("-", 17),
+                  " </span>"
+                )
+              }
             )
           }
-        )
-      },
-      "historical" = {
-        switch(
-          wth_variable,
-          "delta_t" = {
-            str_c(
-              "<span style = 'color:white;'> ",
-              str_dup("-", 20),
-              " </span>"
-            )
-          },
-          "wind_speed" = {
-            str_c(
-              "<span style = 'color:white;'> ",
-              str_dup("-", 17),
-              " </span>"
-            )
-          }
-        )
-      }
-    ),
-    "<span style = 'color:black;font-family:Inconsolata;font-size:13pt'> ",
-    plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y"),
+        ),
+        "<span style = 'color:black;font-family:Inconsolata;font-size:13pt'> ",
+        plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y")
+      )
+    },
     "</span></p>"
   )
 
-  map_subtitle <- switch(
-    map_type,
-    "forecast" = {
-      str_c(
-        "Created: ",
-        plotdat |>
-          pull(forecast_effective) |>
-          as_date() |>
-          unique() |>
-          format("%a, %b %d %Y")
+  map_subtitle <-
+    if (map_region == "mawn") {
+      switch(
+        map_type,
+        "forecast" = {
+          str_c(
+            "Created: ",
+            plotdat |>
+              pull(forecast_effective) |>
+              as_date() |>
+              unique() |>
+              format("%a, %b %d %Y"),
+            switch(
+              wth_variable,
+              "delta_t" = {
+                str_c(
+                  "<span style = 'color:white;font-size:12.45pt'> ",
+                  str_dup("-", 28),
+                  " </span>"
+                )
+              },
+              "wind_speed" = {
+                str_c(
+                  "<span style = 'color:white;'> ",
+                  str_dup("-", 25),
+                  " </span>"
+                )
+              }
+            ),
+            "<span style = 'color:black;font-family:Inconsolata;font-size:11pt'> ",
+            plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y"),
+            "</span></p>"
+          )
+        },
+        "historical" = {
+          str_c(
+            "<span style = 'color:black;font-family:Inconsolata;font-size:11pt'> ",
+            plotdat |> pull(date) |> unique() |> format("%a, %b %d %Y"),
+            "</span></p>"
+          )
+        }
       )
-    },
-    "historical" = {
-      NULL
+    } else {
+      switch(
+        map_type,
+        "forecast" = {
+          str_c(
+            "Created: ",
+            plotdat |>
+              pull(forecast_effective) |>
+              as_date() |>
+              unique() |>
+              format("%a, %b %d %Y")
+          )
+        },
+        "historical" = {
+          NULL
+        }
+      )
     }
-  )
 
   map_label <- str_c(
     switch(
@@ -357,7 +419,7 @@ plot_weathermap <- function(
         ) +
         theme(
           plot.title = element_markdown(family = "Arial"),
-          plot.subtitle = element_text(family = "Arial"),
+          plot.subtitle = element_markdown(family = "Arial"),
           axis.title = element_blank(),
           axis.text = element_blank(),
           axis.ticks = element_blank(),

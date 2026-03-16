@@ -221,7 +221,7 @@ plot_weathermap <- function(
               wth_variable,
               "delta_t" = {
                 str_c(
-                  "<span style = 'color:white;font-size:12.45pt'> ",
+                  "<span style = 'color:white;'> ",
                   str_dup("-", 28),
                   " </span>"
                 )

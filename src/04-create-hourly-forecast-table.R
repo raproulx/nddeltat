@@ -25,8 +25,10 @@ data_in <- read_csv("./data/tbl-ndawn-stations.csv", show_col_types = FALSE) |>
 
 
 # create reactable table --------------------------------------------------
+today_date <- (Sys.time() |> with_tz("America/Chicago") |> date())
+
 tbl <- data_in |>
-  dplyr::filter(date == (Sys.time() |> with_tz("America/Chicago") |> date())) |>
+  dplyr::filter(date == today_date) |>
   select(station_name, asd_name, start_time_local, delta_t) |>
   pivot_wider(names_from = start_time_local, values_from = delta_t)
 

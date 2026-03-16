@@ -24,23 +24,18 @@ plot_weathermap <- function(
   map_date <- ymd(map_date)
 
   # visualization templates -------------------------------------------------
-  counties <- list(
-    ndawn = st_read("./data/geotemplate-counties-ndawn.geojson"),
-    mawn = st_read("./data/geotemplate-counties-mawn.geojson"),
-    all = st_read("./data/geotemplate-counties-all.geojson")
-  )
-  states <- list(
-    ndawn = st_read("./data/geotemplate-states-ndawn.geojson"),
-    mawn = st_read("./data/geotemplate-states-mawn.geojson"),
-    all = st_read("./data/geotemplate-states-all.geojson")
-  )
-  bounding_box <- list(
-    ndawn = st_read("./data/geotemplate-bounding-box-ndawn.geojson"),
-    mawn = st_read("./data/geotemplate-bounding-box-mawn.geojson"),
-    all = st_read("./data/geotemplate-bounding-box-all.geojson")
-  )
+  counties <- st_read(str_glue(
+    "./data/geotemplate-counties-{map_region}.geojson"
+  ))
+  states <- st_read(str_glue(
+    "./data/geotemplate-states-{map_region}.geojson"
+  ))
+  bounding_box <- st_read(str_glue(
+    "./data/geotemplate-bounding-box-{map_region}.geojson"
+  ))
+
   crs_gcs <- "epsg:4326"
-  crs_pcs <- str_c("epsg:", st_crs(counties |> pluck(map_region))$epsg)
+  crs_pcs <- str_c("epsg:", st_crs(counties)$epsg)
 
   scale_values <- list(
     delta_t = list(
@@ -109,19 +104,19 @@ plot_weathermap <- function(
     )
 
   # create smoothed raster --------------------------------------------------
-  r <- rast(bounding_box |> pluck(map_region), res = 1500)
+  r <- rast(bounding_box, res = 1500)
 
   m <- fields::Tps(
     x = st_coordinates(plotdat),
     Y = plotdat |> pull(wth_variable)
   ) # thin plate spline model
   tps <- interpolate(r, m) |>
-    mask(counties |> pluck(map_region))
+    mask(counties)
 
   # clip plotdat to bounding box --------------------------------------------
   plotdat <- plotdat |>
-    st_filter(counties |> pluck(map_region)) |>
-    st_filter(bounding_box |> pluck(map_region))
+    st_filter(counties) |>
+    st_filter(bounding_box)
 
   # map title, subtitle, and label ------------------------------------------
   map_title <- str_c(
@@ -292,8 +287,7 @@ plot_weathermap <- function(
           subtitle = map_subtitle
         ) +
         geom_sf(
-          data = bounding_box |>
-            pluck(map_region),
+          data = bounding_box,
           color = "white",
           fill = "white"
         ) +
@@ -323,14 +317,12 @@ plot_weathermap <- function(
             pluck(wth_variable, "labels")
         ) +
         geom_sf(
-          data = counties |>
-            pluck(map_region),
+          data = counties,
           color = "black",
           fill = NA
         ) +
         geom_sf(
-          data = states |>
-            pluck(map_region),
+          data = states,
           color = "black",
           linewidth = 1,
           fill = NA
@@ -412,9 +404,9 @@ plot_weathermap <- function(
         ) +
         geom_image(
           data = tibble(
-            x = st_bbox(bounding_box |> pluck(map_region))[1] +
+            x = st_bbox(bounding_box)[1] +
               nudge_imgcite |> pluck("x"),
-            y = st_bbox(bounding_box |> pluck(map_region))[2] +
+            y = st_bbox(bounding_box)[2] +
               nudge_imgcite |> pluck("y")
           ),
           aes(x, y, image = "./bin/ndsu-extension-color-logo.eps"),
@@ -422,9 +414,9 @@ plot_weathermap <- function(
         ) +
         geom_richtext(
           data = tibble(
-            x = st_bbox(bounding_box |> pluck(map_region))[1] +
+            x = st_bbox(bounding_box)[1] +
               nudge_txtcite |> pluck("x"),
-            y = st_bbox(bounding_box |> pluck(map_region))[2] +
+            y = st_bbox(bounding_box)[2] +
               nudge_txtcite |> pluck("y")
           ),
           aes(
@@ -442,8 +434,8 @@ plot_weathermap <- function(
           label.color = NA
         ) +
         coord_sf(
-          xlim = st_bbox(bounding_box |> pluck(map_region))[c(1, 3)],
-          ylim = st_bbox(bounding_box |> pluck(map_region))[c(2, 4)],
+          xlim = st_bbox(bounding_box)[c(1, 3)],
+          ylim = st_bbox(bounding_box)[c(2, 4)],
           crs = crs_pcs,
           expand = FALSE
         ) +
@@ -524,10 +516,9 @@ plot_weathermap <- function(
         ) |>
         addPolygons(
           data = counties |>
-            pluck(map_region) |>
             dplyr::select(geometry) |>
             st_simplify(dTolerance = 1000) |>
-            st_intersection(bounding_box |> pluck(map_region)) |>
+            st_intersection(bounding_box) |>
             st_transform(crs = 4326),
           color = "#343A40",
           weight = 1

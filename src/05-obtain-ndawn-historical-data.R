@@ -6,6 +6,18 @@ source("./fun/wetbulb_from_relhumid.R")
 
 
 # determine dates that need data retrieval --------------------------------
+current_year <- Sys.time() |> with_tz("America/Chicago") |> date() |> year()
+earliest_day <- fs::dir_ls(
+  "./results/maps_forecast",
+  type = "file",
+  recurse = TRUE,
+  regexp = "\\d{4}-\\d{2}-\\d{2}"
+) |>
+  str_extract(pattern = "\\d{4}-\\d{2}-\\d{2}") |>
+  date() %>%
+  .[year(.) == current_year] |>
+  min()
+
 data_retrieved <-
   read_csv(
     "./results/tbl-historical-delta-t.csv",
@@ -16,7 +28,7 @@ data_retrieved <-
 dates_needed <-
   tibble(
     date = seq(
-      ymd(str_c(year(Sys.Date()), "-05-01")),
+      earliest_day,
       (Sys.time() |> with_tz("America/Chicago") |> date()) - days(1),
       "1 day"
     )

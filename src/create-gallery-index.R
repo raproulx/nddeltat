@@ -5,7 +5,7 @@ library(purrr)
 library(stringr)
 library(fs)
 
-# find monthly gallery directories without index.qml ----------------------
+# find monthly gallery directories without index.qmd ----------------------
 gallery_dirs <- dir_ls(
   "./galleries",
   type = "directory"
@@ -24,7 +24,13 @@ write_qmd <- function(x) {
       "title: ",
       my(str_c(path_file(x), " 2025")) |> format(format = "%B")
     ),
+    str_c(
+      "date: \"",
+      mdy(str_c(path_file(x), " 1 ", year(Sys.Date()))),
+      "\""
+    ),
     "description: Historical maximum Delta T derived from North Dakota Agricultural Weather Network hourly data, which is available at [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html)",
+    "editor: source",
     "---"
   )
 

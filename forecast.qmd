@@ -1,6 +1,7 @@
 ---
 title: "Forecasted Delta T"
 lightbox: true
+editor: source
 ---
 
 ::: {.callout-warning}

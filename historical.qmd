@@ -1,6 +1,7 @@
 ---
 title: "Historical Delta T"
 lightbox: true
+editor: source
 ---
 
 Maps of maximum Delta T and concurrent wind speed are derived from North Dakota Agricultural Weather Network hourly data, which is available at [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html).

@@ -1,4 +1,7 @@
-# About this website
+---
+title: "About"
+editor: source
+---
 
 This is an experimental site created and maintained by [Rob Proulx](https://www.ndsu.edu/agriculture/ag-home/directory/rob-proulx), Agriculture Technology Systems Specialist with North Dakota State University Extension. Delta T forecast maps are derived from National Weather Service hourly forecasts and are not an official NWS forecast product.
 

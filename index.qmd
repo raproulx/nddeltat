@@ -7,6 +7,7 @@ format:
       sidebar-width: 65px
       margin-width: 65px
       body-width: 1170px
+editor: source
 ---
 
 ::: {.callout-warning}

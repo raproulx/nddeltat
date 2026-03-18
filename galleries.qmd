@@ -5,9 +5,10 @@ listing:
   - id: galleries
     contents: galleries
     type: grid
-    sort: "date"
+    sort: "date desc"
     categories: false
     sort-ui: false
     filter-ui: false
     fields: [image, title, description]
+editor: source
 ---

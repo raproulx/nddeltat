@@ -25,7 +25,7 @@ Delta T management recommendations for spraying are embedded in the maps feature
 
 -   Conditions are unsuitable ([■]{.dt-unsuitable style="font-size:26px"}) for all droplet sizes when Delta T is greater than 21.6.
 
-![Summary of herbicide spraying recommendations in response to Delta T values. Adapted from the NDSU Weed Management Guide online supplement.](bin/delta-t-map-legend.png){fig-alt="ndsu-delta-t-recommendations"}
+![Summary of herbicide spraying recommendations in response to Delta T values. Adapted from the NDSU Weed Management Guide online supplement.](bin/delta-t-map-legend.png){fig-alt="Vertical Delta T Management Scale from North Dakota State University. A color‑coded bar on the left ranges from yellow at the top, to green in the middle, to yellow then red at the bottom and is labeled with Delta T values. From 0 to about 4 (yellow zone), the label reads ‘Caution.’ From about 4 to 14 (green zone), the label reads ‘Preferred.’ From about 14 to 18 (yellow zone), the label reads ‘Caution.’ From 18 to 22 and higher (red zone), text states ‘Unsuitable for fine (F) or medium (M) droplet sizes’ and ‘Unsuitable for all droplet sizes.’ The top right includes the NDSU North Dakota State University logo with the heading ‘Delta T Management Scale.’"}
 
 For more information on Delta T, read this [NDSU guide](https://www.ndsu.edu/agriculture/sites/default/files/2022-01/DeltaT-WeedGuide.pdf) or watch this short [overview video](https://youtu.be/CZxaB_xwJYc) from Rob Proulx. For more information on managing Delta T, see this [short video](https://x.com/AgMafiaLLC/status/1922339466536223052) from Kyle Okke on X or this [video](https://youtu.be/IT5CqULPcVk) from Rob Proulx.
 

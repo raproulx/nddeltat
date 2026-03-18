@@ -6,7 +6,7 @@ editor: source
 
 Maps of maximum Delta T and concurrent wind speed are derived from North Dakota Agricultural Weather Network hourly data, which is available at [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html).
 
-See the [Archive](galleries.qmd) for historical maps dating back to May 1.
+See the [Archive](galleries.qmd) for additional historical maps.
 
 ```{r}
 #| include: false
@@ -15,36 +15,115 @@ require(purrr)
 require(lubridate)
 require(stringr)
 
-imgpaths <- map(
+imgpaths_ndawn <- map(
   1:7,
   \(x)
    dir_ls(
      path = "./results/maps_historical",
      recurse = TRUE,
-     regexp = str_c("historical-both-", (Sys.time() |> with_tz("America/Chicago") |> date()) - days(x))
+     regexp = str_c("historical-both-ndawn-", (Sys.time() |> with_tz("America/Chicago") |> date()) - days(x))
      ) |> 
      path_rel()
   ) |> 
   set_names(str_c("h",1:7))
+
+imgpaths_mawn <- map(
+  1:7,
+  \(x)
+   dir_ls(
+     path = "./results/maps_historical",
+     recurse = TRUE,
+     regexp = str_c("historical-both-mawn-", (Sys.time() |> with_tz("America/Chicago") |> date()) - days(x))
+     ) |> 
+     path_rel()
+  ) |> 
+  set_names(str_c("h",1:7))
+
+alttxt_historicalmap_ndawn <- "\"Two maps showing North Dakota weather information for the same date. The top map displays maximum Delta‑T (wet bulb depression) values, with county boundaries outlined, numerical Delta‑T values placed across the state, and a background color gradient representing value ranges. A labeled horizontal legend indicates how the colors correspond to Delta‑T values. The bottom map shows wind speed at the time of maximum Delta‑T, also with county outlines, numeric values across the state, and a background color gradient with a labeled legend showing the wind‑speed scale. Both maps include NDSU Extension branding, data‑source statements, and a note indicating that background contouring may not reflect actual conditions.\""
+
+alttxt_historicalmap_mawn <- "\"Two side‑by‑side maps showing Minnesota weather information for the same date. The map on the left displays maximum Delta‑T (wet bulb depression) values, with county boundaries outlined, numerical Delta‑T values placed across the state, and a background color gradient representing value ranges. A labeled vertical legend shows how the colors correspond to Delta‑T values. The map on the right shows wind speed at the time of maximum Delta‑T, also with county outlines, numeric values across the state, and a background color gradient with a labeled legend showing the wind‑speed scale. Both maps include NDSU Extension branding, data‑source statements, and a note indicating that background contouring may not reflect actual conditions.\""
 ```
 
 # Yesterday
-![](`r imgpaths |> pluck("h1")`){group="historical-gallery"}
 
-# `r format(imgpaths |> pluck("h2") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("h2")`){group="historical-gallery"}
+::: {.panel-tabset group="geography"}
+## NDAWN
 
-# `r format(imgpaths |> pluck("h3") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("h3")`){group="historical-gallery"}
+![](`{r} imgpaths_ndawn |> pluck("h1")`){group="historical-gallery-ndawn" fig-alt=`{r} alttxt_historicalmap_ndawn`}
 
-# `r format(imgpaths |> pluck("h4") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("h4")`){group="historical-gallery"}
+## Minnesota
 
-# `r format(imgpaths |> pluck("h5") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("h5")`){group="historical-gallery"}
+![](`{r} imgpaths_mawn |> pluck("h1")`){group="historical-gallery-mawn" fig-alt=`{r} alttxt_historicalmap_mawn`}
+:::
 
-# `r format(imgpaths |> pluck("h6") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("h6")`){group="historical-gallery"}
+# `{r} format(imgpaths_ndawn |> pluck("h2") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
 
-# `r format(imgpaths |> pluck("h7") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("h7")`){group="historical-gallery"}
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("h2")`){group="historical-gallery-ndawn" fig-alt=`{r} alttxt_historicalmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("h2")`){group="historical-gallery-mawn" fig-alt=`{r} alttxt_historicalmap_mawn`}
+:::
+
+# `{r} format(imgpaths_ndawn |> pluck("h3") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("h3")`){group="historical-gallery-ndawn" fig-alt=`{r} alttxt_historicalmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("h3")`){group="historical-gallery-mawn" fig-alt=`{r} alttxt_historicalmap_mawn`}
+:::
+
+# `{r} format(imgpaths_ndawn |> pluck("h4") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("h4")`){group="historical-gallery-ndawn" fig-alt=`{r} alttxt_historicalmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("h4")`){group="historical-gallery-mawn" fig-alt=`{r} alttxt_historicalmap_mawn`}
+:::
+
+# `{r} format(imgpaths_ndawn |> pluck("h5") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("h5")`){group="historical-gallery-ndawn" fig-alt=`{r} alttxt_historicalmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("h5")`){group="historical-gallery-mawn" fig-alt=`{r} alttxt_historicalmap_mawn`}
+:::
+
+# `{r} format(imgpaths_ndawn |> pluck("h6") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("h6")`){group="historical-gallery-ndawn" fig-alt=`{r} alttxt_historicalmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("h6")`){group="historical-gallery-mawn" fig-alt=`{r} alttxt_historicalmap_mawn`}
+:::
+
+# `{r} format(imgpaths_ndawn |> pluck("h7") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("h7")`){group="historical-gallery-ndawn" fig-alt=`{r} alttxt_historicalmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("h7")`){group="historical-gallery-mawn" fig-alt=`{r} alttxt_historicalmap_mawn`}
+:::

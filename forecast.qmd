@@ -18,33 +18,110 @@ require(purrr)
 require(lubridate)
 require(stringr)
 
-imgpaths <- map(
+imgpaths_ndawn <- map(
   0:5,
   \(x)
    dir_ls(
      path = "./results/maps_forecast",
      recurse = TRUE,
-     regexp = str_c("forecast-delta-t-", (Sys.time() |> with_tz("America/Chicago") |> date()) + days(x))
+     regexp = str_c("forecast-delta-t-ndawn-", (Sys.time() |> with_tz("America/Chicago") |> date()) + days(x))
      ) |> 
      path_rel()
   ) |> 
   set_names(str_c("f",0:5))
+
+imgpaths_mawn <- map(
+  0:5,
+  \(x)
+   dir_ls(
+     path = "./results/maps_forecast",
+     recurse = TRUE,
+     regexp = str_c("forecast-delta-t-mawn-", (Sys.time() |> with_tz("America/Chicago") |> date()) + days(x))
+     ) |> 
+     path_rel()
+  ) |> 
+  set_names(str_c("f",0:5))
+
+alttxt_forecastmap_ndawn <- "\"Map showing forecast maximum Delta‑T (wet bulb depression) values across North Dakota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a legend at the bottom showing the color scale with labeled value intervals. Text at the top notes the map is based on National Weather Service forecast data. The map includes a creation date, forecast date, and NDSU Extension branding, along with a note that background contouring may not reflect actual conditions.\""
+
+alttxt_forecastmap_mawn <- "\"Map showing forecast maximum Delta‑T (wet bulb depression) values across Minnesota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a vertical legend on the right showing the color scale with labeled value intervals. Text at the top notes the map is based on National Weather Service forecast data. The map includes a creation date, forecast date, and NDSU Extension branding, along with a note that background contouring may not reflect actual conditions.\""
 ```
 
 # Today
-![](`r imgpaths |> pluck("f0")`){group="forecast-gallery"}
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("f0")`){group="forecast-gallery-ndawn" fig-alt=`{r} alttxt_forecastmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("f0")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+:::
 
 # Tomorrow
-![](`r imgpaths |> pluck("f1")`){group="forecast-gallery"}
 
-# `r format(imgpaths |> pluck("f2") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("f2")`){group="forecast-gallery"}
+::: {.panel-tabset group="geography"}
+## NDAWN
 
-# `r format(imgpaths |> pluck("f3") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("f3")`){group="forecast-gallery"}
+![](`{r} imgpaths_ndawn |> pluck("f1")`){group="forecast-gallery-ndawn" fig-alt=`{r} alttxt_forecastmap_ndawn`}
 
-# `r format(imgpaths |> pluck("f4") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("f4")`){group="forecast-gallery"}
+## Minnesota
 
-# `r format(imgpaths |> pluck("f5") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
-![](`r imgpaths |> pluck("f5")`){group="forecast-gallery"}
+![](`{r} imgpaths_mawn |> pluck("f1")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+
+:::
+
+# `{r} format(imgpaths_ndawn |> pluck("f2") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("f2")`){group="forecast-gallery-ndawn" fig-alt=`{r} alttxt_forecastmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("f2")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+
+:::
+
+
+# `{r} format(imgpaths_ndawn |> pluck("f3") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("f3")`){group="forecast-gallery-ndawn" fig-alt=`{r} alttxt_forecastmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("f3")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+
+:::
+
+
+# `{r} format(imgpaths_ndawn |> pluck("f4") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("f4")`){group="forecast-gallery-ndawn" fig-alt=`{r} alttxt_forecastmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("f4")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+
+:::
+
+# `{r} format(imgpaths_ndawn |> pluck("f5") |> str_extract("\\d{4}-\\d{2}-\\d{2}") |> ymd(), format = "%A, %B %d, %Y")`
+
+::: {.panel-tabset group="geography"}
+## NDAWN
+
+![](`{r} imgpaths_ndawn |> pluck("f5")`){group="forecast-gallery-ndawn" fig-alt=`{r} alttxt_forecastmap_ndawn`}
+
+## Minnesota
+
+![](`{r} imgpaths_mawn |> pluck("f5")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+
+:::

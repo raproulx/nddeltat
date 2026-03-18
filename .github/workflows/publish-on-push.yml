@@ -1,13 +1,13 @@
-#on:
-#  workflow_dispatch:
-#  push:
-#    branches: main
-#    paths:
-#      - '**.qmd'
-#      - '**.png'
-#      - '**.yml'
-#      - '**.css'
-#      - '**.rds'
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+    paths:
+      - '**.qmd'
+      - '**.png'
+      - '**.yml'
+      - '**.css'
+      - '**.rds'
 
 name: Quarto Publish on Push
 

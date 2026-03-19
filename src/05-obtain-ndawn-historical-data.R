@@ -23,7 +23,8 @@ data_retrieved <-
     "./results/tbl-historical-delta-t.csv",
     col_types = "icddicdddcd"
   ) |>
-  mutate(date = ymd(date))
+  mutate(date = ymd(date)) |>
+  dplyr::filter(year(date) == current_year)
 
 dates_needed <-
   tibble(

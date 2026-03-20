@@ -45,11 +45,11 @@ Delta T is just one weather variable to consider before spraying. Check the [NDA
 
 ## NDAWN
 
-![](https://s3.us-east-2.amazonaws.com/ndawn.info/maps/NDAWN_delta_t.png){width=910px group="gallery-ndawn" fig-alt="Map showing current Delta‑T (wet bulb depression) values across North Dakota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a legend at the bottom showing the color scale with labeled value intervals. The map includes a creation date and North Dakota Agricultural Weather Network (NDAWN) branding, along with a note that background contouring may not reflect actual conditions."}
+![](https://s3.us-east-2.amazonaws.com/ndawn.info/maps/NDAWN_delta_t.png){width=82% group="gallery-ndawn" fig-alt="Map showing current Delta‑T (wet bulb depression) values across North Dakota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a legend at the bottom showing the color scale with labeled value intervals. The map includes a creation date and North Dakota Agricultural Weather Network (NDAWN) branding, along with a note that background contouring may not reflect actual conditions."}
 
 ## Minnesota
 
-![](https://s3.us-east-2.amazonaws.com/ndawn.info/maps/Minnesota_delta_t.png){width=550px  group="gallery-mawn" fig-alt="Map showing current Delta‑T (wet bulb depression) values across Minnesota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a vertical legend on the right showing the color scale with labeled value intervals. The map includes a creation date and North Dakota Agricultural Weather Network (NDAWN) branding, along with a note that background contouring may not reflect actual conditions."}
+![](https://s3.us-east-2.amazonaws.com/ndawn.info/maps/Minnesota_delta_t.png){width=50%  group="gallery-mawn" fig-alt="Map showing current Delta‑T (wet bulb depression) values across Minnesota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a vertical legend on the right showing the color scale with labeled value intervals. The map includes a creation date and North Dakota Agricultural Weather Network (NDAWN) branding, along with a note that background contouring may not reflect actual conditions."}
 
 :::
 
@@ -59,11 +59,11 @@ Delta T is just one weather variable to consider before spraying. Check the [NDA
 
 ## NDAWN
 
-![](`{r} img_today_ndawn`){width=910px group="gallery-ndawn" fig-alt="Map showing today's forecast maximum Delta‑T (wet bulb depression) values across North Dakota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a legend at the bottom showing the color scale with labeled value intervals. Text at the top notes the map is based on National Weather Service forecast data. The map includes a creation date, forecast date, and NDSU Extension branding, along with a note that background contouring may not reflect actual conditions."}
+![](`{r} img_today_ndawn`){width=82% group="gallery-ndawn" fig-alt="Map showing today's forecast maximum Delta‑T (wet bulb depression) values across North Dakota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a legend at the bottom showing the color scale with labeled value intervals. Text at the top notes the map is based on National Weather Service forecast data. The map includes a creation date, forecast date, and NDSU Extension branding, along with a note that background contouring may not reflect actual conditions."}
 
 ## Minnesota
 
-![](`{r} img_today_mawn`){width=546px group="gallery-mawn" fig-alt="Map showing today's forecast maximum Delta‑T (wet bulb depression) values across Minnesota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a vertical legend on the right showing the color scale with labeled value intervals. Text at the top notes the map is based on National Weather Service forecast data. The map includes a creation date, forecast date, and NDSU Extension branding, along with a note that background contouring may not reflect actual conditions."}
+![](`{r} img_today_mawn`){width=49% group="gallery-mawn" fig-alt="Map showing today's forecast maximum Delta‑T (wet bulb depression) values across Minnesota. County boundaries are outlined, and numerical Delta‑T values appear at many locations throughout the map. A background color gradient represents ranges of Delta‑T values, with a vertical legend on the right showing the color scale with labeled value intervals. Text at the top notes the map is based on National Weather Service forecast data. The map includes a creation date, forecast date, and NDSU Extension branding, along with a note that background contouring may not reflect actual conditions."}
 
 :::
 

@@ -56,7 +56,7 @@ alttxt_forecastmap_mawn <- "\"Map showing forecast maximum Delta‑T (wet bulb d
 
 ## Minnesota
 
-![](`{r} imgpaths_mawn |> pluck("f0")`){width=458px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+![](`{r} imgpaths_mawn |> pluck("f0")`){width=60% group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
 :::
 
 # Tomorrow
@@ -81,7 +81,7 @@ alttxt_forecastmap_mawn <- "\"Map showing forecast maximum Delta‑T (wet bulb d
 
 ## Minnesota
 
-![](`{r} imgpaths_mawn |> pluck("f2")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+![](`{r} imgpaths_mawn |> pluck("f2")`){width=60% group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
 
 :::
 
@@ -95,7 +95,7 @@ alttxt_forecastmap_mawn <- "\"Map showing forecast maximum Delta‑T (wet bulb d
 
 ## Minnesota
 
-![](`{r} imgpaths_mawn |> pluck("f3")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+![](`{r} imgpaths_mawn |> pluck("f3")`){width=60% group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
 
 :::
 
@@ -109,7 +109,7 @@ alttxt_forecastmap_mawn <- "\"Map showing forecast maximum Delta‑T (wet bulb d
 
 ## Minnesota
 
-![](`{r} imgpaths_mawn |> pluck("f4")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+![](`{r} imgpaths_mawn |> pluck("f4")`){width=60% group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
 
 :::
 
@@ -122,6 +122,6 @@ alttxt_forecastmap_mawn <- "\"Map showing forecast maximum Delta‑T (wet bulb d
 
 ## Minnesota
 
-![](`{r} imgpaths_mawn |> pluck("f5")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+![](`{r} imgpaths_mawn |> pluck("f5")`){width=60% group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
 
 :::

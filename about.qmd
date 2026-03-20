@@ -3,7 +3,7 @@ title: "About"
 editor: source
 ---
 
-This is an experimental site created and maintained by [Rob Proulx](https://www.ndsu.edu/agriculture/ag-home/directory/rob-proulx), Agriculture Technology Systems Specialist with North Dakota State University Extension. Delta T forecast maps are derived from National Weather Service hourly forecasts and are not an official NWS forecast product.
+This is an experimental site created and maintained by [Rob Proulx](https://www.ndsu.edu/agriculture/ag-home/directory/rob-proulx), Ag Technology and Grain Systems Specialist with North Dakota State University Extension. Delta T forecast maps are derived from National Weather Service hourly forecasts and are not an official NWS forecast product.
 
 All other maps are from the North Dakota Agricultural Weather Network or derived from its data. Visit [NDAWN.org](https://ndawn.ndsu.nodak.edu/current.html), [NDAWN.info](https://ndawn.info/), or the [NDAWN Inversion](https://www.ndsu.edu/agriculture/ag-hub/ndawn-inversion) app.
 
@@ -39,4 +39,4 @@ Historical maps are a **troubleshooting tool**. If you notice poor efficacy from
 
 # Contact
 
-Please direct any questions or comments to [Rob Proulx](mailto:rob.proulx@ndsu.edu?subject=ND%20Delta%20T%20Website), NDSU Extension Agriculture Technology Systems Specialist.
+Please direct any questions or comments to [Rob Proulx](mailto:rob.proulx@ndsu.edu?subject=ND%20Delta%20T%20Website), NDSU Extension Ag Technology and Grain Systems Specialist.

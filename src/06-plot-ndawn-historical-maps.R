@@ -4,6 +4,13 @@ library(patchwork)
 library(fs)
 source("./fun/plot_weathermap.R")
 
+if (fs::dir_exists("./results/maps_historical") == FALSE) {
+  fs::dir_create("./results/maps_historical")
+}
+
+if (fs::dir_exists("./galleries") == FALSE) {
+  fs::dir_create("./galleries")
+}
 
 # load plot data ----------------------------------------------------------
 data_in <- read_csv("./data/tbl-ndawn-stations.csv") |>

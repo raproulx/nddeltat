@@ -56,7 +56,7 @@ alttxt_forecastmap_mawn <- "\"Map showing forecast maximum Delta‑T (wet bulb d
 
 ## Minnesota
 
-![](`{r} imgpaths_mawn |> pluck("f0")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+![](`{r} imgpaths_mawn |> pluck("f0")`){width=458px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
 :::
 
 # Tomorrow
@@ -68,7 +68,7 @@ alttxt_forecastmap_mawn <- "\"Map showing forecast maximum Delta‑T (wet bulb d
 
 ## Minnesota
 
-![](`{r} imgpaths_mawn |> pluck("f1")`){height=557px group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
+![](`{r} imgpaths_mawn |> pluck("f1")`){width=60% group="forecast-gallery-mawn" fig-alt=`{r} alttxt_forecastmap_mawn`}
 
 :::
 

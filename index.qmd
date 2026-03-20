@@ -41,7 +41,7 @@ Delta T is just one weather variable to consider before spraying. Check the [NDA
 
 # Current Conditions
 
-::: {.panel-tabset group="geography"}
+::: {.panel-tabset .custom-width group="geography"}
 
 ## NDAWN
 
@@ -55,7 +55,7 @@ Delta T is just one weather variable to consider before spraying. Check the [NDA
 
 # Today's Forecast Maximum
 
-::: {.panel-tabset group="geography"}
+::: {.panel-tabset .custom-width group="geography"}
 
 ## NDAWN
 

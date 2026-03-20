@@ -29,6 +29,10 @@ strong {
   padding: 3.6px;
 }
 
+.panel-tabset.custom-width {
+  max-width: 906px;
+}
+
 @media screen and (max-width:767px) {
 .dt-tbl{
   height:325px;

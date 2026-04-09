@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://raproulx.github.io/nddeltat/historical.html</loc>
-    <lastmod>2026-04-08T09:54:47.897Z</lastmod>
-  </url>
-  <url>
-    <loc>https://raproulx.github.io/nddeltat/forecast.html</loc>
-    <lastmod>2026-04-08T09:54:47.847Z</lastmod>
-  </url>
-  <url>
     <loc>https://raproulx.github.io/nddeltat/galleries/mar/index.html</loc>
-    <lastmod>2026-04-08T09:57:10.156Z</lastmod>
-  </url>
-  <url>
-    <loc>https://raproulx.github.io/nddeltat/galleries.html</loc>
-    <lastmod>2026-04-08T09:54:47.847Z</lastmod>
-  </url>
-  <url>
-    <loc>https://raproulx.github.io/nddeltat/galleries/apr/index.html</loc>
-    <lastmod>2026-04-08T09:57:10.129Z</lastmod>
-  </url>
-  <url>
-    <loc>https://raproulx.github.io/nddeltat/about.html</loc>
-    <lastmod>2026-04-08T09:54:47.665Z</lastmod>
+    <lastmod>2026-04-09T10:00:11.693Z</lastmod>
   </url>
   <url>
     <loc>https://raproulx.github.io/nddeltat/index.html</loc>
-    <lastmod>2026-04-08T09:54:47.897Z</lastmod>
+    <lastmod>2026-04-09T09:57:46.774Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/galleries.html</loc>
+    <lastmod>2026-04-09T09:57:46.720Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/historical.html</loc>
+    <lastmod>2026-04-09T09:57:46.773Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/forecast.html</loc>
+    <lastmod>2026-04-09T09:57:46.720Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/about.html</loc>
+    <lastmod>2026-04-09T09:57:46.540Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/galleries/apr/index.html</loc>
+    <lastmod>2026-04-09T10:00:11.667Z</lastmod>
   </url>
 </urlset>

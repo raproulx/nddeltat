@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://raproulx.github.io/nddeltat/galleries/mar/index.html</loc>
-    <lastmod>2026-05-13T11:01:29.282Z</lastmod>
-  </url>
-  <url>
-    <loc>https://raproulx.github.io/nddeltat/galleries/apr/index.html</loc>
-    <lastmod>2026-05-13T11:01:29.248Z</lastmod>
-  </url>
-  <url>
     <loc>https://raproulx.github.io/nddeltat/about.html</loc>
-    <lastmod>2026-05-13T10:58:28.229Z</lastmod>
-  </url>
-  <url>
-    <loc>https://raproulx.github.io/nddeltat/forecast.html</loc>
-    <lastmod>2026-05-13T10:58:28.403Z</lastmod>
+    <lastmod>2026-05-14T10:47:30.131Z</lastmod>
   </url>
   <url>
     <loc>https://raproulx.github.io/nddeltat/historical.html</loc>
-    <lastmod>2026-05-13T10:58:28.541Z</lastmod>
-  </url>
-  <url>
-    <loc>https://raproulx.github.io/nddeltat/galleries.html</loc>
-    <lastmod>2026-05-13T10:58:28.404Z</lastmod>
-  </url>
-  <url>
-    <loc>https://raproulx.github.io/nddeltat/index.html</loc>
-    <lastmod>2026-05-13T10:58:28.541Z</lastmod>
+    <lastmod>2026-05-14T10:47:30.403Z</lastmod>
   </url>
   <url>
     <loc>https://raproulx.github.io/nddeltat/galleries/may/index.html</loc>
-    <lastmod>2026-05-13T11:01:29.303Z</lastmod>
+    <lastmod>2026-05-14T10:51:01.493Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/index.html</loc>
+    <lastmod>2026-05-14T10:47:30.403Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/galleries.html</loc>
+    <lastmod>2026-05-14T10:47:30.284Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/galleries/apr/index.html</loc>
+    <lastmod>2026-05-14T10:51:01.450Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/galleries/mar/index.html</loc>
+    <lastmod>2026-05-14T10:51:01.476Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raproulx.github.io/nddeltat/forecast.html</loc>
+    <lastmod>2026-05-14T10:47:30.284Z</lastmod>
   </url>
 </urlset>

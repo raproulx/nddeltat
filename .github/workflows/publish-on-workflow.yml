@@ -1,6 +1,6 @@
 on:
   workflow_run:
-    workflows: [NWS and NDAWN Retrieval and Mapping]
+    workflows: [NWS Retrieval and Mapping, NDAWN Retrieval and Mapping]
     types: [completed]
 
 name: Quarto Publish on Workflow

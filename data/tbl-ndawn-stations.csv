@@ -90,6 +90,7 @@ station_id,station_name,location,state,asd_no,asd_name,timezone,latitude,longitu
 83,Garrison 13NW,"Garrison, ND",North Dakota,40,ND-WC,America/Chicago,47.71023,-101.67955,2200,670,2013-08-07
 243,Geneva 3W,"Geneva, MN",Minnesota,80,MN-SC,America/Chicago,43.81375,-93.32072,1263,384,2025-07-08
 107,Genoa 3S,"Genoa, ND",North Dakota,20,ND-NC,America/Chicago,48.15324,-100.99431,1609,490,2018-05-10
+267,Gluek 5W,"Gluek, MN",Minnesota,40,MN-WC,America/Chicago,44.9779,-95.57423,1020,310,2026-05-27
 156,Glyndon 1SE,"Glyndon, MN",Minnesota,10,MN-NW,America/Chicago,46.86628,-96.56763,926,282,2021-03-29
 238,Godahl 1N,"Godahl, MN",Minnesota,80,MN-SC,America/Chicago,44.12359,-94.64477,1034,315,2025-06-11
 77,Grafton 10E,"Grafton, ND",North Dakota,30,ND-NE,America/Chicago,48.41233,-97.18599,801,244,2006-05-21
@@ -97,6 +98,7 @@ station_id,station_name,location,state,asd_no,asd_name,timezone,latitude,longitu
 155,Grassy Butte 2E,"Grassy Butte, ND",North Dakota,40,ND-WC,America/Denver,47.38661,-103.20628,2688,819,2023-01-01
 70,Greenbush 7W,"Greenbush, MN",Minnesota,10,MN-NW,America/Chicago,48.70367,-96.32539,1025,312,2002-10-11
 127,Grenora 8N,"Grenora, ND",North Dakota,10,ND-NW,America/Chicago,48.73502,-103.88123,2108,642,2019-05-06
+266,Haley 3W,"Haley, ND",North Dakota,70,ND-SW,America/Denver,45.960672,-103.191101,2724,830,2026-05-01
 249,Halliday 4N,"Halliday, ND",North Dakota,40,ND-WC,America/Denver,47.418836,-102.319438,2254,687,2025-08-06
 144,Hanks 4S,"Hanks, ND",North Dakota,10,ND-NW,America/Chicago,48.53974,-103.79757,2242,683,2023-01-01
 27,Harvey 3S,"Harvey, ND",North Dakota,50,ND-C,America/Chicago,47.73047,-99.91938,1615,492,1994-06-29
@@ -116,6 +118,7 @@ station_id,station_name,location,state,asd_no,asd_name,timezone,latitude,longitu
 4,Humboldt 4SW,"Humboldt, MN",Minnesota,10,MN-NW,America/Chicago,48.88351,-97.15029,798,243,1995-05-18
 217,Hurdsfield NW,"Hurdsfield, ND",North Dakota,50,ND-C,America/Chicago,47.45111,-99.93694,1900,579,2024-07-30
 80,Inkster 3W,"Inkster, ND",North Dakota,30,ND-NE,America/Chicago,48.16632,-97.71045,1113,339,2009-06-16
+268,Isanti 3E,"Isanti, MN",Minnesota,60,MN-EC,America/Chicago,45.49772,-93.1817,963,293,2026-06-09
 33,Jamestown 10W,"Jamestown, ND",North Dakota,50,ND-C,America/Chicago,46.90669,-98.92778,1636,498,1990-04-24
 233,Jud 1S,"Jud, ND",North Dakota,90,ND-SE,America/Chicago,46.51509,-98.8918,1728,526,2025-05-22
 59,Karlsruhe 2N,"Karlsruhe, ND",North Dakota,20,ND-NC,America/Chicago,48.12217,-100.62569,1552,473,2001-08-19
@@ -137,6 +140,7 @@ station_id,station_name,location,state,asd_no,asd_name,timezone,latitude,longitu
 209,Livona 5S,"Livona, ND",North Dakota,80,ND-SC,America/Chicago,46.43594,-100.56771,1691,515,2024-05-22
 141,Logan Center 2E,"Logan Center, ND",North Dakota,30,ND-NE,America/Chicago,47.80258,-97.77438,1357,413,2019-07-24
 261,Luverne 6S,"Luverne, MN",Minnesota,70,MN-SW,America/Chicago,43.55999,-96.19261,1397,425,2025-10-01
+273,Mabel 3E,"Mabel, MN",Minnesota,90,MN-SE,America/Chicago,43.51313,-91.71059,1177,358,2026-07-22
 109,Maddock 2N,"Maddock, ND",North Dakota,20,ND-NC,America/Chicago,47.99178,-99.53329,1614,491,2018-05-16
 236,Madison 5SW,"Madison, MN",Minnesota,40,MN-WC,America/Chicago,44.95194,-96.25723,1085,330,2025-06-05
 36,Mandan 4S,"Mandan, ND",North Dakota,80,ND-SC,America/North_Dakota/New_Salem,46.77356,-100.91401,1935,589,1999-06-24
@@ -156,7 +160,9 @@ station_id,station_name,location,state,asd_no,asd_name,timezone,latitude,longitu
 40,Minot 4S,"Minot, ND",North Dakota,10,ND-NW,America/Chicago,48.18043,-101.30797,1768,538,1990-04-24
 41,Mohall 1W,"Mohall, ND",North Dakota,10,ND-NW,America/Chicago,48.767139,-101.537865,1649,502,1993-07-29
 54,Mooreton 3SW,"Mooreton, ND",North Dakota,90,ND-SE,America/Chicago,46.22509,-96.89536,983,299,1990-07-18
+270,Mora 2SW,"Mora, MN",Minnesota,60,MN-EC,America/Chicago,45.84981,-93.3215,1014,309,2026-06-11
 228,Morris 1E,"Morris, MN",Minnesota,40,MN-WC,America/Chicago,45.5901,-95.8745,1145,348,2024-10-30
+265,Mosher 4NE,"Mosher, ND",North Dakota,70,ND-SW,America/Denver,47.211533,-103.793698,2604,793,2026-04-30
 69,Mott 1N,"Mott, ND",North Dakota,70,ND-SW,America/Denver,46.37979,-102.32195,2443,744,2002-09-17
 235,Murdock,"Murdock, MN",Minnesota,40,MN-WC,America/Chicago,45.22569,-95.40371,1079,328,2025-05-29
 256,Neudorf 10SW,"Neudorf, ND",North Dakota,90,ND-SE,America/Chicago,46.500019,-99.366415,1954,595,2025-08-27
@@ -164,20 +170,22 @@ station_id,station_name,location,state,asd_no,asd_name,timezone,latitude,longitu
 145,New Hradec 6NW,"New Hradec, ND",North Dakota,40,ND-WC,America/Denver,47.06771,-102.94821,2572,783,2023-01-01
 214,New Salem 6SE,"New Salem, ND",North Dakota,80,ND-SC,America/North_Dakota/New_Salem,46.7677778,-101.341944,2190,667,2024-06-27
 113,Niles 3SE,"Niles, ND",North Dakota,20,ND-NC,America/Chicago,48.24831,-99.32927,1525,464,2018-09-12
-128,Noonan 9S,"Noonan, ND",North Dakota,10,ND-NW,America/Chicago,48.74974,-103.00602,2399,731,2019-05-06
+128,Noonan 9S,"Noonan, ND",North Dakota,10,ND-NW,America/Chicago,48.763484,-103.004957,2391,728,2019-05-06
 43,Oakes 4S,"Oakes, ND",North Dakota,90,ND-SE,America/Chicago,46.06672,-98.10281,1302,396,1990-04-24
 103,Ottertail 1SW,"Ottertail, MN",Minnesota,40,MN-WC,America/Chicago,46.41095,-95.57431,1356,413,2018-02-27
 171,Palermo 8N,"Palermo, ND",North Dakota,10,ND-NW,America/Chicago,48.48079,-102.21163,2276,693,2023-01-01
 116,Parkers Prairie 2NW,"Parkers Prairie, MN",Minnesota,40,MN-WC,America/Chicago,46.16941,-95.35602,1470,448,2018-05-22
 196,Peace Garden,"Peace Garden, ND",North Dakota,20,ND-NC,America/Chicago,48.99821,-100.06389,2265,690,2023-07-20
+269,Pease 2S,"Pease, MN",Minnesota,60,MN-EC,America/Chicago,45.66425,-93.6539,1011,308,2026-06-10
 88,Pekin 2NE,"Pekin, ND",North Dakota,30,ND-NE,America/Chicago,47.80764,-98.31067,1506,459,2015-05-21
 114,Perham 2NW,"Perham, MN",Minnesota,40,MN-WC,America/Chicago,46.61049,-95.60188,1375,419,2018-06-05
 3,Perley 6E,"Perley, MN",Minnesota,10,MN-NW,America/Chicago,47.17992,-96.68974,882,268,1995-02-02
 163,Perth 7E,"Perth, ND",North Dakota,30,ND-NE,America/Chicago,48.71833,-99.30675,1596,486,2021-03-30
+274,Peterson 3N,"Peterson, MN",Minnesota,90,MN-SE,America/Chicago,43.82929,-91.85672,1225,373,2026-07-23
 200,Pick City 8SW,"Pick City, ND",North Dakota,40,ND-WC,America/North_Dakota/Beulah,47.47477,-101.61245,2045,623,2023-08-09
 216,Pickardville 6SW,"Pickardville, ND",North Dakota,50,ND-C,America/Chicago,47.41536,-100.67296,1898,578,2024-07-17
 64,Pillsbury 1N,"Pillsbury, ND",North Dakota,60,ND-EC,America/Chicago,47.22536,-97.79121,1287,392,2001-10-30
-251,Pine Island 5SW,"Pine Island, MN",Minnesota,90,MN-SE,America/Chicago,44.1375,-92.6948,810,246,2025-08-13
+251,Pine Island 5SW,"Pine Island, MN",Minnesota,90,MN-SE,America/Chicago,44.1375,-92.6948,1170,356,2025-08-13
 115,Pine Point 2N,"Pine Point, MN",Minnesota,10,MN-NW,America/Chicago,47.01272,-95.37151,1564,476,2018-06-05
 168,Pioneer,"Pioneer, ND",North Dakota,10,ND-NW,America/Chicago,48.25598,-103.90634,2308,703,2023-01-01
 67,Plaza 10S,"Plaza, ND",North Dakota,10,ND-NW,America/Chicago,47.86224,-101.95765,2117,645,2002-05-08
@@ -227,6 +235,7 @@ station_id,station_name,location,state,asd_no,asd_name,timezone,latitude,longitu
 50,Turtle Lake 4N,"Turtle Lake, ND",North Dakota,40,ND-WC,America/Chicago,47.56793,-100.91529,1911,582,1993-01-19
 91,Ulen 7ESE,"Ulen, MN",Minnesota,10,MN-NW,America/Chicago,47.05044,-96.10842,1196,364,2015-10-20
 182,Underwood 1NW,"Underwood, MN",Minnesota,40,MN-WC,America/Chicago,46.30309,-95.88352,1352,412,2023-01-01
+272,Vernon Center 1NE,"Vernon Center, MN",Minnesota,80,MN-SC,America/Chicago,43.96967,-94.160615,1026,312,2026-07-13
 259,Viking 1SW,"Viking, MN",Minnesota,10,MN-NW,America/Chicago,48.21597,-96.4179,1062,323,2025-09-11
 117,Wadena 4W,"Wadena, MN",Minnesota,40,MN-WC,America/Chicago,46.44831,-95.21421,1366,416,2018-05-22
 63,Wahpeton 6N,"Wahpeton, ND",North Dakota,90,ND-SE,America/Chicago,46.35507,-96.66585,955,291,2001-10-18
@@ -236,6 +245,7 @@ station_id,station_name,location,state,asd_no,asd_name,timezone,latitude,longitu
 231,Watford City 3SW,"Watford City, ND",North Dakota,40,ND-WC,America/Chicago,47.7793,-103.3468,2180,664,2025-05-01
 92,Waukon 3S,"Waukon, MN",Minnesota,10,MN-NW,America/Chicago,47.32581,-96.13258,1146,349,2015-10-20
 112,Webster 1N,"Webster, ND",North Dakota,30,ND-NE,America/Chicago,48.29643,-98.87868,1468,447,2018-06-27
+271,Wells 3S,"Wells, MN",Minnesota,80,MN-SC,America/Chicago,43.70318,-93.743385,1170,356,2026-07-09
 131,Werner 6N,"Werner, ND",North Dakota,40,ND-WC,America/Denver,47.44446,-102.50014,2276,693,2019-06-24
 123,Westport,"Westport, MN",Minnesota,40,MN-WC,America/Chicago,45.715089999999996,-95.17179,1344,409,2018-10-12
 95,Williams 6N,"Williams, MN",Minnesota,20,MN-NC,America/Chicago,48.85841,-94.98082,1093,333,2016-08-02
